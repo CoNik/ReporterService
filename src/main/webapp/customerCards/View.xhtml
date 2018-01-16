@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CustomerCardsViewDlg" widgetVar="CustomerCardsViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewCustomerCardsTitle}">
+            <h:form id="CustomerCardsViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{customerCardsController.selected != null}">
+                        <h:outputText value="#{bundle.ViewCustomerCardsLabel_customerCardsPK_customerId}"/>
+                        <h:outputText value="#{customerCardsController.selected.customerCardsPK.customerId}" title="#{bundle.ViewCustomerCardsTitle_customerCardsPK_customerId}"/>
+                        <h:outputText value="#{bundle.ViewCustomerCardsLabel_customerCardsPK_cardId}"/>
+                        <h:outputText value="#{customerCardsController.selected.customerCardsPK.cardId}" title="#{bundle.ViewCustomerCardsTitle_customerCardsPK_cardId}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="CustomerCardsViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

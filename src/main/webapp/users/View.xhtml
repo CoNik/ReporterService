@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UsersViewDlg" widgetVar="UsersViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewUsersTitle}">
+            <h:form id="UsersViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{usersController.selected != null}">
+                        <h:outputText value="#{bundle.ViewUsersLabel_id}"/>
+                        <h:outputText value="#{usersController.selected.id}" title="#{bundle.ViewUsersTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewUsersLabel_userId}"/>
+                        <h:outputText value="#{usersController.selected.userId}" title="#{bundle.ViewUsersTitle_userId}"/>
+                        <h:outputText value="#{bundle.ViewUsersLabel_userName}"/>
+                        <h:outputText value="#{usersController.selected.userName}" title="#{bundle.ViewUsersTitle_userName}"/>
+                        <h:outputText value="#{bundle.ViewUsersLabel_password}"/>
+                        <h:outputText value="#{usersController.selected.password}" title="#{bundle.ViewUsersTitle_password}"/>
+                        <h:outputText value="#{bundle.ViewUsersLabel_cardId}"/>
+                        <h:outputText value="#{usersController.selected.cardId}" title="#{bundle.ViewUsersTitle_cardId}"/>
+                        <h:outputText value="#{bundle.ViewUsersLabel_validationDate}"/>
+                        <h:outputText value="#{usersController.selected.validationDate}" title="#{bundle.ViewUsersTitle_validationDate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewUsersLabel_lastLoginDate}"/>
+                        <h:outputText value="#{usersController.selected.lastLoginDate}" title="#{bundle.ViewUsersTitle_lastLoginDate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewUsersLabel_last3TimesPasswordErrorOccuredTime}"/>
+                        <h:outputText value="#{usersController.selected.last3TimesPasswordErrorOccuredTime}" title="#{bundle.ViewUsersTitle_last3TimesPasswordErrorOccuredTime}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewUsersLabel_preventLoggingUntilTheTime}"/>
+                        <h:outputText value="#{usersController.selected.preventLoggingUntilTheTime}" title="#{bundle.ViewUsersTitle_preventLoggingUntilTheTime}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewUsersLabel_sentDate}"/>
+                        <h:outputText value="#{usersController.selected.sentDate}" title="#{bundle.ViewUsersTitle_sentDate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="UsersViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

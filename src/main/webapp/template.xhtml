@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title><ui:insert name="title">Default Title</ui:insert></title>
+        <h:outputStylesheet library="css" name="jsfcrud.css"/>
+        <h:outputScript library="js" name="jsfcrud.js"/>
+    </h:head>
+
+    <h:body>
+
+        <p:growl id="growl" life="3000" />
+
+        <p:layout fullPage="true">
+            <p:layoutUnit position="north" size="65" header="#{bundle.AppName}">
+                <h:form id="menuForm">
+                    <p:menubar>
+                        <p:menuitem value="#{bundle.Home}" outcome="/index" icon="ui-icon-home"/>
+                        <p:submenu label="#{bundle.Maintenance}">
+                            <p:menuitem value="Activities" outcome="/activities/List.xhtml" />
+                            <p:menuitem value="ActivityLogs" outcome="/activityLogs/List.xhtml" />
+                            <p:menuitem value="AlertLogs" outcome="/alertLogs/List.xhtml" />
+                            <p:menuitem value="Alerts" outcome="/alerts/List.xhtml" />
+                            <p:menuitem value="CITReports" outcome="/cITReports/List.xhtml" />
+                            <p:menuitem value="CardActivityLogs" outcome="/cardActivityLogs/List.xhtml" />
+                            <p:menuitem value="CardTypes" outcome="/cardTypes/List.xhtml" />
+                            <p:menuitem value="Cards" outcome="/cards/List.xhtml" />
+                            <p:menuitem value="CustomerAdress" outcome="/customerAdress/List.xhtml" />
+                            <p:menuitem value="CustomerCards" outcome="/customerCards/List.xhtml" />
+                            <p:menuitem value="Customers" outcome="/customers/List.xhtml" />
+                            <p:menuitem value="DeviceStateHistory" outcome="/deviceStateHistory/List.xhtml" />
+                            <p:menuitem value="Devices" outcome="/devices/List.xhtml" />
+                            <p:menuitem value="Direction" outcome="/direction/List.xhtml" />
+                            <p:menuitem value="FraudTypes" outcome="/fraudTypes/List.xhtml" />
+                            <p:menuitem value="KioskItems" outcome="/kioskItems/List.xhtml" />
+                            <p:menuitem value="Machines" outcome="/machines/List.xhtml" />
+                            <p:menuitem value="MachinesValidators" outcome="/machinesValidators/List.xhtml" />
+                            <p:menuitem value="RoutePrices" outcome="/routePrices/List.xhtml" />
+                            <p:menuitem value="RouteStations" outcome="/routeStations/List.xhtml" />
+                            <p:menuitem value="Routes" outcome="/routes/List.xhtml" />
+                            <p:menuitem value="RulesRoute" outcome="/rulesRoute/List.xhtml" />
+                            <p:menuitem value="Stations" outcome="/stations/List.xhtml" />
+                            <p:menuitem value="Sysdiagrams" outcome="/sysdiagrams/List.xhtml" />
+                            <p:menuitem value="TransportTypes" outcome="/transportTypes/List.xhtml" />
+                            <p:menuitem value="Users" outcome="/users/List.xhtml" />
+                            <p:menuitem value="ValidatorTypes" outcome="/validatorTypes/List.xhtml" />
+                            <p:menuitem value="Validators" outcome="/validators/List.xhtml" />
+                        </p:submenu>
+                    </p:menubar>
+                </h:form>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="south" size="60">
+                <ui:insert name="footer"/>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="center">
+                <ui:insert name="body"/>
+            </p:layoutUnit>
+
+        </p:layout>
+
+    </h:body>
+
+</html>

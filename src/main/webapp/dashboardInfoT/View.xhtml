@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DashboardInfoTViewDlg" widgetVar="DashboardInfoTViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewDashboardInfoTTitle}">
+            <h:form id="DashboardInfoTViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{dashboardInfoTController.selected != null}">
+                        <h:outputText value="#{bundle.ViewDashboardInfoTLabel_id}"/>
+                        <h:outputText value="#{dashboardInfoTController.selected.id}" title="#{bundle.ViewDashboardInfoTTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewDashboardInfoTLabel_registeredAt}"/>
+                        <h:outputText value="#{dashboardInfoTController.selected.registeredAt}" title="#{bundle.ViewDashboardInfoTTitle_registeredAt}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewDashboardInfoTLabel_passengersIn}"/>
+                        <h:outputText value="#{dashboardInfoTController.selected.passengersIn}" title="#{bundle.ViewDashboardInfoTTitle_passengersIn}"/>
+                        <h:outputText value="#{bundle.ViewDashboardInfoTLabel_passengersOut}"/>
+                        <h:outputText value="#{dashboardInfoTController.selected.passengersOut}" title="#{bundle.ViewDashboardInfoTTitle_passengersOut}"/>
+                        <h:outputText value="#{bundle.ViewDashboardInfoTLabel_noTransactions}"/>
+                        <h:outputText value="#{dashboardInfoTController.selected.noTransactions}" title="#{bundle.ViewDashboardInfoTTitle_noTransactions}"/>
+                        <h:outputText value="#{bundle.ViewDashboardInfoTLabel_smartCardTikets}"/>
+                        <h:outputText value="#{dashboardInfoTController.selected.smartCardTikets}" title="#{bundle.ViewDashboardInfoTTitle_smartCardTikets}"/>
+                        <h:outputText value="#{bundle.ViewDashboardInfoTLabel_passengersInStation}"/>
+                        <h:outputText value="#{dashboardInfoTController.selected.passengersInStation}" title="#{bundle.ViewDashboardInfoTTitle_passengersInStation}"/>
+                        <h:outputText value="#{bundle.ViewDashboardInfoTLabel_noFraudulents}"/>
+                        <h:outputText value="#{dashboardInfoTController.selected.noFraudulents}" title="#{bundle.ViewDashboardInfoTTitle_noFraudulents}"/>
+                        <h:outputText value="#{bundle.ViewDashboardInfoTLabel_stationId}"/>
+                        <h:outputText value="#{dashboardInfoTController.selected.stationId}" title="#{bundle.ViewDashboardInfoTTitle_stationId}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="DashboardInfoTViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

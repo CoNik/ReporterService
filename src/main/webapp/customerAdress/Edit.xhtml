@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CustomerAdressEditDlg" widgetVar="CustomerAdressEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditCustomerAdressTitle}">
+            <h:form id="CustomerAdressEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{customerAdressController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditCustomerAdressLabel_customerId}" for="customerId" />
+                        <p:inputText id="customerId" value="#{customerAdressController.selected.customerId}" title="#{bundle.EditCustomerAdressTitle_customerId}" required="true" requiredMessage="#{bundle.EditCustomerAdressRequiredMessage_customerId}"/>
+                        <p:outputLabel value="#{bundle.EditCustomerAdressLabel_customerAdressId}" for="customerAdressId" />
+                        <p:inputText id="customerAdressId" value="#{customerAdressController.selected.customerAdressId}" title="#{bundle.EditCustomerAdressTitle_customerAdressId}" required="true" requiredMessage="#{bundle.EditCustomerAdressRequiredMessage_customerAdressId}"/>
+                        <p:outputLabel value="#{bundle.EditCustomerAdressLabel_adress1}" for="adress1" />
+                        <p:inputText id="adress1" value="#{customerAdressController.selected.adress1}" title="#{bundle.EditCustomerAdressTitle_adress1}" />
+                        <p:outputLabel value="#{bundle.EditCustomerAdressLabel_cities}" for="cities" />
+                        <p:inputText id="cities" value="#{customerAdressController.selected.cities}" title="#{bundle.EditCustomerAdressTitle_cities}" />
+                        <p:outputLabel value="#{bundle.EditCustomerAdressLabel_city}" for="city" />
+                        <p:inputText id="city" value="#{customerAdressController.selected.city}" title="#{bundle.EditCustomerAdressTitle_city}" />
+                        <p:outputLabel value="#{bundle.EditCustomerAdressLabel_country}" for="country" />
+                        <p:inputText id="country" value="#{customerAdressController.selected.country}" title="#{bundle.EditCustomerAdressTitle_country}" />
+                        <p:outputLabel value="#{bundle.EditCustomerAdressLabel_valid}" for="valid" />
+                        <p:inputText id="valid" value="#{customerAdressController.selected.valid}" title="#{bundle.EditCustomerAdressTitle_valid}" />
+                        <p:outputLabel value="#{bundle.EditCustomerAdressLabel_status}" for="status" />
+                        <p:inputText id="status" value="#{customerAdressController.selected.status}" title="#{bundle.EditCustomerAdressTitle_status}" />
+                        <p:outputLabel value="#{bundle.EditCustomerAdressLabel_createDate}" for="createDate" />
+                        <p:calendar id="createDate" pattern="MM/dd/yyyy HH:mm:ss" value="#{customerAdressController.selected.createDate}" title="#{bundle.EditCustomerAdressTitle_createDate}"  showOn="button"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{customerAdressController.update}" value="#{bundle.Save}" update="display,:CustomerAdressListForm:datalist,:growl" oncomplete="handleSubmit(args, 'CustomerAdressEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CustomerAdressEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

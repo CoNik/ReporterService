@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="KioskItemsEditDlg" widgetVar="KioskItemsEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditKioskItemsTitle}">
+            <h:form id="KioskItemsEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{kioskItemsController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditKioskItemsLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{kioskItemsController.selected.id}" title="#{bundle.EditKioskItemsTitle_id}" required="true" requiredMessage="#{bundle.EditKioskItemsRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditKioskItemsLabel_code}" for="code" />
+                        <p:inputText id="code" value="#{kioskItemsController.selected.code}" title="#{bundle.EditKioskItemsTitle_code}" required="true" requiredMessage="#{bundle.EditKioskItemsRequiredMessage_code}"/>
+                        <p:outputLabel value="#{bundle.EditKioskItemsLabel_validatorCode}" for="validatorCode" />
+                        <p:inputText id="validatorCode" value="#{kioskItemsController.selected.validatorCode}" title="#{bundle.EditKioskItemsTitle_validatorCode}" required="true" requiredMessage="#{bundle.EditKioskItemsRequiredMessage_validatorCode}"/>
+                        <p:outputLabel value="#{bundle.EditKioskItemsLabel_itemType}" for="itemType" />
+                        <p:inputText id="itemType" value="#{kioskItemsController.selected.itemType}" title="#{bundle.EditKioskItemsTitle_itemType}" />
+                        <p:outputLabel value="#{bundle.EditKioskItemsLabel_validatorPath}" for="validatorPath" />
+                        <p:inputText id="validatorPath" value="#{kioskItemsController.selected.validatorPath}" title="#{bundle.EditKioskItemsTitle_validatorPath}" />
+                        <p:outputLabel value="#{bundle.EditKioskItemsLabel_hopperDeviceId}" for="hopperDeviceId" />
+                        <p:inputText id="hopperDeviceId" value="#{kioskItemsController.selected.hopperDeviceId}" title="#{bundle.EditKioskItemsTitle_hopperDeviceId}" />
+                        <p:outputLabel value="#{bundle.EditKioskItemsLabel_hopperVaultIndex}" for="hopperVaultIndex" />
+                        <p:inputText id="hopperVaultIndex" value="#{kioskItemsController.selected.hopperVaultIndex}" title="#{bundle.EditKioskItemsTitle_hopperVaultIndex}" />
+                        <p:outputLabel value="#{bundle.EditKioskItemsLabel_iproRCDeviceId}" for="iproRCDeviceId" />
+                        <p:inputText id="iproRCDeviceId" value="#{kioskItemsController.selected.iproRCDeviceId}" title="#{bundle.EditKioskItemsTitle_iproRCDeviceId}" />
+                        <p:outputLabel value="#{bundle.EditKioskItemsLabel_iproRCStackIndex}" for="iproRCStackIndex" />
+                        <p:inputText id="iproRCStackIndex" value="#{kioskItemsController.selected.iproRCStackIndex}" title="#{bundle.EditKioskItemsTitle_iproRCStackIndex}" />
+                        <p:outputLabel value="#{bundle.EditKioskItemsLabel_onInfeeder01}" for="onInfeeder01" />
+                        <p:selectBooleanCheckbox id="onInfeeder01" value="#{kioskItemsController.selected.onInfeeder01}" />
+                        <p:outputLabel value="#{bundle.EditKioskItemsLabel_onInfeeder02}" for="onInfeeder02" />
+                        <p:selectBooleanCheckbox id="onInfeeder02" value="#{kioskItemsController.selected.onInfeeder02}" />
+                        <p:outputLabel value="#{bundle.EditKioskItemsLabel_description}" for="description" />
+                        <p:inputText id="description" value="#{kioskItemsController.selected.description}" title="#{bundle.EditKioskItemsTitle_description}" required="true" requiredMessage="#{bundle.EditKioskItemsRequiredMessage_description}"/>
+                        <p:outputLabel value="#{bundle.EditKioskItemsLabel_value}" for="value" />
+                        <p:inputText id="value" value="#{kioskItemsController.selected.value}" title="#{bundle.EditKioskItemsTitle_value}" required="true" requiredMessage="#{bundle.EditKioskItemsRequiredMessage_value}"/>
+                        <p:outputLabel value="#{bundle.EditKioskItemsLabel_currentCount}" for="currentCount" />
+                        <p:inputText id="currentCount" value="#{kioskItemsController.selected.currentCount}" title="#{bundle.EditKioskItemsTitle_currentCount}" required="true" requiredMessage="#{bundle.EditKioskItemsRequiredMessage_currentCount}"/>
+                        <p:outputLabel value="#{bundle.EditKioskItemsLabel_countAtPrimary}" for="countAtPrimary" />
+                        <p:inputText id="countAtPrimary" value="#{kioskItemsController.selected.countAtPrimary}" title="#{bundle.EditKioskItemsTitle_countAtPrimary}" />
+                        <p:outputLabel value="#{bundle.EditKioskItemsLabel_countAtSecondary}" for="countAtSecondary" />
+                        <p:inputText id="countAtSecondary" value="#{kioskItemsController.selected.countAtSecondary}" title="#{bundle.EditKioskItemsTitle_countAtSecondary}" />
+                        <p:outputLabel value="#{bundle.EditKioskItemsLabel_lastUpdateTime}" for="lastUpdateTime" />
+                        <p:calendar id="lastUpdateTime" pattern="MM/dd/yyyy HH:mm:ss" value="#{kioskItemsController.selected.lastUpdateTime}" title="#{bundle.EditKioskItemsTitle_lastUpdateTime}" required="true" requiredMessage="#{bundle.EditKioskItemsRequiredMessage_lastUpdateTime}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditKioskItemsLabel_minimumCount}" for="minimumCount" />
+                        <p:inputText id="minimumCount" value="#{kioskItemsController.selected.minimumCount}" title="#{bundle.EditKioskItemsTitle_minimumCount}" required="true" requiredMessage="#{bundle.EditKioskItemsRequiredMessage_minimumCount}"/>
+                        <p:outputLabel value="#{bundle.EditKioskItemsLabel_maximumCount}" for="maximumCount" />
+                        <p:inputText id="maximumCount" value="#{kioskItemsController.selected.maximumCount}" title="#{bundle.EditKioskItemsTitle_maximumCount}" required="true" requiredMessage="#{bundle.EditKioskItemsRequiredMessage_maximumCount}"/>
+                        <p:outputLabel value="#{bundle.EditKioskItemsLabel_lowerTrashHoldCount}" for="lowerTrashHoldCount" />
+                        <p:inputText id="lowerTrashHoldCount" value="#{kioskItemsController.selected.lowerTrashHoldCount}" title="#{bundle.EditKioskItemsTitle_lowerTrashHoldCount}" required="true" requiredMessage="#{bundle.EditKioskItemsRequiredMessage_lowerTrashHoldCount}"/>
+                        <p:outputLabel value="#{bundle.EditKioskItemsLabel_upperTrashHoldCount}" for="upperTrashHoldCount" />
+                        <p:inputText id="upperTrashHoldCount" value="#{kioskItemsController.selected.upperTrashHoldCount}" title="#{bundle.EditKioskItemsTitle_upperTrashHoldCount}" required="true" requiredMessage="#{bundle.EditKioskItemsRequiredMessage_upperTrashHoldCount}"/>
+                        <p:outputLabel value="#{bundle.EditKioskItemsLabel_createdDate}" for="createdDate" />
+                        <p:calendar id="createdDate" pattern="MM/dd/yyyy HH:mm:ss" value="#{kioskItemsController.selected.createdDate}" title="#{bundle.EditKioskItemsTitle_createdDate}" required="true" requiredMessage="#{bundle.EditKioskItemsRequiredMessage_createdDate}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditKioskItemsLabel_status}" for="status" />
+                        <p:inputText id="status" value="#{kioskItemsController.selected.status}" title="#{bundle.EditKioskItemsTitle_status}" required="true" requiredMessage="#{bundle.EditKioskItemsRequiredMessage_status}"/>
+                        <p:outputLabel value="#{bundle.EditKioskItemsLabel_sentDate}" for="sentDate" />
+                        <p:calendar id="sentDate" pattern="MM/dd/yyyy HH:mm:ss" value="#{kioskItemsController.selected.sentDate}" title="#{bundle.EditKioskItemsTitle_sentDate}"  showOn="button"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{kioskItemsController.update}" value="#{bundle.Save}" update="display,:KioskItemsListForm:datalist,:growl" oncomplete="handleSubmit(args, 'KioskItemsEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="KioskItemsEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

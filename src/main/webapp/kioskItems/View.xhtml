@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="KioskItemsViewDlg" widgetVar="KioskItemsViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewKioskItemsTitle}">
+            <h:form id="KioskItemsViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{kioskItemsController.selected != null}">
+                        <h:outputText value="#{bundle.ViewKioskItemsLabel_id}"/>
+                        <h:outputText value="#{kioskItemsController.selected.id}" title="#{bundle.ViewKioskItemsTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewKioskItemsLabel_code}"/>
+                        <h:outputText value="#{kioskItemsController.selected.code}" title="#{bundle.ViewKioskItemsTitle_code}"/>
+                        <h:outputText value="#{bundle.ViewKioskItemsLabel_validatorCode}"/>
+                        <h:outputText value="#{kioskItemsController.selected.validatorCode}" title="#{bundle.ViewKioskItemsTitle_validatorCode}"/>
+                        <h:outputText value="#{bundle.ViewKioskItemsLabel_itemType}"/>
+                        <h:outputText value="#{kioskItemsController.selected.itemType}" title="#{bundle.ViewKioskItemsTitle_itemType}"/>
+                        <h:outputText value="#{bundle.ViewKioskItemsLabel_validatorPath}"/>
+                        <h:outputText value="#{kioskItemsController.selected.validatorPath}" title="#{bundle.ViewKioskItemsTitle_validatorPath}"/>
+                        <h:outputText value="#{bundle.ViewKioskItemsLabel_hopperDeviceId}"/>
+                        <h:outputText value="#{kioskItemsController.selected.hopperDeviceId}" title="#{bundle.ViewKioskItemsTitle_hopperDeviceId}"/>
+                        <h:outputText value="#{bundle.ViewKioskItemsLabel_hopperVaultIndex}"/>
+                        <h:outputText value="#{kioskItemsController.selected.hopperVaultIndex}" title="#{bundle.ViewKioskItemsTitle_hopperVaultIndex}"/>
+                        <h:outputText value="#{bundle.ViewKioskItemsLabel_iproRCDeviceId}"/>
+                        <h:outputText value="#{kioskItemsController.selected.iproRCDeviceId}" title="#{bundle.ViewKioskItemsTitle_iproRCDeviceId}"/>
+                        <h:outputText value="#{bundle.ViewKioskItemsLabel_iproRCStackIndex}"/>
+                        <h:outputText value="#{kioskItemsController.selected.iproRCStackIndex}" title="#{bundle.ViewKioskItemsTitle_iproRCStackIndex}"/>
+                        <h:outputText value="#{bundle.ViewKioskItemsLabel_onInfeeder01}"/>
+                        <p:selectBooleanCheckbox value="#{kioskItemsController.selected.onInfeeder01}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewKioskItemsLabel_onInfeeder02}"/>
+                        <p:selectBooleanCheckbox value="#{kioskItemsController.selected.onInfeeder02}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewKioskItemsLabel_description}"/>
+                        <h:outputText value="#{kioskItemsController.selected.description}" title="#{bundle.ViewKioskItemsTitle_description}"/>
+                        <h:outputText value="#{bundle.ViewKioskItemsLabel_value}"/>
+                        <h:outputText value="#{kioskItemsController.selected.value}" title="#{bundle.ViewKioskItemsTitle_value}"/>
+                        <h:outputText value="#{bundle.ViewKioskItemsLabel_currentCount}"/>
+                        <h:outputText value="#{kioskItemsController.selected.currentCount}" title="#{bundle.ViewKioskItemsTitle_currentCount}"/>
+                        <h:outputText value="#{bundle.ViewKioskItemsLabel_countAtPrimary}"/>
+                        <h:outputText value="#{kioskItemsController.selected.countAtPrimary}" title="#{bundle.ViewKioskItemsTitle_countAtPrimary}"/>
+                        <h:outputText value="#{bundle.ViewKioskItemsLabel_countAtSecondary}"/>
+                        <h:outputText value="#{kioskItemsController.selected.countAtSecondary}" title="#{bundle.ViewKioskItemsTitle_countAtSecondary}"/>
+                        <h:outputText value="#{bundle.ViewKioskItemsLabel_lastUpdateTime}"/>
+                        <h:outputText value="#{kioskItemsController.selected.lastUpdateTime}" title="#{bundle.ViewKioskItemsTitle_lastUpdateTime}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewKioskItemsLabel_minimumCount}"/>
+                        <h:outputText value="#{kioskItemsController.selected.minimumCount}" title="#{bundle.ViewKioskItemsTitle_minimumCount}"/>
+                        <h:outputText value="#{bundle.ViewKioskItemsLabel_maximumCount}"/>
+                        <h:outputText value="#{kioskItemsController.selected.maximumCount}" title="#{bundle.ViewKioskItemsTitle_maximumCount}"/>
+                        <h:outputText value="#{bundle.ViewKioskItemsLabel_lowerTrashHoldCount}"/>
+                        <h:outputText value="#{kioskItemsController.selected.lowerTrashHoldCount}" title="#{bundle.ViewKioskItemsTitle_lowerTrashHoldCount}"/>
+                        <h:outputText value="#{bundle.ViewKioskItemsLabel_upperTrashHoldCount}"/>
+                        <h:outputText value="#{kioskItemsController.selected.upperTrashHoldCount}" title="#{bundle.ViewKioskItemsTitle_upperTrashHoldCount}"/>
+                        <h:outputText value="#{bundle.ViewKioskItemsLabel_createdDate}"/>
+                        <h:outputText value="#{kioskItemsController.selected.createdDate}" title="#{bundle.ViewKioskItemsTitle_createdDate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewKioskItemsLabel_status}"/>
+                        <h:outputText value="#{kioskItemsController.selected.status}" title="#{bundle.ViewKioskItemsTitle_status}"/>
+                        <h:outputText value="#{bundle.ViewKioskItemsLabel_sentDate}"/>
+                        <h:outputText value="#{kioskItemsController.selected.sentDate}" title="#{bundle.ViewKioskItemsTitle_sentDate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="KioskItemsViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

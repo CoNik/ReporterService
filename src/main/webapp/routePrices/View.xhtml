@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RoutePricesViewDlg" widgetVar="RoutePricesViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewRoutePricesTitle}">
+            <h:form id="RoutePricesViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{routePricesController.selected != null}">
+                        <h:outputText value="#{bundle.ViewRoutePricesLabel_unitPrice}"/>
+                        <h:outputText value="#{routePricesController.selected.unitPrice}" title="#{bundle.ViewRoutePricesTitle_unitPrice}"/>
+                        <h:outputText value="#{bundle.ViewRoutePricesLabel_unitPassCount}"/>
+                        <h:outputText value="#{routePricesController.selected.unitPassCount}" title="#{bundle.ViewRoutePricesTitle_unitPassCount}"/>
+                        <h:outputText value="#{bundle.ViewRoutePricesLabel_transfer1}"/>
+                        <h:outputText value="#{routePricesController.selected.transfer1}" title="#{bundle.ViewRoutePricesTitle_transfer1}"/>
+                        <h:outputText value="#{bundle.ViewRoutePricesLabel_transfer2}"/>
+                        <h:outputText value="#{routePricesController.selected.transfer2}" title="#{bundle.ViewRoutePricesTitle_transfer2}"/>
+                        <h:outputText value="#{bundle.ViewRoutePricesLabel_transfer3}"/>
+                        <h:outputText value="#{routePricesController.selected.transfer3}" title="#{bundle.ViewRoutePricesTitle_transfer3}"/>
+                        <h:outputText value="#{bundle.ViewRoutePricesLabel_transfer4}"/>
+                        <h:outputText value="#{routePricesController.selected.transfer4}" title="#{bundle.ViewRoutePricesTitle_transfer4}"/>
+                        <h:outputText value="#{bundle.ViewRoutePricesLabel_transfer5}"/>
+                        <h:outputText value="#{routePricesController.selected.transfer5}" title="#{bundle.ViewRoutePricesTitle_transfer5}"/>
+                        <h:outputText value="#{bundle.ViewRoutePricesLabel_unitTypeUse}"/>
+                        <h:outputText value="#{routePricesController.selected.unitTypeUse}" title="#{bundle.ViewRoutePricesTitle_unitTypeUse}"/>
+                        <h:outputText value="#{bundle.ViewRoutePricesLabel_startDate}"/>
+                        <h:outputText value="#{routePricesController.selected.startDate}" title="#{bundle.ViewRoutePricesTitle_startDate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewRoutePricesLabel_endDate}"/>
+                        <h:outputText value="#{routePricesController.selected.endDate}" title="#{bundle.ViewRoutePricesTitle_endDate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewRoutePricesLabel_createDate}"/>
+                        <h:outputText value="#{routePricesController.selected.createDate}" title="#{bundle.ViewRoutePricesTitle_createDate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewRoutePricesLabel_status}"/>
+                        <h:outputText value="#{routePricesController.selected.status}" title="#{bundle.ViewRoutePricesTitle_status}"/>
+                        <h:outputText value="#{bundle.ViewRoutePricesLabel_cardTypes}"/>
+                        <h:outputText value="#{routePricesController.selected.cardTypes}" title="#{bundle.ViewRoutePricesTitle_cardTypes}"/>
+                        <h:outputText value="#{bundle.ViewRoutePricesLabel_routes}"/>
+                        <h:outputText value="#{routePricesController.selected.routes}" title="#{bundle.ViewRoutePricesTitle_routes}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="RoutePricesViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

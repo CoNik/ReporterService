@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CardActivityLogsCreateDlg" widgetVar="CardActivityLogsCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateCardActivityLogsTitle}">
+            <h:form id="CardActivityLogsCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{cardActivityLogsController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateCardActivityLogsLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{cardActivityLogsController.selected.id}" title="#{bundle.CreateCardActivityLogsTitle_id}" required="true" requiredMessage="#{bundle.CreateCardActivityLogsRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.CreateCardActivityLogsLabel_sessionId}" for="sessionId" />
+                        <p:inputText id="sessionId" value="#{cardActivityLogsController.selected.sessionId}" title="#{bundle.CreateCardActivityLogsTitle_sessionId}" required="true" requiredMessage="#{bundle.CreateCardActivityLogsRequiredMessage_sessionId}"/>
+                        <p:outputLabel value="#{bundle.CreateCardActivityLogsLabel_cardNumber}" for="cardNumber" />
+                        <p:inputText id="cardNumber" value="#{cardActivityLogsController.selected.cardNumber}" title="#{bundle.CreateCardActivityLogsTitle_cardNumber}" required="true" requiredMessage="#{bundle.CreateCardActivityLogsRequiredMessage_cardNumber}"/>
+                        <p:outputLabel value="#{bundle.CreateCardActivityLogsLabel_validatorCode}" for="validatorCode" />
+                        <p:inputText id="validatorCode" value="#{cardActivityLogsController.selected.validatorCode}" title="#{bundle.CreateCardActivityLogsTitle_validatorCode}" required="true" requiredMessage="#{bundle.CreateCardActivityLogsRequiredMessage_validatorCode}"/>
+                        <p:outputLabel value="#{bundle.CreateCardActivityLogsLabel_currentBalance}" for="currentBalance" />
+                        <p:inputText id="currentBalance" value="#{cardActivityLogsController.selected.currentBalance}" title="#{bundle.CreateCardActivityLogsTitle_currentBalance}" required="true" requiredMessage="#{bundle.CreateCardActivityLogsRequiredMessage_currentBalance}"/>
+                        <p:outputLabel value="#{bundle.CreateCardActivityLogsLabel_amount}" for="amount" />
+                        <p:inputText id="amount" value="#{cardActivityLogsController.selected.amount}" title="#{bundle.CreateCardActivityLogsTitle_amount}" />
+                        <p:outputLabel value="#{bundle.CreateCardActivityLogsLabel_activityCode}" for="activityCode" />
+                        <p:inputText id="activityCode" value="#{cardActivityLogsController.selected.activityCode}" title="#{bundle.CreateCardActivityLogsTitle_activityCode}" required="true" requiredMessage="#{bundle.CreateCardActivityLogsRequiredMessage_activityCode}"/>
+                        <p:outputLabel value="#{bundle.CreateCardActivityLogsLabel_description}" for="description" />
+                        <p:inputText id="description" value="#{cardActivityLogsController.selected.description}" title="#{bundle.CreateCardActivityLogsTitle_description}" required="true" requiredMessage="#{bundle.CreateCardActivityLogsRequiredMessage_description}"/>
+                        <p:outputLabel value="#{bundle.CreateCardActivityLogsLabel_createdDate}" for="createdDate" />
+                        <p:calendar id="createdDate" pattern="MM/dd/yyyy HH:mm:ss" value="#{cardActivityLogsController.selected.createdDate}" title="#{bundle.EditCardActivityLogsTitle_createdDate}" required="true" requiredMessage="#{bundle.EditCardActivityLogsRequiredMessage_createdDate}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateCardActivityLogsLabel_directionId}" for="directionId" />
+                        <p:inputText id="directionId" value="#{cardActivityLogsController.selected.directionId}" title="#{bundle.CreateCardActivityLogsTitle_directionId}" />
+                        <p:outputLabel value="#{bundle.CreateCardActivityLogsLabel_sentDate}" for="sentDate" />
+                        <p:calendar id="sentDate" pattern="MM/dd/yyyy HH:mm:ss" value="#{cardActivityLogsController.selected.sentDate}" title="#{bundle.EditCardActivityLogsTitle_sentDate}" required="true" requiredMessage="#{bundle.EditCardActivityLogsRequiredMessage_sentDate}" showOn="button"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{cardActivityLogsController.create}" value="#{bundle.Save}" update="display,:CardActivityLogsListForm:datalist,:growl" oncomplete="handleSubmit(args,'CardActivityLogsCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CardActivityLogsCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

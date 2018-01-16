@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/mainframe.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListStationsTitle}"></h:outputText>
+            <h:outputStylesheet library="css" name="ets-map-style.css"/>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="StationsListForm">
+                <p:remoteCommand name="onStationHoverRC" actionListener="#{etsMapController.onMetroStationHover()}"/>
+                <p:remoteCommand name="onStationClickRC" actionListener="#{dashboardController.onMetroStationClick()}"/>
+                
+                <p:panelGrid style="visibility: hidden" id="stationInfoPanel">
+                    <input type="hidden" value="#{etsMapController.dashboardInfo.passengersIn}" id="passengersInSelectedStation"/>
+                    <input type="hidden" value="#{etsMapController.dashboardInfo.smartCardTikets}" id="smartCardTicketsInSelectedStation"/>
+                    <input type="hidden" value="#{etsMapController.dashboardInfo.smartCardTikets}" id="mobileTicketsInSelectedStation"/>
+                </p:panelGrid>
+                
+                <div class="ets-datatable-wrapper">
+                    
+                    <div class="ets-datable-header">
+                        <span>Stations List</span>
+                    </div>
+                         
+                     <div class="ets-canvas-wrapper" style="margin-bottom:25px;">
+                        <div id="ets-metro-map"/>
+                    </div>
+                         
+                    <p:dataTable id="datalist" value="#{stationsController.items}" var="item"
+                                 selectionMode="single" selection="#{stationsController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.stationId}"
+                                 rows="20"
+                                 paginatorPosition="bottom"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
+                                 styleClass="ets-datatable"
+                                 resizableColumns="true" 
+                                 liveResize="true">
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+                        <f:facet name="{Exporters}">
+                            <h:commandLink>
+                                <p:graphicImage library="images" name="excel.png" width="24"/>
+                                <p:dataExporter type="xls" target="datalist" fileName="Stations" />
+                            </h:commandLink>
+
+                            <h:commandLink>
+                                <p:graphicImage library="images" name="pdf.png" width="24"/>
+                                <p:dataExporter type="pdf" target="datalist" fileName="Stations"/>
+                            </h:commandLink>
+
+                            <h:commandLink>
+                                <p:graphicImage library="images" name="csv.png" width="24"/>
+                                <p:dataExporter type="csv" target="datalist" fileName="Stations" />
+                            </h:commandLink>
+
+                            <h:commandLink>
+                                <p:graphicImage library="images" name="xml.png" width="24"/>
+                                <p:dataExporter type="xml" target="datalist" fileName="Stations" />
+                            </h:commandLink>
+                        </f:facet>
+                        <p:column filterBy="#{item.stationId}" filterMatchMode="contains" sortBy="#{item.stationId}" style="width:5%;">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListStationsTitle_stationId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.stationId}"/>
+                        </p:column>
+                        <p:column  style="width:35%;">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListStationsTitle_stationDescription}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.stationDescription}"/>
+                        </p:column>
+                        <p:column filterBy="#{item.displayName}" filterMatchMode="contains" sortBy="#{item.displayName}" style="width:35%;">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListStationsTitle_displayName}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.displayName}"/>
+                        </p:column>
+                        <p:column filterBy="#{item.createDate}" filterMatchMode="contains" sortBy="#{item.createDate}" style="width:15%;">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListStationsTitle_createDate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.createDate}"/>
+                        </p:column>
+                         <p:column filterBy="#{itemstatus}" filterMatchMode="contains" sortBy="#{item.status}" style="width:10%;">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListStationsTitle_status}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.status}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{stationsController.prepareCreate}" update=":StationsCreateForm" oncomplete="PF('StationsCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":StationsViewForm" oncomplete="PF('StationsViewDialog').show()" disabled="#{empty stationsController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":StationsEditForm" oncomplete="PF('StationsEditDialog').show()" disabled="#{empty stationsController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{stationsController.destroy}" update=":growl,datalist" disabled="#{empty stationsController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                
+                <div class="exportPageData">
+                    <h3>Export Page Data Only</h3>
+                    <h:commandLink>
+                        <p:graphicImage library="images" name="excel.png" />
+                        <p:dataExporter type="xls" target="datalist" fileName="Stations" pageOnly="true"/>
+                    </h:commandLink>
+
+                    <h:commandLink>
+                        <p:graphicImage library="images" name="pdf.png" />
+                        <p:dataExporter type="pdf" target="datalist" fileName="Stations" pageOnly="true" />
+                    </h:commandLink>
+
+                    <h:commandLink>
+                        <p:graphicImage library="images" name="csv.png" />
+                        <p:dataExporter type="csv" target="datalist" fileName="Stations" pageOnly="true" />
+                    </h:commandLink>
+
+                    <h:commandLink>
+                        <p:graphicImage library="images" name="xml.png" />
+                        <p:dataExporter type="xml" target="datalist" fileName="Stations" pageOnly="true" />
+                    </h:commandLink>
+                </div>
+                         
+            </div>
+
+            </h:form>
+
+            <!--Konva framework for javascript canvas-->
+            <script src="https://cdn.rawgit.com/konvajs/konva/1.7.6/konva.min.js"></script>
+            <h:outputScript library="js" name="ets-map.js"/>
+            
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

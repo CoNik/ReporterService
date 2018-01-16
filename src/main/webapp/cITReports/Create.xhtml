@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CITReportsCreateDlg" widgetVar="CITReportsCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateCITReportsTitle}">
+            <h:form id="CITReportsCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{cITReportsController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateCITReportsLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{cITReportsController.selected.id}" title="#{bundle.CreateCITReportsTitle_id}" required="true" requiredMessage="#{bundle.CreateCITReportsRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.CreateCITReportsLabel_machineId}" for="machineId" />
+                        <p:inputText id="machineId" value="#{cITReportsController.selected.machineId}" title="#{bundle.CreateCITReportsTitle_machineId}" />
+                        <p:outputLabel value="#{bundle.CreateCITReportsLabel_CITId}" for="CITId" />
+                        <p:inputText id="CITId" value="#{cITReportsController.selected.CITId}" title="#{bundle.CreateCITReportsTitle_CITId}" required="true" requiredMessage="#{bundle.CreateCITReportsRequiredMessage_CITId}"/>
+                        <p:outputLabel value="#{bundle.CreateCITReportsLabel_CITSessionId}" for="CITSessionId" />
+                        <p:inputText id="CITSessionId" value="#{cITReportsController.selected.CITSessionId}" title="#{bundle.CreateCITReportsTitle_CITSessionId}" required="true" requiredMessage="#{bundle.CreateCITReportsRequiredMessage_CITSessionId}"/>
+                        <p:outputLabel value="#{bundle.CreateCITReportsLabel_itemId}" for="itemId" />
+                        <p:inputText id="itemId" value="#{cITReportsController.selected.itemId}" title="#{bundle.CreateCITReportsTitle_itemId}" />
+                        <p:outputLabel value="#{bundle.CreateCITReportsLabel_countAtPrimary}" for="countAtPrimary" />
+                        <p:inputText id="countAtPrimary" value="#{cITReportsController.selected.countAtPrimary}" title="#{bundle.CreateCITReportsTitle_countAtPrimary}" required="true" requiredMessage="#{bundle.CreateCITReportsRequiredMessage_countAtPrimary}"/>
+                        <p:outputLabel value="#{bundle.CreateCITReportsLabel_countAtSecondary}" for="countAtSecondary" />
+                        <p:inputText id="countAtSecondary" value="#{cITReportsController.selected.countAtSecondary}" title="#{bundle.CreateCITReportsTitle_countAtSecondary}" required="true" requiredMessage="#{bundle.CreateCITReportsRequiredMessage_countAtSecondary}"/>
+                        <p:outputLabel value="#{bundle.CreateCITReportsLabel_descriptionOnPrimary}" for="descriptionOnPrimary" />
+                        <p:inputText id="descriptionOnPrimary" value="#{cITReportsController.selected.descriptionOnPrimary}" title="#{bundle.CreateCITReportsTitle_descriptionOnPrimary}" />
+                        <p:outputLabel value="#{bundle.CreateCITReportsLabel_descriptionOnSecondary}" for="descriptionOnSecondary" />
+                        <p:inputText id="descriptionOnSecondary" value="#{cITReportsController.selected.descriptionOnSecondary}" title="#{bundle.CreateCITReportsTitle_descriptionOnSecondary}" />
+                        <p:outputLabel value="#{bundle.CreateCITReportsLabel_onInfeeder01}" for="onInfeeder01" />
+                        <p:selectBooleanCheckbox id="onInfeeder01" value="#{cITReportsController.selected.onInfeeder01}" required="true" requiredMessage="#{bundle.EditCITReportsRequiredMessage_onInfeeder01}"/>
+                        <p:outputLabel value="#{bundle.CreateCITReportsLabel_onInfeeder02}" for="onInfeeder02" />
+                        <p:selectBooleanCheckbox id="onInfeeder02" value="#{cITReportsController.selected.onInfeeder02}" required="true" requiredMessage="#{bundle.EditCITReportsRequiredMessage_onInfeeder02}"/>
+                        <p:outputLabel value="#{bundle.CreateCITReportsLabel_typeId}" for="typeId" />
+                        <p:inputText id="typeId" value="#{cITReportsController.selected.typeId}" title="#{bundle.CreateCITReportsTitle_typeId}" required="true" requiredMessage="#{bundle.CreateCITReportsRequiredMessage_typeId}"/>
+                        <p:outputLabel value="#{bundle.CreateCITReportsLabel_createdDate}" for="createdDate" />
+                        <p:calendar id="createdDate" pattern="MM/dd/yyyy HH:mm:ss" value="#{cITReportsController.selected.createdDate}" title="#{bundle.EditCITReportsTitle_createdDate}" required="true" requiredMessage="#{bundle.EditCITReportsRequiredMessage_createdDate}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateCITReportsLabel_sentDate}" for="sentDate" />
+                        <p:calendar id="sentDate" pattern="MM/dd/yyyy HH:mm:ss" value="#{cITReportsController.selected.sentDate}" title="#{bundle.EditCITReportsTitle_sentDate}"  showOn="button"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{cITReportsController.create}" value="#{bundle.Save}" update="display,:CITReportsListForm:datalist,:growl" oncomplete="handleSubmit(args,'CITReportsCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CITReportsCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

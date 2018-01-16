@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PositionsEditDlg" widgetVar="PositionsEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditPositionsTitle}">
+            <h:form id="PositionsEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{positionsController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditPositionsLabel_cardid}" for="cardid" />
+                        <p:inputText id="cardid" value="#{positionsController.selected.cardid}" title="#{bundle.EditPositionsTitle_cardid}" />
+                        <p:outputLabel value="#{bundle.EditPositionsLabel_customerid}" for="customerid" />
+                        <p:inputText id="customerid" value="#{positionsController.selected.customerid}" title="#{bundle.EditPositionsTitle_customerid}" />
+                        <p:outputLabel value="#{bundle.EditPositionsLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{positionsController.selected.id}" title="#{bundle.EditPositionsTitle_id}" required="true" requiredMessage="#{bundle.EditPositionsRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditPositionsLabel_locationLatitude}" for="locationLatitude" />
+                        <p:inputText id="locationLatitude" value="#{positionsController.selected.locationLatitude}" title="#{bundle.EditPositionsTitle_locationLatitude}" />
+                        <p:outputLabel value="#{bundle.EditPositionsLabel_locationLongitude}" for="locationLongitude" />
+                        <p:inputText id="locationLongitude" value="#{positionsController.selected.locationLongitude}" title="#{bundle.EditPositionsTitle_locationLongitude}" />
+                        <p:outputLabel value="#{bundle.EditPositionsLabel_locationTs}" for="locationTs" />
+                        <p:inputText id="locationTs" value="#{positionsController.selected.locationTs}" title="#{bundle.EditPositionsTitle_locationTs}" />
+                        <p:outputLabel value="#{bundle.EditPositionsLabel_travelEndTs}" for="travelEndTs" />
+                        <p:calendar id="travelEndTs" pattern="MM/dd/yyyy HH:mm:ss" value="#{positionsController.selected.travelEndTs}" title="#{bundle.EditPositionsTitle_travelEndTs}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditPositionsLabel_travelInitTs}" for="travelInitTs" />
+                        <p:calendar id="travelInitTs" pattern="MM/dd/yyyy HH:mm:ss" value="#{positionsController.selected.travelInitTs}" title="#{bundle.EditPositionsTitle_travelInitTs}"  showOn="button"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{positionsController.update}" value="#{bundle.Save}" update="display,:PositionsListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PositionsEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PositionsEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/mainframe.xhtml">
+
+        <ui:define name="title">
+            <h:outputText value="ETS - Map"></h:outputText>
+            <h:outputStylesheet library="css" name="ets-map-style.css"/>
+            <h:outputStylesheet library="css" name="ets-data-style.css"/>
+            
+        </ui:define>
+
+        <ui:define name="body">
+            
+            <h:form id="mapForm" styleClass="etsMainForm">
+                <p:remoteCommand name="onStationHoverRC" actionListener="#{etsMapController.onMetroStationHover()}"/>
+                <p:remoteCommand name="onStationClickRC" actionListener="#{dataAnalysisController.onMetroStationClickedRC()}"/>
+                
+                <p:panelGrid style="visibility: hidden" id="stationInfoPanel">
+                    
+                </p:panelGrid>
+
+                <br/>
+                
+                
+                
+                <!--Panel container for selecting days-->
+                <p:panel class="ets-da-daysPanel">
+                    <p:selectOneRadio layout="responsive" columns="8" value="#{dataAnalysisController.selectedDay}">
+                        <p:ajax event="click" listener="#{dataAnalysisController.onDaySelected()}"/>
+                        
+                        <f:selectItem itemLabel="Monday" itemValue="0"/>
+                        <f:selectItem itemLabel="Tuesday" itemValue="1"/>
+                        <f:selectItem itemLabel="Wednesday" itemValue="2"/>
+                        <f:selectItem itemLabel="Thursday" itemValue="3"/>
+                        <f:selectItem itemLabel="Friday" itemValue="4"/>
+                        <f:selectItem itemLabel="Saturday" itemValue="5"/>
+                        <f:selectItem itemLabel="Sunday" itemValue="6"/>
+                        <f:selectItem itemLabel="Holidays" itemValue="7"/>
+                    </p:selectOneRadio>
+                </p:panel>
+                
+                
+                <!--Panel container for values panel and metro map-->
+                <p:panelGrid styleClass="ets-da-metroPanel" style="width:100%;">
+                    <p:column style="width:2% !important;margin:0px !important;padding:0px !important;background: #2E2925;">
+                        <!--Values panel-->
+                        <div class="ets-da-valuesPanel">
+                            <h:panelGrid columns="1" styleClass="ets-da-valuesPanel-multiple">
+                                <p:selectBooleanButton value="#{dataAnalysisController.nominal}" styleClass="ets-da-valueBtn"
+                                                   onIcon="fa fa-user ets-da-ic-btn" offIcon="fa fa-user-times ets-da-ic-btn"
+                                                   onLabel="" offLabel="" 
+                                                   title="Nominal/Non-nominal"/>
+                                <p:selectBooleanButton value="#{dataAnalysisController.smartCard}" styleClass="ets-da-valueBtn"
+                                                       onIcon="fa fa-ticket ets-da-ic-btn" offIcon="fa fa-mobile ets-da-ic-btn"
+                                                       onLabel="" offLabel="" title="Smart card/Mobile"/>
+                                <p:selectBooleanButton value="#{dataAnalysisController.in}" styleClass="ets-da-valueBtn"
+                                                       onIcon="fa fa-sign-in ets-da-ic-btn" offIcon="fa fa-sign-out ets-da-ic-btn"
+                                                       onLabel="" offLabel="" title="In/Out"/>
+                            </h:panelGrid>
+                            
+                            <h:panelGrid columns="1" styleClass="ets-da-valuesPanel-single">
+                               
+                                <p:selectOneRadio layout="responsive" columns="1" 
+                                                  value="#{dataAnalysisController.selectedValue}" onchange="onRadioChange(event)">
+                                    
+                                    <p:ajax event="click" listener="#{dataAnalysisController.onValueSelected()}"/>
+                                    
+                                    
+                                    <f:selectItem id="valueNbPassengers" itemLabel="&lt;i class='fa fa-users ets-da-ic ic-fix'&gt;&lt;/i&gt;"
+                                                  itemValue="0" itemEscaped="false" itemDescription="Number of passengers"/>
+                                    
+                                    <f:selectItem itemLabel="&lt;i class='fa fa-hourglass-o ets-da-ic ic-fix3'&gt;&lt;/i&gt;"
+                                                  itemValue="1" itemEscaped="false" itemDescription="Duration"/>
+                                    
+                                    <f:selectItem itemLabel="&lt;i class='fa fa-shield ets-da-ic ic-fix2'&gt;&lt;/i&gt;"
+                                                  itemValue="2" itemEscaped="false" itemDescription="Fraudulents"/>
+                                    
+                                    <f:selectItem itemLabel="&lt;i class='fa fa-archive ets-da-ic ic-fix'&gt;&lt;/i&gt;"
+                                                  itemValue="3" itemEscaped="false" itemDescription="Kiosk action"/>
+                                    
+                                    <f:selectItem itemLabel="&lt;i class='fa fa-check-circle ets-da-ic ic-fix'&gt;&lt;/i&gt;"
+                                                  itemValue="4" itemEscaped="false" itemDescription="OK face recognitions"/>
+                                    
+                                    <f:selectItem itemLabel="&lt;i class='fa fa-times-circle ets-da-ic ic-fix'&gt;&lt;/i&gt;"
+                                                  itemValue="5" itemEscaped="false" itemDescription="NOT OK face recognitions"/>
+                                    
+                                    <f:selectItem itemLabel="&lt;i class='fa fa-question-circle ets-da-ic ic-fix'&gt;&lt;/i&gt;"
+                                                  itemValue="6" itemEscaped="false" itemDescription="Error face recognitions"/>
+                                </p:selectOneRadio>
+                            </h:panelGrid>
+                        </div>
+                    </p:column>
+                    <p:column>
+                        <div class="ets-datatable-wrapper" style="margin:0px !important; padding:0px !important;border:none !important;">
+                            <div class="ets-canvas-wrapper" style="border:none !important;">
+                                <div id="ets-metro-map-min"/>
+                            </div>
+                        </div>
+                    </p:column>
+                </p:panelGrid>
+                
+                <br/>
+                
+                <!--Panel container for slider-->
+                <p:inputText id="sliderData" type="hidden"/>
+                <p:slider styleClass="ets-slider" for="sliderData" minValue="0" maxValue="1440">
+                    <p:ajax event="slideEnd" listener="#{dataAnalysisController.onSlideEnd}" 
+                            update="mapForm:selectedTimePanel, selectedValueName, :growl"/>
+                </p:slider>
+               
+                <p:panel id="selectedTimePanel" styleClass="ets-selectedTime-panel">
+                    <h:outputText value="#{dataAnalysisController.selectedTime}">
+                        <f:convertDateTime pattern="HH:mm"/>
+                    </h:outputText>
+                    <p:inputText id="selectedValueName" type="hidden" value="#{dataAnalysisController.selectedValueDisplayName}"/>
+                </p:panel>
+                
+                <br/>
+                
+                <!--Panel container for pattern and forecast charts-->
+                <p:panel id="chartsPanel" styleClass="chartsContainer">
+                    <div id="chartsPanelAnch" style="visibility: hidden"></div>
+                    <p:panelGrid styleClass="chartsPanelContainer">
+                        <p:column styleClass="ets-da-chart-col">
+                            <p class="ets-da-chart-header" id="ets-pattern-header">
+                            </p>
+                            <div id="patternChartContainer" class="ets-da-chart"></div>
+                        </p:column>
+
+                        <p:column styleClass="ets-da-chart-col">
+                            <p class="ets-da-chart-header" id="ets-forecast-header">
+                            </p>
+                            <div id="forecastChartContainer" class="ets-da-chart"></div>
+                        </p:column>
+                    </p:panelGrid>
+                </p:panel>
+                
+                
+                
+                
+            </h:form> 
+        
+            <!--Konva framework for javascript canvas-->
+            <h:outputScript library="js" name="konva.min.js"/>
+            <!--CanvasJS for charts-->
+            <h:outputScript library="js" name="canvasjs.min.js"/>
+            
+            <h:outputScript library="js" name="ets-data-analysis.js"/>
+            <!--jQuery-->
+            <h:outputScript library="primefaces" name="jquery/jquery.js" />
+            <script type="text/javascript">
+                function onRadioChange(e){
+                    let target = e.target;
+                    let parent = target.parentElement.parentElement.parentElement.parentElement;
+                    //clear all previous active item classes
+                    let radioTree = parent.parentElement;
+                    let children = radioTree.children;
+                    for(var i=0;i&lt;children.length;i++){
+                        if(children[i].classList.contains('ets-da-valuesPanel-single-active')){
+                            removeClass(children[i], 'ets-da-valuesPanel-single-active');
+                        }
+                    }
+                    //set item active class
+                    if(parent){
+                        parent.className += ' ets-da-valuesPanel-single-active';
+                    }
+                }
+                function removeClass(node, cls) {
+                    if(node &amp;&amp; node.className &amp;&amp; node.className.indexOf(cls) &gt;&eq; 0) {
+                        var pattern = new RegExp('\\s*' + cls + '\\s*');
+                        node.className = node.className.replace(pattern, ' ');
+                    }
+                }
+            </script>
+         
+        </ui:define>
+    </ui:composition>
+
+</html>

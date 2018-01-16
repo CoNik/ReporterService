@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FraudStationsEditDlg" widgetVar="FraudStationsEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditFraudStationsTitle}">
+            <h:form id="FraudStationsEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{fraudStationsController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditFraudStationsLabel_fraudId}" for="fraudId" />
+                        <p:inputText id="fraudId" value="#{fraudStationsController.selected.fraudId}" title="#{bundle.EditFraudStationsTitle_fraudId}" required="true" requiredMessage="#{bundle.EditFraudStationsRequiredMessage_fraudId}"/>
+                        <p:outputLabel value="#{bundle.EditFraudStationsLabel_fraudStations}" for="fraudStations" />
+                        <p:inputText id="fraudStations" value="#{fraudStationsController.selected.fraudStations}" title="#{bundle.EditFraudStationsTitle_fraudStations}" />
+                        <p:outputLabel value="#{bundle.EditFraudStationsLabel_fraudCardId}" for="fraudCardId" />
+                        <p:inputText id="fraudCardId" value="#{fraudStationsController.selected.fraudCardId}" title="#{bundle.EditFraudStationsTitle_fraudCardId}" />
+                        <p:outputLabel value="#{bundle.EditFraudStationsLabel_fraudType}" for="fraudType" />
+                        <p:inputText id="fraudType" value="#{fraudStationsController.selected.fraudType}" title="#{bundle.EditFraudStationsTitle_fraudType}" />
+                        <p:outputLabel value="#{bundle.EditFraudStationsLabel_createDate}" for="createDate" />
+                        <p:calendar id="createDate" pattern="MM/dd/yyyy HH:mm:ss" value="#{fraudStationsController.selected.createDate}" title="#{bundle.EditFraudStationsTitle_createDate}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditFraudStationsLabel_fraudPicture}" for="fraudPicture" />
+                        <p:inputText id="fraudPicture" value="#{fraudStationsController.selected.fraudPicture}" title="#{bundle.EditFraudStationsTitle_fraudPicture}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{fraudStationsController.update}" value="#{bundle.Save}" update="display,:FraudStationsListForm:datalist,:growl" oncomplete="handleSubmit(args, 'FraudStationsEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="FraudStationsEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

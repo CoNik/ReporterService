@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="LocationWorkViewDlg" widgetVar="LocationWorkViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewLocationWorkTitle}">
+            <h:form id="LocationWorkViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{locationWorkController.selected != null}">
+                        <h:outputText value="#{bundle.ViewLocationWorkLabel_cardid}"/>
+                        <h:outputText value="#{locationWorkController.selected.cardid}" title="#{bundle.ViewLocationWorkTitle_cardid}"/>
+                        <h:outputText value="#{bundle.ViewLocationWorkLabel_createdate}"/>
+                        <h:outputText value="#{locationWorkController.selected.createdate}" title="#{bundle.ViewLocationWorkTitle_createdate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewLocationWorkLabel_currentbalance}"/>
+                        <h:outputText value="#{locationWorkController.selected.currentbalance}" title="#{bundle.ViewLocationWorkTitle_currentbalance}"/>
+                        <h:outputText value="#{bundle.ViewLocationWorkLabel_currentpasscount}"/>
+                        <h:outputText value="#{locationWorkController.selected.currentpasscount}" title="#{bundle.ViewLocationWorkTitle_currentpasscount}"/>
+                        <h:outputText value="#{bundle.ViewLocationWorkLabel_customerid}"/>
+                        <h:outputText value="#{locationWorkController.selected.customerid}" title="#{bundle.ViewLocationWorkTitle_customerid}"/>
+                        <h:outputText value="#{bundle.ViewLocationWorkLabel_id}"/>
+                        <h:outputText value="#{locationWorkController.selected.id}" title="#{bundle.ViewLocationWorkTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewLocationWorkLabel_loyaltypasscount}"/>
+                        <h:outputText value="#{locationWorkController.selected.loyaltypasscount}" title="#{bundle.ViewLocationWorkTitle_loyaltypasscount}"/>
+                        <h:outputText value="#{bundle.ViewLocationWorkLabel_optStationList}"/>
+                        <h:outputText value="#{locationWorkController.selected.optStationList}" title="#{bundle.ViewLocationWorkTitle_optStationList}"/>
+                        <h:outputText value="#{bundle.ViewLocationWorkLabel_optStationListTs}"/>
+                        <h:outputText value="#{locationWorkController.selected.optStationListTs}" title="#{bundle.ViewLocationWorkTitle_optStationListTs}"/>
+                        <h:outputText value="#{bundle.ViewLocationWorkLabel_stationIdExit}"/>
+                        <h:outputText value="#{locationWorkController.selected.stationIdExit}" title="#{bundle.ViewLocationWorkTitle_stationIdExit}"/>
+                        <h:outputText value="#{bundle.ViewLocationWorkLabel_stationidEntrance}"/>
+                        <h:outputText value="#{locationWorkController.selected.stationidEntrance}" title="#{bundle.ViewLocationWorkTitle_stationidEntrance}"/>
+                        <h:outputText value="#{bundle.ViewLocationWorkLabel_status}"/>
+                        <h:outputText value="#{locationWorkController.selected.status}" title="#{bundle.ViewLocationWorkTitle_status}"/>
+                        <h:outputText value="#{bundle.ViewLocationWorkLabel_travelTime}"/>
+                        <h:outputText value="#{locationWorkController.selected.travelTime}" title="#{bundle.ViewLocationWorkTitle_travelTime}"/>
+                        <h:outputText value="#{bundle.ViewLocationWorkLabel_tsEntrance}"/>
+                        <h:outputText value="#{locationWorkController.selected.tsEntrance}" title="#{bundle.ViewLocationWorkTitle_tsEntrance}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewLocationWorkLabel_tsExit}"/>
+                        <h:outputText value="#{locationWorkController.selected.tsExit}" title="#{bundle.ViewLocationWorkTitle_tsExit}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewLocationWorkLabel_validationdate}"/>
+                        <h:outputText value="#{locationWorkController.selected.validationdate}" title="#{bundle.ViewLocationWorkTitle_validationdate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewLocationWorkLabel_validatorCodeEntrance}"/>
+                        <h:outputText value="#{locationWorkController.selected.validatorCodeEntrance}" title="#{bundle.ViewLocationWorkTitle_validatorCodeEntrance}"/>
+                        <h:outputText value="#{bundle.ViewLocationWorkLabel_validatorCodeExit}"/>
+                        <h:outputText value="#{locationWorkController.selected.validatorCodeExit}" title="#{bundle.ViewLocationWorkTitle_validatorCodeExit}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="LocationWorkViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

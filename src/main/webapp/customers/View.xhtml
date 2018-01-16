@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CustomersViewDlg" widgetVar="CustomersViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewCustomersTitle}">
+            <h:form id="CustomersViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{customersController.selected != null}">
+                        <h:outputText value="#{bundle.ViewCustomersLabel_customerId}"/>
+                        <h:outputText value="#{customersController.selected.customerId}" title="#{bundle.ViewCustomersTitle_customerId}"/>
+                        <h:outputText value="#{bundle.ViewCustomersLabel_customerName}"/>
+                        <h:outputText value="#{customersController.selected.customerName}" title="#{bundle.ViewCustomersTitle_customerName}"/>
+                        <h:outputText value="#{bundle.ViewCustomersLabel_customerSurname}"/>
+                        <h:outputText value="#{customersController.selected.customerSurname}" title="#{bundle.ViewCustomersTitle_customerSurname}"/>
+                        <h:outputText value="#{bundle.ViewCustomersLabel_gender}"/>
+                        <h:outputText value="#{customersController.selected.gender}" title="#{bundle.ViewCustomersTitle_gender}"/>
+                        <h:outputText value="#{bundle.ViewCustomersLabel_birthDate}"/>
+                        <h:outputText value="#{customersController.selected.birthDate}" title="#{bundle.ViewCustomersTitle_birthDate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewCustomersLabel_customerPicturePath}"/>
+                        <h:outputText value="#{customersController.selected.customerPicturePath}" title="#{bundle.ViewCustomersTitle_customerPicturePath}"/>
+                        <h:outputText value="#{bundle.ViewCustomersLabel_createDate}"/>
+                        <h:outputText value="#{customersController.selected.createDate}" title="#{bundle.ViewCustomersTitle_createDate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewCustomersLabel_status}"/>
+                        <h:outputText value="#{customersController.selected.status}" title="#{bundle.ViewCustomersTitle_status}"/>
+                        <h:outputText value="#{bundle.ViewCustomersLabel_nationalId}"/>
+                        <h:outputText value="#{customersController.selected.nationalId}" title="#{bundle.ViewCustomersTitle_nationalId}"/>
+                        <h:outputText value="#{bundle.ViewCustomersLabel_email}"/>
+                        <h:outputText value="#{customersController.selected.email}" title="#{bundle.ViewCustomersTitle_email}"/>
+                        <h:outputText value="#{bundle.ViewCustomersLabel_msisdn}"/>
+                        <h:outputText value="#{customersController.selected.msisdn}" title="#{bundle.ViewCustomersTitle_msisdn}"/>
+                        <h:outputText value="#{bundle.ViewCustomersLabel_notification}"/>
+                        <p:selectBooleanCheckbox value="#{customersController.selected.notification}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewCustomersLabel_password}"/>
+                        <h:outputText value="#{customersController.selected.password}" title="#{bundle.ViewCustomersTitle_password}"/>
+                        <h:outputText value="#{bundle.ViewCustomersLabel_passcode}"/>
+                        <h:outputText value="#{customersController.selected.passcode}" title="#{bundle.ViewCustomersTitle_passcode}"/>
+                        <h:outputText value="#{bundle.ViewCustomersLabel_guid}"/>
+                        <h:outputText value="#{customersController.selected.guid}" title="#{bundle.ViewCustomersTitle_guid}"/>
+                        <h:outputText value="#{bundle.ViewCustomersLabel_token}"/>
+                        <h:outputText value="#{customersController.selected.token}" title="#{bundle.ViewCustomersTitle_token}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="CustomersViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

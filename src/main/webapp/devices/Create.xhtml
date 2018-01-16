@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DevicesCreateDlg" widgetVar="DevicesCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateDevicesTitle}">
+            <h:form id="DevicesCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{devicesController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateDevicesLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{devicesController.selected.id}" title="#{bundle.CreateDevicesTitle_id}" required="true" requiredMessage="#{bundle.CreateDevicesRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.CreateDevicesLabel_code}" for="code" />
+                        <p:inputText id="code" value="#{devicesController.selected.code}" title="#{bundle.CreateDevicesTitle_code}" required="true" requiredMessage="#{bundle.CreateDevicesRequiredMessage_code}"/>
+                        <p:outputLabel value="#{bundle.CreateDevicesLabel_description}" for="description" />
+                        <p:inputText id="description" value="#{devicesController.selected.description}" title="#{bundle.CreateDevicesTitle_description}" required="true" requiredMessage="#{bundle.CreateDevicesRequiredMessage_description}"/>
+                        <p:outputLabel value="#{bundle.CreateDevicesLabel_lastActivityDate}" for="lastActivityDate" />
+                        <p:calendar id="lastActivityDate" pattern="MM/dd/yyyy HH:mm:ss" value="#{devicesController.selected.lastActivityDate}" title="#{bundle.EditDevicesTitle_lastActivityDate}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateDevicesLabel_lastErrorDate}" for="lastErrorDate" />
+                        <p:calendar id="lastErrorDate" pattern="MM/dd/yyyy HH:mm:ss" value="#{devicesController.selected.lastErrorDate}" title="#{bundle.EditDevicesTitle_lastErrorDate}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateDevicesLabel_lastErrorDescription}" for="lastErrorDescription" />
+                        <p:inputText id="lastErrorDescription" value="#{devicesController.selected.lastErrorDescription}" title="#{bundle.CreateDevicesTitle_lastErrorDescription}" />
+                        <p:outputLabel value="#{bundle.CreateDevicesLabel_createdDate}" for="createdDate" />
+                        <p:calendar id="createdDate" pattern="MM/dd/yyyy HH:mm:ss" value="#{devicesController.selected.createdDate}" title="#{bundle.EditDevicesTitle_createdDate}" required="true" requiredMessage="#{bundle.EditDevicesRequiredMessage_createdDate}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateDevicesLabel_status}" for="status" />
+                        <p:inputText id="status" value="#{devicesController.selected.status}" title="#{bundle.CreateDevicesTitle_status}" required="true" requiredMessage="#{bundle.CreateDevicesRequiredMessage_status}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{devicesController.create}" value="#{bundle.Save}" update="display,:DevicesListForm:datalist,:growl" oncomplete="handleSubmit(args,'DevicesCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="DevicesCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

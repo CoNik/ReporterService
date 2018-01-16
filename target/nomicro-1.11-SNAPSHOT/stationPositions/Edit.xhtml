@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="StationPositionsEditDlg" widgetVar="StationPositionsEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditStationPositionsTitle}">
+            <h:form id="StationPositionsEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{stationPositionsController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditStationPositionsLabel_stationId}" for="stationId" />
+                        <p:inputText id="stationId" value="#{stationPositionsController.selected.stationId}" title="#{bundle.EditStationPositionsTitle_stationId}" required="true" requiredMessage="#{bundle.EditStationPositionsRequiredMessage_stationId}"/>
+                        <p:outputLabel value="#{bundle.EditStationPositionsLabel_stationDescription}" for="stationDescription" />
+                        <p:inputText id="stationDescription" value="#{stationPositionsController.selected.stationDescription}" title="#{bundle.EditStationPositionsTitle_stationDescription}" />
+                        <p:outputLabel value="#{bundle.EditStationPositionsLabel_displayName}" for="displayName" />
+                        <p:inputText id="displayName" value="#{stationPositionsController.selected.displayName}" title="#{bundle.EditStationPositionsTitle_displayName}" />
+                        <p:outputLabel value="#{bundle.EditStationPositionsLabel_createDate}" for="createDate" />
+                        <p:inputText id="createDate" value="#{stationPositionsController.selected.createDate}" title="#{bundle.EditStationPositionsTitle_createDate}" />
+                        <p:outputLabel value="#{bundle.EditStationPositionsLabel_status}" for="status" />
+                        <p:inputText id="status" value="#{stationPositionsController.selected.status}" title="#{bundle.EditStationPositionsTitle_status}" />
+                        <p:outputLabel value="#{bundle.EditStationPositionsLabel_posX}" for="posX" />
+                        <p:inputText id="posX" value="#{stationPositionsController.selected.posX}" title="#{bundle.EditStationPositionsTitle_posX}" />
+                        <p:outputLabel value="#{bundle.EditStationPositionsLabel_posY}" for="posY" />
+                        <p:inputText id="posY" value="#{stationPositionsController.selected.posY}" title="#{bundle.EditStationPositionsTitle_posY}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{stationPositionsController.update}" value="#{bundle.Save}" update="display,:StationPositionsListForm:datalist,:growl" oncomplete="handleSubmit(args, 'StationPositionsEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="StationPositionsEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

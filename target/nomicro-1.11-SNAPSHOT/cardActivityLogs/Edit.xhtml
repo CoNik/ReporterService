@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CardActivityLogsEditDlg" widgetVar="CardActivityLogsEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditCardActivityLogsTitle}">
+            <h:form id="CardActivityLogsEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{cardActivityLogsController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditCardActivityLogsLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{cardActivityLogsController.selected.id}" title="#{bundle.EditCardActivityLogsTitle_id}" required="true" requiredMessage="#{bundle.EditCardActivityLogsRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditCardActivityLogsLabel_sessionId}" for="sessionId" />
+                        <p:inputText id="sessionId" value="#{cardActivityLogsController.selected.sessionId}" title="#{bundle.EditCardActivityLogsTitle_sessionId}" required="true" requiredMessage="#{bundle.EditCardActivityLogsRequiredMessage_sessionId}"/>
+                        <p:outputLabel value="#{bundle.EditCardActivityLogsLabel_cardNumber}" for="cardNumber" />
+                        <p:inputText id="cardNumber" value="#{cardActivityLogsController.selected.cardNumber}" title="#{bundle.EditCardActivityLogsTitle_cardNumber}" required="true" requiredMessage="#{bundle.EditCardActivityLogsRequiredMessage_cardNumber}"/>
+                        <p:outputLabel value="#{bundle.EditCardActivityLogsLabel_validatorCode}" for="validatorCode" />
+                        <p:inputText id="validatorCode" value="#{cardActivityLogsController.selected.validatorCode}" title="#{bundle.EditCardActivityLogsTitle_validatorCode}" required="true" requiredMessage="#{bundle.EditCardActivityLogsRequiredMessage_validatorCode}"/>
+                        <p:outputLabel value="#{bundle.EditCardActivityLogsLabel_currentBalance}" for="currentBalance" />
+                        <p:inputText id="currentBalance" value="#{cardActivityLogsController.selected.currentBalance}" title="#{bundle.EditCardActivityLogsTitle_currentBalance}" required="true" requiredMessage="#{bundle.EditCardActivityLogsRequiredMessage_currentBalance}"/>
+                        <p:outputLabel value="#{bundle.EditCardActivityLogsLabel_amount}" for="amount" />
+                        <p:inputText id="amount" value="#{cardActivityLogsController.selected.amount}" title="#{bundle.EditCardActivityLogsTitle_amount}" />
+                        <p:outputLabel value="#{bundle.EditCardActivityLogsLabel_activityCode}" for="activityCode" />
+                        <p:inputText id="activityCode" value="#{cardActivityLogsController.selected.activityCode}" title="#{bundle.EditCardActivityLogsTitle_activityCode}" required="true" requiredMessage="#{bundle.EditCardActivityLogsRequiredMessage_activityCode}"/>
+                        <p:outputLabel value="#{bundle.EditCardActivityLogsLabel_description}" for="description" />
+                        <p:inputText id="description" value="#{cardActivityLogsController.selected.description}" title="#{bundle.EditCardActivityLogsTitle_description}" required="true" requiredMessage="#{bundle.EditCardActivityLogsRequiredMessage_description}"/>
+                        <p:outputLabel value="#{bundle.EditCardActivityLogsLabel_createdDate}" for="createdDate" />
+                        <p:calendar id="createdDate" pattern="MM/dd/yyyy HH:mm:ss" value="#{cardActivityLogsController.selected.createdDate}" title="#{bundle.EditCardActivityLogsTitle_createdDate}" required="true" requiredMessage="#{bundle.EditCardActivityLogsRequiredMessage_createdDate}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditCardActivityLogsLabel_directionId}" for="directionId" />
+                        <p:inputText id="directionId" value="#{cardActivityLogsController.selected.directionId}" title="#{bundle.EditCardActivityLogsTitle_directionId}" />
+                        <p:outputLabel value="#{bundle.EditCardActivityLogsLabel_sentDate}" for="sentDate" />
+                        <p:calendar id="sentDate" pattern="MM/dd/yyyy HH:mm:ss" value="#{cardActivityLogsController.selected.sentDate}" title="#{bundle.EditCardActivityLogsTitle_sentDate}" required="true" requiredMessage="#{bundle.EditCardActivityLogsRequiredMessage_sentDate}" showOn="button"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{cardActivityLogsController.update}" value="#{bundle.Save}" update="display,:CardActivityLogsListForm:datalist,:growl" oncomplete="handleSubmit(args, 'CardActivityLogsEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CardActivityLogsEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/mainframe.xhtml">
+
+        <ui:define name="title">
+            <h:outputText value="ETS - GMap"></h:outputText>
+            <h:outputStylesheet library="css" name="ets-map-style.css"/>
+        </ui:define>
+
+        <ui:define name="body">
+            
+            <h:form id="mapForm" styleClass="etsMainForm">
+               
+                <div class="ets-gmap-container">
+                    <div id="gmap" class="ets-gmap"></div>
+                    <div class="ets-station-details">
+                        <div class="ets-station-details-header">
+                            <i class="fa fa-subway" aria-hidden="true" style="font-size: 16px;"></i>
+                            Station details 
+                        </div>
+                        
+                        <div style="padding:20px">
+                            <p:panelGrid id="station-details-panel" columns="2" columnClasses="ets-col1, ets-col2" style="visibility: collapse;"
+                                         styleClass="ets-station-details-content">
+                                
+                                <p:column>
+                                    <b>Station name:</b>
+                                 </p:column>
+                                 <p:column>
+                                     <b><span id="stationName">VALUE</span></b>
+                                     
+                                 </p:column> 
+                                
+                                <p:column>
+                                    <i class="fa fa-sign-in ets-key-ic"></i>
+                                    Number of passengers in:
+                                </p:column>
+                                <p:column>
+                                    <b><span id="nbOfPassengersIn" style="width:100%;text-align:center;">VALUE</span></b>
+                                    <i id="diffNbOfPassengersIn"></i>
+                                </p:column>
+                                
+                                <p:column>
+                                    <i class="fa fa-dot-circle-o ets-key-ic"></i>
+                                    Number of passengers in station:
+                                </p:column>
+                                <p:column>
+                                    <b><span id="nbOfPassengersInStation">VALUE</span></b>
+                                    <i id="diffNbOfPassengersInStation"></i>
+                                </p:column>
+                                
+                                <p:column>
+                                    <i class="fa fa-sign-out ets-key-ic"></i>
+                                    Number of passengers out:
+                                </p:column>
+                                <p:column>
+                                    <b><span id="nbOfPassengersOut">VALUE</span></b>
+                                    <i id="diffNbOfPassengersOut"></i>
+                                </p:column>
+                                
+                                <p:column>
+                                    <i class="fa fa-ticket ets-key-ic"></i>
+                                    Smart card tickets:
+                                </p:column>
+                                <p:column>
+                                    <b><span id="nbOfSmartCards">VALUE</span></b>
+                                    <i id="diffNbOfSmartCards"></i>
+                                </p:column>
+                                
+                                <p:column>
+                                    <i class="fa fa-lock ets-key-ic"></i>
+                                    Number of fraudulents:
+                                </p:column>
+                                <p:column>
+                                    <b><span id="nbFraudulents">VALUE</span></b>
+                                    <i id="diffNbFraudulents"></i>
+                                </p:column>
+                                
+                                <p:column>
+                                    <i class="fa fa-podcast ets-key-ic"></i>
+                                    Number of transactions:
+                                </p:column>
+                                <p:column>
+                                    <b><span id="nbTransactions">VALUE</span></b>
+                                    <i id="diffNbTransactions"></i>
+                                </p:column>
+                                
+                                
+                            </p:panelGrid>
+                            
+                            <div class="ets-gmap-noStationSelected" id="ets-gmap-noStationSelected">
+                                <i id="ets-gmap-err-icon" class="fa fa-times-circle" style="visibility: collapse"></i>
+                                
+                                <p id="ets-gmap-err-title" class="title" style="font-weight: bold;">
+                                    No station has been selected.
+                                </p>
+
+                                <p id="ets-gmap-err-subtitle">
+                                    Please select a metro station
+                                </p>
+                            </div>
+                            
+                            <div class="ets-gmap-place-img">
+                                <img id="ets-gmap-place-img"></img>
+                            </div>
+                            
+                        </div>
+                        
+                        
+                        
+                    </div>
+                </div>
+                
+                
+            </h:form> 
+            
+            
+            <!--Google Maps API-->
+            <script src="#{gMetroMapController.MAPS_API}" type="text/javascript" ></script>
+            <h:outputScript library="js" name="ets-gmap.js"/>
+         
+        </ui:define>
+    </ui:composition>
+
+</html>

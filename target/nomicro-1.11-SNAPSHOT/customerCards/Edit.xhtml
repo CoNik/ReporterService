@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CustomerCardsEditDlg" widgetVar="CustomerCardsEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditCustomerCardsTitle}">
+            <h:form id="CustomerCardsEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{customerCardsController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditCustomerCardsLabel_customerCardsPK_customerId}" for="customerCardsPK_customerId" />
+                        <p:inputText id="customerCardsPK_customerId" value="#{customerCardsController.selected.customerCardsPK.customerId}" title="#{bundle.EditCustomerCardsTitle_customerCardsPK_customerId}" required="true" requiredMessage="#{bundle.EditCustomerCardsRequiredMessage_customerCardsPK_customerId}"/>
+                        <p:outputLabel value="#{bundle.EditCustomerCardsLabel_customerCardsPK_cardId}" for="customerCardsPK_cardId" />
+                        <p:inputText id="customerCardsPK_cardId" value="#{customerCardsController.selected.customerCardsPK.cardId}" title="#{bundle.EditCustomerCardsTitle_customerCardsPK_cardId}" required="true" requiredMessage="#{bundle.EditCustomerCardsRequiredMessage_customerCardsPK_cardId}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{customerCardsController.update}" value="#{bundle.Save}" update="display,:CustomerCardsListForm:datalist,:growl" oncomplete="handleSubmit(args, 'CustomerCardsEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CustomerCardsEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

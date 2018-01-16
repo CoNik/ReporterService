@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ValidatorsEditDlg" widgetVar="ValidatorsEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditValidatorsTitle}">
+            <h:form id="ValidatorsEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{validatorsController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditValidatorsLabel_validatorsPK_validatorCode}" for="validatorsPK_validatorCode" />
+                        <p:inputText id="validatorsPK_validatorCode" value="#{validatorsController.selected.validatorsPK.validatorCode}" title="#{bundle.EditValidatorsTitle_validatorsPK_validatorCode}" required="true" requiredMessage="#{bundle.EditValidatorsRequiredMessage_validatorsPK_validatorCode}"/>
+                        <p:outputLabel value="#{bundle.EditValidatorsLabel_validatorsPK_IPAdress}" for="validatorsPK_IPAdress" />
+                        <p:inputText id="validatorsPK_IPAdress" value="#{validatorsController.selected.validatorsPK.IPAdress}" title="#{bundle.EditValidatorsTitle_validatorsPK_IPAdress}" required="true" requiredMessage="#{bundle.EditValidatorsRequiredMessage_validatorsPK_IPAdress}"/>
+                        <p:outputLabel value="#{bundle.EditValidatorsLabel_serialNo}" for="serialNo" />
+                        <p:inputText id="serialNo" value="#{validatorsController.selected.serialNo}" title="#{bundle.EditValidatorsTitle_serialNo}" />
+                        <p:outputLabel value="#{bundle.EditValidatorsLabel_password}" for="password" />
+                        <p:inputText id="password" value="#{validatorsController.selected.password}" title="#{bundle.EditValidatorsTitle_password}" />
+                        <p:outputLabel value="#{bundle.EditValidatorsLabel_versionID}" for="versionID" />
+                        <p:inputText id="versionID" value="#{validatorsController.selected.versionID}" title="#{bundle.EditValidatorsTitle_versionID}" />
+                        <p:outputLabel value="#{bundle.EditValidatorsLabel_validatorTypeCode}" for="validatorTypeCode" />
+                        <p:inputText id="validatorTypeCode" value="#{validatorsController.selected.validatorTypeCode}" title="#{bundle.EditValidatorsTitle_validatorTypeCode}" />
+                        <p:outputLabel value="#{bundle.EditValidatorsLabel_routeDirection}" for="routeDirection" />
+                        <p:inputText id="routeDirection" value="#{validatorsController.selected.routeDirection}" title="#{bundle.EditValidatorsTitle_routeDirection}" />
+                        <p:outputLabel value="#{bundle.EditValidatorsLabel_status}" for="status" />
+                        <p:inputText id="status" value="#{validatorsController.selected.status}" title="#{bundle.EditValidatorsTitle_status}" />
+                        <p:outputLabel value="#{bundle.EditValidatorsLabel_routeCode}" for="routeCode" />
+                        <p:selectOneMenu id="routeCode" value="#{validatorsController.selected.routeCode}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{routesController.itemsAvailableSelectOne}"
+                                           var="routeCodeItem"
+                                           itemValue="#{routeCodeItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditValidatorsLabel_stationId}" for="stationId" />
+                        <p:selectOneMenu id="stationId" value="#{validatorsController.selected.stationId}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{stationsController.itemsAvailableSelectOne}"
+                                           var="stationIdItem"
+                                           itemValue="#{stationIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{validatorsController.update}" value="#{bundle.Save}" update="display,:ValidatorsListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ValidatorsEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ValidatorsEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

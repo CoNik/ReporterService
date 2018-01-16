@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/mainframe.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListActivitiesTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="ActivitiesListForm">
+                <p:panel header="#{bundle.ListActivitiesTitle}">
+                    <div class="ets-datatable-wrapper">
+                    
+                    <div class="ets-datable-header">
+                        <span>Activities List</span>
+                    </div>
+                    <p:dataTable id="datalist" value="#{activitiesController.items}" var="item"
+                                 selectionMode="single" selection="#{activitiesController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.id}"
+                                 rows="20"
+                                 paginatorPosition="bottom"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
+                                 styleClass="ets-datatable"
+                                 resizableColumns="true" 
+                                 liveResize="true"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+                        <f:facet name="{Exporters}">
+                            <h:commandLink>
+                                <p:graphicImage library="images" name="excel.png" width="24"/>
+                                <p:dataExporter type="xls" target="datalist" fileName="Activities" />
+                            </h:commandLink>
+
+                            <h:commandLink>
+                                <p:graphicImage library="images" name="pdf.png" width="24"/>
+                                <p:dataExporter type="pdf" target="datalist" fileName="Activities"/>
+                            </h:commandLink>
+
+                            <h:commandLink>
+                                <p:graphicImage library="images" name="csv.png" width="24"/>
+                                <p:dataExporter type="csv" target="datalist" fileName="Activities" />
+                            </h:commandLink>
+
+                            <h:commandLink>
+                                <p:graphicImage library="images" name="xml.png" width="24"/>
+                                <p:dataExporter type="xml" target="datalist" fileName="Activities" />
+                            </h:commandLink>
+                        </f:facet>
+                         <p:column filterBy="#{item.id}" filterMatchMode="contains" sortBy="#{item.id}" style="width:5%;">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListActivitiesTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </p:column>
+                       <p:column filterBy="#{item.code}" filterMatchMode="contains" sortBy="#{item.code}" style="width:15%;">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListActivitiesTitle_code}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.code}"/>
+                        </p:column>
+                        <p:column filterBy="#{item.description}" filterMatchMode="contains" sortBy="#{item.description}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListActivitiesTitle_description}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.description}"/>
+                        </p:column>
+                        <p:column  style="width:15%;">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListActivitiesTitle_createdDate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.createdDate}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{activitiesController.prepareCreate}" update=":ActivitiesCreateForm" oncomplete="PF('ActivitiesCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":ActivitiesViewForm" oncomplete="PF('ActivitiesViewDialog').show()" disabled="#{empty activitiesController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":ActivitiesEditForm" oncomplete="PF('ActivitiesEditDialog').show()" disabled="#{empty activitiesController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{activitiesController.destroy}" update=":growl,datalist" disabled="#{empty activitiesController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                    </div>
+                    <h3>Export Page Data Only</h3>
+                    <h:commandLink>
+                        <p:graphicImage library="images" name="excel.png" />
+                        <p:dataExporter type="xls" target="datalist" fileName="Activities" pageOnly="true"/>
+                    </h:commandLink>
+
+                    <h:commandLink>
+                        <p:graphicImage library="images" name="pdf.png" />
+                        <p:dataExporter type="pdf" target="datalist" fileName="Activities" pageOnly="true" />
+                    </h:commandLink>
+
+                    <h:commandLink>
+                        <p:graphicImage library="images" name="csv.png" />
+                        <p:dataExporter type="csv" target="datalist" fileName="Activities" pageOnly="true" />
+                    </h:commandLink>
+
+                    <h:commandLink>
+                        <p:graphicImage library="images" name="xml.png" />
+                        <p:dataExporter type="xml" target="datalist" fileName="Activities" pageOnly="true" />
+                    </h:commandLink>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,217 @@
+/*
+    Style for DataAnalysis (da)
+*/
+
+.ets-da-daysPanel{
+    background: #2E2925;
+    border:0px !important;
+    border-radius:0px !important;
+    text-align: center !important;
+}
+
+.ets-da-daysPanel .ui-grid-row div{
+    margin:0px auto !important;
+}
+
+.ets-da-daysPanel label{
+    color:#fff !important;
+}
+
+.ets-da-daysPanel .ui-panel-content{
+    padding:0px !important;
+}
+
+
+
+.ets-da-daysPanel .ui-grid-row div:hover{
+/*    background-color: #423E3A;
+    cursor:pointer;*/
+}
+
+.ets-da-daysPanel .ui-radiobutton  .ui-widget{
+    background: #9b9895 !important;
+    text-shadow:none !important;
+    box-shadow: none !important;
+    /*display: none;*/
+}
+
+
+.ets-da-metroPanel{
+    width:100%;
+    border:1px solid #F4F4F4;
+}
+
+.ets-da-valuesPanel{
+    margin:0px !important;
+    padding:0px !important;
+    width:100%;
+}
+
+.ets-da-valueBtn{
+    width:100%;
+    height:30px;
+    border-radius: 0px !important;
+    margin:0px !important;
+    padding:0px !important;
+    background: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    text-align: center;
+}
+
+.ets-da-valueBtn:focus, .ets-da-valueBtn span:focus{
+    outline: none !important;
+}
+
+.ets-da-ic-btn{
+    font-size: 17px;
+    width:40px !important;
+    height:30px;
+    color:#fff !important;
+    text-shadow:none !important;
+}
+
+.ets-da-ic{
+    font-size: 17px;
+    width:25px;
+    height:25px;
+    color:#fff !important;
+    text-shadow:none !important;
+}
+
+.ic-fix{
+    margin-right: 3px;
+}
+
+.ic-fix2{
+    margin-right:7px;
+}
+
+.ic-fix3{
+    margin-right:5px;
+}
+
+.ets-da-valuesPanel-multiple{
+    width: 100%;
+    text-align: center;
+}
+
+.ets-da-valuesPanel-multiple td{
+    background: #423e3a;
+    margin-top: 5px !important;
+    margin-bottom:5px !important;
+}
+
+.ets-da-valuesPanel-multiple .ui-state-focus{
+    outline:none !important;
+}
+
+.ets-da-valuesPanel-multiple td:hover{
+    background: #1ba1e2;
+    cursor: pointer;
+}
+
+.ets-da-valuesPanel-single{
+    margin-top: 20px;
+    text-align: left;
+}
+
+.ets-da-valuesPanel-single .ui-radiobutton-box{
+    display: none !important;
+}
+
+.ets-da-valuesPanel-single label{
+    margin-left:8px !important;
+    margin-right:8px !important;
+    padding:12px !important;
+    /*background: red !important;*/ 
+}
+
+.ui-selectoneradio label{
+    display: initial !important;
+}
+
+
+.ets-da-valuesPanel-single .ui-grid-row{
+    background: #423e3a;
+    padding: 0px !important;
+    margin-top: 5px;
+    margin-bottom:5px;
+}
+
+
+.ets-da-valuesPanel-single .ui-grid-row:hover{
+    background: #EE2F41;
+    cursor: pointer;
+}
+
+.ets-da-valuesPanel-single-active{
+    background: #EE2F41 !important;
+}
+
+.ets-da-valuesPanel-single .ui-grid-col-12{
+    padding:0px !important;
+    margin:0px !important;
+}
+
+.ets-slider{
+    background: #2E2925;
+    border-radius: 0px;
+}
+
+.ets-slider .ui-slider-handle{
+    background: #EE2F41;
+}
+
+.ets-slider .ui-slider-handle:focus{
+    outline:none !important;
+}
+
+.ets-selectedTime-panel{
+    background: #F4F9FC;
+    text-align: center;
+    font-weight: bold;
+}
+
+
+/*CanvasJS charts*/
+.canvasjs-chart-credit {
+   display: none;
+}
+
+.chartsContainer{
+    width:100%;
+    margin-bottom: 100px;
+    border:1px solid #F4F4F4;
+    background: #ffffff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.chartsPanelContainer{
+    width:100%;
+    border:1px solid #F4F4F4;
+}
+
+.ets-da-chart{
+    width:80%;
+    height:400px;
+}
+
+#forecastChartContainer, #patternChartContainer{
+    margin:0px auto;
+}
+
+
+.ets-da-chart-header{
+    margin-top:15px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #EE2F41;
+    font-size: 21px;
+    text-align:center;
+}
+
+.ets-da-chart-col{
+    
+    width:50%;
+}

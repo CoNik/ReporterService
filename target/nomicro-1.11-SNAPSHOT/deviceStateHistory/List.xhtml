@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/mainframe.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListDeviceStateHistoryTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="DeviceStateHistoryListForm">
+                    
+                    <div class="ets-chart-container" style="display:#{!deviceStateHistoryController.noChartData ? 'block' : 'none'};">
+                        <p:chart type="line" model="#{deviceStateHistoryController.dateModel}" style="height:400px;" rendered="#{!deviceStateHistoryController.noChartData}"
+                                 styleClass="ets-chart" responsive="true"/>
+                    </div>
+                     
+                     <div class="ets-datatable-wrapper">
+                    
+                    <div class="ets-datable-header">
+                        <span>Device State History List</span>
+                    </div>
+                    <p:dataTable id="datalist" value="#{deviceStateHistoryController.items}" var="item"
+                                 selectionMode="single" selection="#{deviceStateHistoryController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.id}"
+                                rows="20"
+                                 paginatorPosition="bottom"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
+                                 styleClass="ets-datatable"
+                                 resizableColumns="true" 
+                                 liveResize="true"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+                        <f:facet name="{Exporters}">
+                            <h:commandLink>
+                                <p:graphicImage library="images" name="excel.png" width="24"/>
+                                <p:dataExporter type="xls" target="datalist" fileName="DeviceStateHistor" />
+                            </h:commandLink>
+
+                            <h:commandLink>
+                                <p:graphicImage library="images" name="pdf.png" width="24"/>
+                                <p:dataExporter type="pdf" target="datalist" fileName="DeviceStateHistor"/>
+                            </h:commandLink>
+
+                            <h:commandLink>
+                                <p:graphicImage library="images" name="csv.png" width="24"/>
+                                <p:dataExporter type="csv" target="datalist" fileName="DeviceStateHistor" />
+                            </h:commandLink>
+
+                            <h:commandLink>
+                                <p:graphicImage library="images" name="xml.png" width="24"/>
+                                <p:dataExporter type="xml" target="datalist" fileName="DeviceStateHistor" />
+                            </h:commandLink>
+                        </f:facet>
+                        <p:column filterBy="#{item.machineId}" filterMatchMode="contains" sortBy="#{item.machineId}" style="width:10%;">
+                       
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDeviceStateHistoryTitle_machineId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.machineId}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDeviceStateHistoryTitle_hopperComIsOpen}"/>
+                            </f:facet>
+                            <p:selectBooleanCheckbox value="#{item.hopperComIsOpen}" disabled="true"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDeviceStateHistoryTitle_hopperIsAlive}"/>
+                            </f:facet>
+                            <p:selectBooleanCheckbox value="#{item.hopperIsAlive}" disabled="true"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDeviceStateHistoryTitle_IProRCComIsOpen}"/>
+                            </f:facet>
+                            <p:selectBooleanCheckbox value="#{item.IProRCComIsOpen}" disabled="true"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDeviceStateHistoryTitle_IProRCMoneyReceivingStatus}"/>
+                            </f:facet>
+                            <p:selectBooleanCheckbox value="#{item.IProRCMoneyReceivingStatus}" disabled="true"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDeviceStateHistoryTitle_IProRCMoneyBackingStatus}"/>
+                            </f:facet>
+                            <p:selectBooleanCheckbox value="#{item.IProRCMoneyBackingStatus}" disabled="true"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDeviceStateHistoryTitle_IProRCStackersStatus}"/>
+                            </f:facet>
+                            <p:selectBooleanCheckbox value="#{item.IProRCStackersStatus}" disabled="true"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDeviceStateHistoryTitle_IProRCInitializationSucceeded}"/>
+                            </f:facet>
+                            <p:selectBooleanCheckbox value="#{item.IProRCInitializationSucceeded}" disabled="true"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDeviceStateHistoryTitle_KGBComIsOpen}"/>
+                            </f:facet>
+                            <p:selectBooleanCheckbox value="#{item.KGBComIsOpen}" disabled="true"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDeviceStateHistoryTitle_KGBIsAlive}"/>
+                            </f:facet>
+                            <p:selectBooleanCheckbox value="#{item.KGBIsAlive}" disabled="true"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDeviceStateHistoryTitle_KGBTicketOnInfeeder01}"/>
+                            </f:facet>
+                            <p:selectBooleanCheckbox value="#{item.KGBTicketOnInfeeder01}" disabled="true"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDeviceStateHistoryTitle_KGBTicketOnInfeeder02}"/>
+                            </f:facet>
+                            <p:selectBooleanCheckbox value="#{item.KGBTicketOnInfeeder02}" disabled="true"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDeviceStateHistoryTitle_KGBIsReady}"/>
+                            </f:facet>
+                            <p:selectBooleanCheckbox value="#{item.KGBIsReady}" disabled="true"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDeviceStateHistoryTitle_KGBTicketInside}"/>
+                            </f:facet>
+                            <p:selectBooleanCheckbox value="#{item.KGBTicketInside}" disabled="true"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDeviceStateHistoryTitle_KGBTicketJam}"/>
+                            </f:facet>
+                            <p:selectBooleanCheckbox value="#{item.KGBTicketJam}" disabled="true"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDeviceStateHistoryTitle_validatorComIsOpen}"/>
+                            </f:facet>
+                            <p:selectBooleanCheckbox value="#{item.validatorComIsOpen}" disabled="true"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDeviceStateHistoryTitle_validatorIsAlive}"/>
+                            </f:facet>
+                            <p:selectBooleanCheckbox value="#{item.validatorIsAlive}" disabled="true"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDeviceStateHistoryTitle_cardDispanserIsAlive}"/>
+                            </f:facet>
+                            <p:selectBooleanCheckbox value="#{item.cardDispanserIsAlive}" disabled="true"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDeviceStateHistoryTitle_cardDispanserCardStatus}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cardDispanserCardStatus}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDeviceStateHistoryTitle_printerHasError}"/>
+                            </f:facet>
+                            <p:selectBooleanCheckbox value="#{item.printerHasError}" disabled="true"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDeviceStateHistoryTitle_printerIsOffline}"/>
+                            </f:facet>
+                            <p:selectBooleanCheckbox value="#{item.printerIsOffline}" disabled="true"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDeviceStateHistoryTitle_machineControlCardIsAlive}"/>
+                            </f:facet>
+                            <p:selectBooleanCheckbox value="#{item.machineControlCardIsAlive}" disabled="true"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDeviceStateHistoryTitle_clessReaderIsAlive}"/>
+                            </f:facet>
+                            <p:selectBooleanCheckbox value="#{item.clessReaderIsAlive}" disabled="true"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDeviceStateHistoryTitle_posIsAlive}"/>
+                            </f:facet>
+                            <p:selectBooleanCheckbox value="#{item.posIsAlive}" disabled="true"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDeviceStateHistoryTitle_networkIsAlive}"/>
+                            </f:facet>
+                            <p:selectBooleanCheckbox value="#{item.networkIsAlive}" disabled="true"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDeviceStateHistoryTitle_serverIsReachable}"/>
+                            </f:facet>
+                            <p:selectBooleanCheckbox value="#{item.serverIsReachable}" disabled="true"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDeviceStateHistoryTitle_extendedStates}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.extendedStates}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDeviceStateHistoryTitle_stateChangeDate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.stateChangeDate}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDeviceStateHistoryTitle_sentDate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.sentDate}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{deviceStateHistoryController.prepareCreate}" update=":DeviceStateHistoryCreateForm" oncomplete="PF('DeviceStateHistoryCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":DeviceStateHistoryViewForm" oncomplete="PF('DeviceStateHistoryViewDialog').show()" disabled="#{empty deviceStateHistoryController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":DeviceStateHistoryEditForm" oncomplete="PF('DeviceStateHistoryEditDialog').show()" disabled="#{empty deviceStateHistoryController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{deviceStateHistoryController.destroy}" update=":growl,datalist" disabled="#{empty deviceStateHistoryController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                         </div>
+                    <h3>Export Page Data Only</h3>
+                    <h:commandLink>
+                        <p:graphicImage library="images" name="excel.png" />
+                        <p:dataExporter type="xls" target="datalist" fileName="DeviceStateHistor" pageOnly="true"/>
+                    </h:commandLink>
+
+                    <h:commandLink>
+                        <p:graphicImage library="images" name="pdf.png" />
+                        <p:dataExporter type="pdf" target="datalist" fileName="DeviceStateHistor" pageOnly="true" />
+                    </h:commandLink>
+
+                    <h:commandLink>
+                        <p:graphicImage library="images" name="csv.png" />
+                        <p:dataExporter type="csv" target="datalist" fileName="DeviceStateHistor" pageOnly="true" />
+                    </h:commandLink>
+
+                    <h:commandLink>
+                        <p:graphicImage library="images" name="xml.png" />
+                        <p:dataExporter type="xml" target="datalist" fileName="DeviceStateHistor" pageOnly="true" />
+                    </h:commandLink>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

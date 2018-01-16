@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DeviceStateHistoryEditDlg" widgetVar="DeviceStateHistoryEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditDeviceStateHistoryTitle}">
+            <h:form id="DeviceStateHistoryEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{deviceStateHistoryController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditDeviceStateHistoryLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{deviceStateHistoryController.selected.id}" title="#{bundle.EditDeviceStateHistoryTitle_id}" required="true" requiredMessage="#{bundle.EditDeviceStateHistoryRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditDeviceStateHistoryLabel_machineId}" for="machineId" />
+                        <p:inputText id="machineId" value="#{deviceStateHistoryController.selected.machineId}" title="#{bundle.EditDeviceStateHistoryTitle_machineId}" />
+                        <p:outputLabel value="#{bundle.EditDeviceStateHistoryLabel_hopperComIsOpen}" for="hopperComIsOpen" />
+                        <p:selectBooleanCheckbox id="hopperComIsOpen" value="#{deviceStateHistoryController.selected.hopperComIsOpen}" />
+                        <p:outputLabel value="#{bundle.EditDeviceStateHistoryLabel_hopperIsAlive}" for="hopperIsAlive" />
+                        <p:selectBooleanCheckbox id="hopperIsAlive" value="#{deviceStateHistoryController.selected.hopperIsAlive}" />
+                        <p:outputLabel value="#{bundle.EditDeviceStateHistoryLabel_IProRCComIsOpen}" for="IProRCComIsOpen" />
+                        <p:selectBooleanCheckbox id="IProRCComIsOpen" value="#{deviceStateHistoryController.selected.IProRCComIsOpen}" />
+                        <p:outputLabel value="#{bundle.EditDeviceStateHistoryLabel_IProRCMoneyReceivingStatus}" for="IProRCMoneyReceivingStatus" />
+                        <p:selectBooleanCheckbox id="IProRCMoneyReceivingStatus" value="#{deviceStateHistoryController.selected.IProRCMoneyReceivingStatus}" />
+                        <p:outputLabel value="#{bundle.EditDeviceStateHistoryLabel_IProRCMoneyBackingStatus}" for="IProRCMoneyBackingStatus" />
+                        <p:selectBooleanCheckbox id="IProRCMoneyBackingStatus" value="#{deviceStateHistoryController.selected.IProRCMoneyBackingStatus}" />
+                        <p:outputLabel value="#{bundle.EditDeviceStateHistoryLabel_IProRCStackersStatus}" for="IProRCStackersStatus" />
+                        <p:selectBooleanCheckbox id="IProRCStackersStatus" value="#{deviceStateHistoryController.selected.IProRCStackersStatus}" />
+                        <p:outputLabel value="#{bundle.EditDeviceStateHistoryLabel_IProRCInitializationSucceeded}" for="IProRCInitializationSucceeded" />
+                        <p:selectBooleanCheckbox id="IProRCInitializationSucceeded" value="#{deviceStateHistoryController.selected.IProRCInitializationSucceeded}" />
+                        <p:outputLabel value="#{bundle.EditDeviceStateHistoryLabel_KGBComIsOpen}" for="KGBComIsOpen" />
+                        <p:selectBooleanCheckbox id="KGBComIsOpen" value="#{deviceStateHistoryController.selected.KGBComIsOpen}" />
+                        <p:outputLabel value="#{bundle.EditDeviceStateHistoryLabel_KGBIsAlive}" for="KGBIsAlive" />
+                        <p:selectBooleanCheckbox id="KGBIsAlive" value="#{deviceStateHistoryController.selected.KGBIsAlive}" />
+                        <p:outputLabel value="#{bundle.EditDeviceStateHistoryLabel_KGBTicketOnInfeeder01}" for="KGBTicketOnInfeeder01" />
+                        <p:selectBooleanCheckbox id="KGBTicketOnInfeeder01" value="#{deviceStateHistoryController.selected.KGBTicketOnInfeeder01}" />
+                        <p:outputLabel value="#{bundle.EditDeviceStateHistoryLabel_KGBTicketOnInfeeder02}" for="KGBTicketOnInfeeder02" />
+                        <p:selectBooleanCheckbox id="KGBTicketOnInfeeder02" value="#{deviceStateHistoryController.selected.KGBTicketOnInfeeder02}" />
+                        <p:outputLabel value="#{bundle.EditDeviceStateHistoryLabel_KGBIsReady}" for="KGBIsReady" />
+                        <p:selectBooleanCheckbox id="KGBIsReady" value="#{deviceStateHistoryController.selected.KGBIsReady}" />
+                        <p:outputLabel value="#{bundle.EditDeviceStateHistoryLabel_KGBTicketInside}" for="KGBTicketInside" />
+                        <p:selectBooleanCheckbox id="KGBTicketInside" value="#{deviceStateHistoryController.selected.KGBTicketInside}" />
+                        <p:outputLabel value="#{bundle.EditDeviceStateHistoryLabel_KGBTicketJam}" for="KGBTicketJam" />
+                        <p:selectBooleanCheckbox id="KGBTicketJam" value="#{deviceStateHistoryController.selected.KGBTicketJam}" />
+                        <p:outputLabel value="#{bundle.EditDeviceStateHistoryLabel_validatorComIsOpen}" for="validatorComIsOpen" />
+                        <p:selectBooleanCheckbox id="validatorComIsOpen" value="#{deviceStateHistoryController.selected.validatorComIsOpen}" />
+                        <p:outputLabel value="#{bundle.EditDeviceStateHistoryLabel_validatorIsAlive}" for="validatorIsAlive" />
+                        <p:selectBooleanCheckbox id="validatorIsAlive" value="#{deviceStateHistoryController.selected.validatorIsAlive}" />
+                        <p:outputLabel value="#{bundle.EditDeviceStateHistoryLabel_cardDispanserIsAlive}" for="cardDispanserIsAlive" />
+                        <p:selectBooleanCheckbox id="cardDispanserIsAlive" value="#{deviceStateHistoryController.selected.cardDispanserIsAlive}" />
+                        <p:outputLabel value="#{bundle.EditDeviceStateHistoryLabel_cardDispanserCardStatus}" for="cardDispanserCardStatus" />
+                        <p:inputText id="cardDispanserCardStatus" value="#{deviceStateHistoryController.selected.cardDispanserCardStatus}" title="#{bundle.EditDeviceStateHistoryTitle_cardDispanserCardStatus}" />
+                        <p:outputLabel value="#{bundle.EditDeviceStateHistoryLabel_printerHasError}" for="printerHasError" />
+                        <p:selectBooleanCheckbox id="printerHasError" value="#{deviceStateHistoryController.selected.printerHasError}" />
+                        <p:outputLabel value="#{bundle.EditDeviceStateHistoryLabel_printerIsOffline}" for="printerIsOffline" />
+                        <p:selectBooleanCheckbox id="printerIsOffline" value="#{deviceStateHistoryController.selected.printerIsOffline}" />
+                        <p:outputLabel value="#{bundle.EditDeviceStateHistoryLabel_machineControlCardIsAlive}" for="machineControlCardIsAlive" />
+                        <p:selectBooleanCheckbox id="machineControlCardIsAlive" value="#{deviceStateHistoryController.selected.machineControlCardIsAlive}" />
+                        <p:outputLabel value="#{bundle.EditDeviceStateHistoryLabel_clessReaderIsAlive}" for="clessReaderIsAlive" />
+                        <p:selectBooleanCheckbox id="clessReaderIsAlive" value="#{deviceStateHistoryController.selected.clessReaderIsAlive}" />
+                        <p:outputLabel value="#{bundle.EditDeviceStateHistoryLabel_posIsAlive}" for="posIsAlive" />
+                        <p:selectBooleanCheckbox id="posIsAlive" value="#{deviceStateHistoryController.selected.posIsAlive}" />
+                        <p:outputLabel value="#{bundle.EditDeviceStateHistoryLabel_networkIsAlive}" for="networkIsAlive" />
+                        <p:selectBooleanCheckbox id="networkIsAlive" value="#{deviceStateHistoryController.selected.networkIsAlive}" />
+                        <p:outputLabel value="#{bundle.EditDeviceStateHistoryLabel_serverIsReachable}" for="serverIsReachable" />
+                        <p:selectBooleanCheckbox id="serverIsReachable" value="#{deviceStateHistoryController.selected.serverIsReachable}" />
+                        <p:outputLabel value="#{bundle.EditDeviceStateHistoryLabel_extendedStates}" for="extendedStates" />
+                        <p:inputText id="extendedStates" value="#{deviceStateHistoryController.selected.extendedStates}" title="#{bundle.EditDeviceStateHistoryTitle_extendedStates}" />
+                        <p:outputLabel value="#{bundle.EditDeviceStateHistoryLabel_stateChangeDate}" for="stateChangeDate" />
+                        <p:calendar id="stateChangeDate" pattern="MM/dd/yyyy HH:mm:ss" value="#{deviceStateHistoryController.selected.stateChangeDate}" title="#{bundle.EditDeviceStateHistoryTitle_stateChangeDate}" required="true" requiredMessage="#{bundle.EditDeviceStateHistoryRequiredMessage_stateChangeDate}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditDeviceStateHistoryLabel_sentDate}" for="sentDate" />
+                        <p:calendar id="sentDate" pattern="MM/dd/yyyy HH:mm:ss" value="#{deviceStateHistoryController.selected.sentDate}" title="#{bundle.EditDeviceStateHistoryTitle_sentDate}"  showOn="button"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{deviceStateHistoryController.update}" value="#{bundle.Save}" update="display,:DeviceStateHistoryListForm:datalist,:growl" oncomplete="handleSubmit(args, 'DeviceStateHistoryEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="DeviceStateHistoryEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

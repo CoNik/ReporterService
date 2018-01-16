@@ -1,0 +1,91 @@
+package org.reporter.service.ets_reports;
+
+import java.util.Date;
+import javax.annotation.Generated;
+import javax.persistence.metamodel.SingularAttribute;
+import javax.persistence.metamodel.StaticMetamodel;
+
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2018-01-16T14:09:06")
+@StaticMetamodel(Machines.class)
+public class Machines_ { 
+
+    public static volatile SingularAttribute<Machines, String> kGBErrorCode;
+    public static volatile SingularAttribute<Machines, Boolean> iProRCComIsOpen;
+    public static volatile SingularAttribute<Machines, Date> ekentActivityFilesUploadLastErrorTime;
+    public static volatile SingularAttribute<Machines, Integer> groupId;
+    public static volatile SingularAttribute<Machines, Boolean> iProRCStackersStatus;
+    public static volatile SingularAttribute<Machines, String> ekentActivityFilesUploadLastErrorMessage;
+    public static volatile SingularAttribute<Machines, Date> lastSentTime;
+    public static volatile SingularAttribute<Machines, Integer> waitingUpdateFileVersion;
+    public static volatile SingularAttribute<Machines, Boolean> hopperIsAlive;
+    public static volatile SingularAttribute<Machines, Boolean> kGBTicketOnInfeeder02;
+    public static volatile SingularAttribute<Machines, Boolean> kGBTicketOnInfeeder01;
+    public static volatile SingularAttribute<Machines, Boolean> validatorIsAlive;
+    public static volatile SingularAttribute<Machines, Date> downloadedBannerUpdateTime;
+    public static volatile SingularAttribute<Machines, Boolean> printerIsOffline;
+    public static volatile SingularAttribute<Machines, Date> updaterLastStartedOn;
+    public static volatile SingularAttribute<Machines, Date> downloadedFileUpdateTime;
+    public static volatile SingularAttribute<Machines, Date> etopupFileDownloadLastErrorTime;
+    public static volatile SingularAttribute<Machines, Boolean> cardDispanserIsBinFull;
+    public static volatile SingularAttribute<Machines, Boolean> cardDispanserComIsOpen;
+    public static volatile SingularAttribute<Machines, Boolean> machineInsideLighting;
+    public static volatile SingularAttribute<Machines, Date> alertLogUploaderLastStartedOn;
+    public static volatile SingularAttribute<Machines, Integer> id;
+    public static volatile SingularAttribute<Machines, Date> etopupFileDownloadLastSuccessTime;
+    public static volatile SingularAttribute<Machines, Date> ekentActivityFilesUploadLastAttemptTime;
+    public static volatile SingularAttribute<Machines, Date> lastStatusCheckTime;
+    public static volatile SingularAttribute<Machines, Boolean> validatorComIsOpen;
+    public static volatile SingularAttribute<Machines, String> kGBLastErrors;
+    public static volatile SingularAttribute<Machines, Boolean> cardDispanserIsAlive;
+    public static volatile SingularAttribute<Machines, Integer> currentUpdateFileVersion;
+    public static volatile SingularAttribute<Machines, Integer> cardDispanserCardStatus;
+    public static volatile SingularAttribute<Machines, String> iProRCDeviceInfo;
+    public static volatile SingularAttribute<Machines, Integer> machineId;
+    public static volatile SingularAttribute<Machines, Date> machineUploaderLastStartedOn;
+    public static volatile SingularAttribute<Machines, Boolean> kGBComIsOpen;
+    public static volatile SingularAttribute<Machines, Integer> machineHumidity;
+    public static volatile SingularAttribute<Machines, Boolean> kGBIsAlive;
+    public static volatile SingularAttribute<Machines, String> clessReaderStatus;
+    public static volatile SingularAttribute<Machines, Integer> typeId;
+    public static volatile SingularAttribute<Machines, Date> downloadedScriptUpdateTime;
+    public static volatile SingularAttribute<Machines, Date> lastActivityTime;
+    public static volatile SingularAttribute<Machines, Boolean> iProRCMoneyReceivingStatus;
+    public static volatile SingularAttribute<Machines, Date> lastUpdateTime;
+    public static volatile SingularAttribute<Machines, Integer> status;
+    public static volatile SingularAttribute<Machines, Boolean> machineOutsideLighting;
+    public static volatile SingularAttribute<Machines, Date> tresholdControllerLastStartedOn;
+    public static volatile SingularAttribute<Machines, Boolean> kGBLastOperationStatus;
+    public static volatile SingularAttribute<Machines, Boolean> hopperComIsOpen;
+    public static volatile SingularAttribute<Machines, String> description;
+    public static volatile SingularAttribute<Machines, Short> kGBLifeCheckState;
+    public static volatile SingularAttribute<Machines, Boolean> iProRCMoneyBackingStatus;
+    public static volatile SingularAttribute<Machines, Boolean> clessReaderIsAlive;
+    public static volatile SingularAttribute<Machines, Boolean> iProRCInitializationSucceeded;
+    public static volatile SingularAttribute<Machines, Integer> currentBannerVersion;
+    public static volatile SingularAttribute<Machines, Integer> currentEKentVersion;
+    public static volatile SingularAttribute<Machines, Boolean> kGBTicketJam;
+    public static volatile SingularAttribute<Machines, Date> downloadedEKentUpdateTime;
+    public static volatile SingularAttribute<Machines, Boolean> kGBTicketInside;
+    public static volatile SingularAttribute<Machines, Integer> machineTemperature;
+    public static volatile SingularAttribute<Machines, Integer> waitingEKentVersion;
+    public static volatile SingularAttribute<Machines, Boolean> kGBHasError;
+    public static volatile SingularAttribute<Machines, Boolean> kGBIsReady;
+    public static volatile SingularAttribute<Machines, Integer> machineInteriorDoorStatus;
+    public static volatile SingularAttribute<Machines, Boolean> printerPaperIsNearToEnd;
+    public static volatile SingularAttribute<Machines, Boolean> printerIsOutOfPaper;
+    public static volatile SingularAttribute<Machines, Integer> waitingUpdateScriptVersion;
+    public static volatile SingularAttribute<Machines, Integer> machineExteriorDoorStatus;
+    public static volatile SingularAttribute<Machines, Date> activityLogUploaderLastStartedOn;
+    public static volatile SingularAttribute<Machines, Boolean> printerHasError;
+    public static volatile SingularAttribute<Machines, Integer> waitingBannerVersion;
+    public static volatile SingularAttribute<Machines, String> hopperDeviceInfo;
+    public static volatile SingularAttribute<Machines, Date> etopupFileDownloadLastAttemptTime;
+    public static volatile SingularAttribute<Machines, Date> createdDate;
+    public static volatile SingularAttribute<Machines, String> etopupFileDownloadLastErrorMessage;
+    public static volatile SingularAttribute<Machines, Boolean> machineControlCardIsAlive;
+    public static volatile SingularAttribute<Machines, Date> ekentActivityFilesUploadLastSuccessTime;
+    public static volatile SingularAttribute<Machines, String> kGBLifeCheckStateInString;
+    public static volatile SingularAttribute<Machines, Date> cITReportUploaderLastStartedOn;
+    public static volatile SingularAttribute<Machines, Integer> currentUpdateScriptVersion;
+
+}

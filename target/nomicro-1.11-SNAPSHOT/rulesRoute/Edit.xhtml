@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RulesRouteEditDlg" widgetVar="RulesRouteEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditRulesRouteTitle}">
+            <h:form id="RulesRouteEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{rulesRouteController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditRulesRouteLabel_ruleId}" for="ruleId" />
+                        <p:inputText id="ruleId" value="#{rulesRouteController.selected.ruleId}" title="#{bundle.EditRulesRouteTitle_ruleId}" required="true" requiredMessage="#{bundle.EditRulesRouteRequiredMessage_ruleId}"/>
+                        <p:outputLabel value="#{bundle.EditRulesRouteLabel_routeCode}" for="routeCode" />
+                        <p:inputText id="routeCode" value="#{rulesRouteController.selected.routeCode}" title="#{bundle.EditRulesRouteTitle_routeCode}" required="true" requiredMessage="#{bundle.EditRulesRouteRequiredMessage_routeCode}"/>
+                        <p:outputLabel value="#{bundle.EditRulesRouteLabel_cardTypeCode}" for="cardTypeCode" />
+                        <p:inputText id="cardTypeCode" value="#{rulesRouteController.selected.cardTypeCode}" title="#{bundle.EditRulesRouteTitle_cardTypeCode}" required="true" requiredMessage="#{bundle.EditRulesRouteRequiredMessage_cardTypeCode}"/>
+                        <p:outputLabel value="#{bundle.EditRulesRouteLabel_formula}" for="formula" />
+                        <p:inputText id="formula" value="#{rulesRouteController.selected.formula}" title="#{bundle.EditRulesRouteTitle_formula}" />
+                        <p:outputLabel value="#{bundle.EditRulesRouteLabel_startDate}" for="startDate" />
+                        <p:calendar id="startDate" pattern="MM/dd/yyyy HH:mm:ss" value="#{rulesRouteController.selected.startDate}" title="#{bundle.EditRulesRouteTitle_startDate}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditRulesRouteLabel_endDate}" for="endDate" />
+                        <p:calendar id="endDate" pattern="MM/dd/yyyy HH:mm:ss" value="#{rulesRouteController.selected.endDate}" title="#{bundle.EditRulesRouteTitle_endDate}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditRulesRouteLabel_multiplier}" for="multiplier" />
+                        <p:inputText id="multiplier" value="#{rulesRouteController.selected.multiplier}" title="#{bundle.EditRulesRouteTitle_multiplier}" />
+                        <p:outputLabel value="#{bundle.EditRulesRouteLabel_createDate}" for="createDate" />
+                        <p:calendar id="createDate" pattern="MM/dd/yyyy HH:mm:ss" value="#{rulesRouteController.selected.createDate}" title="#{bundle.EditRulesRouteTitle_createDate}"  showOn="button"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{rulesRouteController.update}" value="#{bundle.Save}" update="display,:RulesRouteListForm:datalist,:growl" oncomplete="handleSubmit(args, 'RulesRouteEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="RulesRouteEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

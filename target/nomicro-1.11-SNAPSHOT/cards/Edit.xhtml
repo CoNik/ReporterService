@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CardsEditDlg" widgetVar="CardsEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditCardsTitle}">
+            <h:form id="CardsEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{cardsController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditCardsLabel_cardId}" for="cardId" />
+                        <p:inputText id="cardId" value="#{cardsController.selected.cardId}" title="#{bundle.EditCardsTitle_cardId}" required="true" requiredMessage="#{bundle.EditCardsRequiredMessage_cardId}"/>
+                        <p:outputLabel value="#{bundle.EditCardsLabel_cardNumber}" for="cardNumber" />
+                        <p:inputText id="cardNumber" value="#{cardsController.selected.cardNumber}" title="#{bundle.EditCardsTitle_cardNumber}" />
+                        <p:outputLabel value="#{bundle.EditCardsLabel_customerId}" for="customerId" />
+                        <p:inputText id="customerId" value="#{cardsController.selected.customerId}" title="#{bundle.EditCardsTitle_customerId}" />
+                        <p:outputLabel value="#{bundle.EditCardsLabel_currentBalance}" for="currentBalance" />
+                        <p:inputText id="currentBalance" value="#{cardsController.selected.currentBalance}" title="#{bundle.EditCardsTitle_currentBalance}" />
+                        <p:outputLabel value="#{bundle.EditCardsLabel_currentPassCount}" for="currentPassCount" />
+                        <p:inputText id="currentPassCount" value="#{cardsController.selected.currentPassCount}" title="#{bundle.EditCardsTitle_currentPassCount}" />
+                        <p:outputLabel value="#{bundle.EditCardsLabel_createDate}" for="createDate" />
+                        <p:calendar id="createDate" pattern="MM/dd/yyyy HH:mm:ss" value="#{cardsController.selected.createDate}" title="#{bundle.EditCardsTitle_createDate}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditCardsLabel_validationDate}" for="validationDate" />
+                        <p:calendar id="validationDate" pattern="MM/dd/yyyy HH:mm:ss" value="#{cardsController.selected.validationDate}" title="#{bundle.EditCardsTitle_validationDate}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditCardsLabel_status}" for="status" />
+                        <p:inputText id="status" value="#{cardsController.selected.status}" title="#{bundle.EditCardsTitle_status}" />
+                        <p:outputLabel value="#{bundle.EditCardsLabel_loyaltPassCount}" for="loyaltPassCount" />
+                        <p:inputText id="loyaltPassCount" value="#{cardsController.selected.loyaltPassCount}" title="#{bundle.EditCardsTitle_loyaltPassCount}" />
+                        <p:outputLabel value="#{bundle.EditCardsLabel_cardIdForBle}" for="cardIdForBle" />
+                        <p:inputText id="cardIdForBle" value="#{cardsController.selected.cardIdForBle}" title="#{bundle.EditCardsTitle_cardIdForBle}" />
+                        <p:outputLabel value="#{bundle.EditCardsLabel_cardTypeCode}" for="cardTypeCode" />
+                        <p:selectOneMenu id="cardTypeCode" value="#{cardsController.selected.cardTypeCode}" required="true" requiredMessage="#{bundle.EditCardsRequiredMessage_cardTypeCode}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{cardTypesController.itemsAvailableSelectOne}"
+                                           var="cardTypeCodeItem"
+                                           itemValue="#{cardTypeCodeItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{cardsController.update}" value="#{bundle.Save}" update="display,:CardsListForm:datalist,:growl" oncomplete="handleSubmit(args, 'CardsEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CardsEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

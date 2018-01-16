@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RouteStationsCreateDlg" widgetVar="RouteStationsCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateRouteStationsTitle}">
+            <h:form id="RouteStationsCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{routeStationsController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateRouteStationsLabel_lineNo}" for="lineNo" />
+                        <p:inputText id="lineNo" value="#{routeStationsController.selected.lineNo}" title="#{bundle.CreateRouteStationsTitle_lineNo}" />
+                        <p:outputLabel value="#{bundle.CreateRouteStationsLabel_status}" for="status" />
+                        <p:inputText id="status" value="#{routeStationsController.selected.status}" title="#{bundle.CreateRouteStationsTitle_status}" />
+                        <p:outputLabel value="#{bundle.CreateRouteStationsLabel_routes}" for="routes" />
+                        <p:selectOneMenu id="routes" value="#{routeStationsController.selected.routes}" required="true" requiredMessage="#{bundle.EditRouteStationsRequiredMessage_routes}">
+                            <f:selectItems value="#{routesController.itemsAvailableSelectOne}"
+                                           var="routesItem"
+                                           itemValue="#{routesItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateRouteStationsLabel_stations}" for="stations" />
+                        <p:selectOneMenu id="stations" value="#{routeStationsController.selected.stations}" required="true" requiredMessage="#{bundle.EditRouteStationsRequiredMessage_stations}">
+                            <f:selectItems value="#{stationsController.itemsAvailableSelectOne}"
+                                           var="stationsItem"
+                                           itemValue="#{stationsItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{routeStationsController.create}" value="#{bundle.Save}" update="display,:RouteStationsListForm:datalist,:growl" oncomplete="handleSubmit(args,'RouteStationsCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="RouteStationsCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

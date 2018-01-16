@@ -1,0 +1,152 @@
+.ets-canvas-wrapper{
+    overflow:auto;
+    width:100%;
+    height:100%;
+    
+    border-bottom:2px solid #dbdbdb;
+    border-right:2px solid #dbdbdb;
+    border-top:1px solid #e7e7e7;
+    border-left:1px solid #e7e7e7;
+}
+
+#ets-metro-map{
+    width:1620px; 
+}
+
+#ets-metro-map-min{
+    width:90vh;
+}
+
+.ets-canvas-wrapper-static{
+    overflow:auto;
+    width:100%;
+    height:700px;
+}
+
+.ets-metro-map-static{
+    width:1620px;
+    height:100%;
+    background: url("#{resource['images/metro_map3.jpg']}");  
+}
+
+.exportPageData{
+    padding-bottom:15px;
+    padding-left:15px;
+}
+
+
+/*Metro map style: /map/metro.xhtml*/
+.ets-gmap-container{
+    margin-top:2%;
+    background: red;
+    width:100%;
+    display:inline;
+}
+
+.ets-gmap {
+   float:left;
+   width: 74%;
+   height: 600px;
+   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.ets-station-details{
+    float:right;
+    width:25%;
+    height: 600px;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    overflow: auto;
+}
+
+.ets-station-details .ui-panelgrid-cell{
+    padding-top:10px !important;
+    padding-bottom:10px !important;
+    font-size: 13px;
+}
+
+.ets-station-details-header{
+    font-size: 17px;
+    color:#fff;
+    font-weight: bold;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left:10px;
+    padding-right: 10px;
+    background: #EE2F41;
+}
+
+.ets-key-ic{
+    margin-right:5px;
+}
+
+.ets-val-sign{
+    margin-left: 5px;
+    font-size: 16px;
+}
+
+.ets-val-sign-pos{
+    margin-left: 5px;
+    font-size: 16px;
+    color:green;
+    cursor:pointer;
+}
+
+.ets-val-sign-neg{
+    margin-left: 5px;
+    font-size: 16px;
+    color:red;
+    cursor:pointer;
+}
+
+.ets-station-details-content{
+    width:100%;
+}
+
+.ets-station-details-prop{
+    background: red !important;
+    padding-top: 5px !important;
+    padding-bottom:5px !important;
+}
+
+.ets-col2{
+    text-align: center;
+}
+
+.ets-gmap-noStationSelected{
+    width: 100%;
+    text-align: center;
+    margin-top: 170px;
+
+}
+
+.ets-gmap-noStationSelected{
+    font-size: 15px;
+}
+
+.ets-gmap-noStationSelected .title{
+    font-size: 18px;
+    color:#848D95;
+}
+
+#ets-gmap-err-subtitle{
+    color:#848D95;
+}
+
+#ets-gmap-err-icon{
+    color:#e51400;
+    font-size: 32px;
+}
+
+.ets-gmap-place-img{
+    width: 100%;
+    margin-top: 20px;
+    text-align: center;
+}
+
+#ets-gmap-place-img{
+    border-radius: 2px;
+    border:1px solid #D8D8D9;
+    margin:0px auto;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}

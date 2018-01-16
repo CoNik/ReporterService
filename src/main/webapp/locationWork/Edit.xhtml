@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="LocationWorkEditDlg" widgetVar="LocationWorkEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditLocationWorkTitle}">
+            <h:form id="LocationWorkEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{locationWorkController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditLocationWorkLabel_cardid}" for="cardid" />
+                        <p:inputText id="cardid" value="#{locationWorkController.selected.cardid}" title="#{bundle.EditLocationWorkTitle_cardid}" />
+                        <p:outputLabel value="#{bundle.EditLocationWorkLabel_createdate}" for="createdate" />
+                        <p:calendar id="createdate" pattern="MM/dd/yyyy HH:mm:ss" value="#{locationWorkController.selected.createdate}" title="#{bundle.EditLocationWorkTitle_createdate}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditLocationWorkLabel_currentbalance}" for="currentbalance" />
+                        <p:inputText id="currentbalance" value="#{locationWorkController.selected.currentbalance}" title="#{bundle.EditLocationWorkTitle_currentbalance}" />
+                        <p:outputLabel value="#{bundle.EditLocationWorkLabel_currentpasscount}" for="currentpasscount" />
+                        <p:inputText id="currentpasscount" value="#{locationWorkController.selected.currentpasscount}" title="#{bundle.EditLocationWorkTitle_currentpasscount}" />
+                        <p:outputLabel value="#{bundle.EditLocationWorkLabel_customerid}" for="customerid" />
+                        <p:inputText id="customerid" value="#{locationWorkController.selected.customerid}" title="#{bundle.EditLocationWorkTitle_customerid}" />
+                        <p:outputLabel value="#{bundle.EditLocationWorkLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{locationWorkController.selected.id}" title="#{bundle.EditLocationWorkTitle_id}" required="true" requiredMessage="#{bundle.EditLocationWorkRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditLocationWorkLabel_loyaltypasscount}" for="loyaltypasscount" />
+                        <p:inputText id="loyaltypasscount" value="#{locationWorkController.selected.loyaltypasscount}" title="#{bundle.EditLocationWorkTitle_loyaltypasscount}" />
+                        <p:outputLabel value="#{bundle.EditLocationWorkLabel_optStationList}" for="optStationList" />
+                        <p:inputText id="optStationList" value="#{locationWorkController.selected.optStationList}" title="#{bundle.EditLocationWorkTitle_optStationList}" />
+                        <p:outputLabel value="#{bundle.EditLocationWorkLabel_optStationListTs}" for="optStationListTs" />
+                        <p:inputText id="optStationListTs" value="#{locationWorkController.selected.optStationListTs}" title="#{bundle.EditLocationWorkTitle_optStationListTs}" />
+                        <p:outputLabel value="#{bundle.EditLocationWorkLabel_stationIdExit}" for="stationIdExit" />
+                        <p:inputText id="stationIdExit" value="#{locationWorkController.selected.stationIdExit}" title="#{bundle.EditLocationWorkTitle_stationIdExit}" />
+                        <p:outputLabel value="#{bundle.EditLocationWorkLabel_stationidEntrance}" for="stationidEntrance" />
+                        <p:inputText id="stationidEntrance" value="#{locationWorkController.selected.stationidEntrance}" title="#{bundle.EditLocationWorkTitle_stationidEntrance}" />
+                        <p:outputLabel value="#{bundle.EditLocationWorkLabel_status}" for="status" />
+                        <p:inputText id="status" value="#{locationWorkController.selected.status}" title="#{bundle.EditLocationWorkTitle_status}" />
+                        <p:outputLabel value="#{bundle.EditLocationWorkLabel_travelTime}" for="travelTime" />
+                        <p:inputText id="travelTime" value="#{locationWorkController.selected.travelTime}" title="#{bundle.EditLocationWorkTitle_travelTime}" />
+                        <p:outputLabel value="#{bundle.EditLocationWorkLabel_tsEntrance}" for="tsEntrance" />
+                        <p:calendar id="tsEntrance" pattern="MM/dd/yyyy HH:mm:ss" value="#{locationWorkController.selected.tsEntrance}" title="#{bundle.EditLocationWorkTitle_tsEntrance}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditLocationWorkLabel_tsExit}" for="tsExit" />
+                        <p:calendar id="tsExit" pattern="MM/dd/yyyy HH:mm:ss" value="#{locationWorkController.selected.tsExit}" title="#{bundle.EditLocationWorkTitle_tsExit}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditLocationWorkLabel_validationdate}" for="validationdate" />
+                        <p:calendar id="validationdate" pattern="MM/dd/yyyy HH:mm:ss" value="#{locationWorkController.selected.validationdate}" title="#{bundle.EditLocationWorkTitle_validationdate}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditLocationWorkLabel_validatorCodeEntrance}" for="validatorCodeEntrance" />
+                        <p:inputText id="validatorCodeEntrance" value="#{locationWorkController.selected.validatorCodeEntrance}" title="#{bundle.EditLocationWorkTitle_validatorCodeEntrance}" />
+                        <p:outputLabel value="#{bundle.EditLocationWorkLabel_validatorCodeExit}" for="validatorCodeExit" />
+                        <p:inputText id="validatorCodeExit" value="#{locationWorkController.selected.validatorCodeExit}" title="#{bundle.EditLocationWorkTitle_validatorCodeExit}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{locationWorkController.update}" value="#{bundle.Save}" update="display,:LocationWorkListForm:datalist,:growl" oncomplete="handleSubmit(args, 'LocationWorkEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="LocationWorkEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

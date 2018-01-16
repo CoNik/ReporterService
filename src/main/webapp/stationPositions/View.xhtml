@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="StationPositionsViewDlg" widgetVar="StationPositionsViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewStationPositionsTitle}">
+            <h:form id="StationPositionsViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{stationPositionsController.selected != null}">
+                        <h:outputText value="#{bundle.ViewStationPositionsLabel_stationId}"/>
+                        <h:outputText value="#{stationPositionsController.selected.stationId}" title="#{bundle.ViewStationPositionsTitle_stationId}"/>
+                        <h:outputText value="#{bundle.ViewStationPositionsLabel_stationDescription}"/>
+                        <h:outputText value="#{stationPositionsController.selected.stationDescription}" title="#{bundle.ViewStationPositionsTitle_stationDescription}"/>
+                        <h:outputText value="#{bundle.ViewStationPositionsLabel_displayName}"/>
+                        <h:outputText value="#{stationPositionsController.selected.displayName}" title="#{bundle.ViewStationPositionsTitle_displayName}"/>
+                        <h:outputText value="#{bundle.ViewStationPositionsLabel_createDate}"/>
+                        <h:outputText value="#{stationPositionsController.selected.createDate}" title="#{bundle.ViewStationPositionsTitle_createDate}"/>
+                        <h:outputText value="#{bundle.ViewStationPositionsLabel_status}"/>
+                        <h:outputText value="#{stationPositionsController.selected.status}" title="#{bundle.ViewStationPositionsTitle_status}"/>
+                        <h:outputText value="#{bundle.ViewStationPositionsLabel_posX}"/>
+                        <h:outputText value="#{stationPositionsController.selected.posX}" title="#{bundle.ViewStationPositionsTitle_posX}"/>
+                        <h:outputText value="#{bundle.ViewStationPositionsLabel_posY}"/>
+                        <h:outputText value="#{stationPositionsController.selected.posY}" title="#{bundle.ViewStationPositionsTitle_posY}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="StationPositionsViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

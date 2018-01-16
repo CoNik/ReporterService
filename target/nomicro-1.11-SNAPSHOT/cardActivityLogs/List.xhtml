@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+     <ui:composition template="/mainframe.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListCardActivityLogsTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="CardActivityLogsListForm">
+                    
+                    <div class="ets-chart-container" style="display:#{!cardActivityLogsController.noChartData ? 'block' : 'none'};">
+                        <p:chart type="line" model="#{cardActivityLogsController.dateModel}" style="height:400px;" rendered="#{!cardActivityLogsController.noChartData}"
+                                 styleClass="ets-chart" responsive="true"/>
+                     </div>
+                    
+                    <div class="ets-datatable-wrapper">
+                    
+                    <div class="ets-datable-header">
+                        <span>Cards Usage List</span>
+                    </div>
+                    <p:dataTable id="datalist" value="#{cardActivityLogsController.items}" var="item"
+                                 selectionMode="single" selection="#{cardActivityLogsController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.id}"
+                                 rows="20"
+                                 paginatorPosition="bottom"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
+                                 styleClass="ets-datatable"
+                                 resizableColumns="true" 
+                                 liveResize="true"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+                         <f:facet name="{Exporters}">
+                            <h:commandLink>
+                                <p:graphicImage library="images" name="excel.png" width="24"/>
+                                <p:dataExporter type="xls" target="datalist" fileName="CardsUsage" />
+                            </h:commandLink>
+
+                            <h:commandLink>
+                                <p:graphicImage library="images" name="pdf.png" width="24"/>
+                                <p:dataExporter type="pdf" target="datalist" fileName="CardsUsage"/>
+                            </h:commandLink>
+
+                            <h:commandLink>
+                                <p:graphicImage library="images" name="csv.png" width="24"/>
+                                <p:dataExporter type="csv" target="datalist" fileName="CardsUsage" />
+                            </h:commandLink>
+
+                            <h:commandLink>
+                                <p:graphicImage library="images" name="xml.png" width="24"/>
+                                <p:dataExporter type="xml" target="datalist" fileName="CardsUsage" />
+                            </h:commandLink>
+                        </f:facet>
+                        
+                         <p:column filterBy="#{item.sessionId}" filterMatchMode="contains" sortBy="#{item.sessionId}" style="width:20%;">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCardActivityLogsTitle_sessionId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.sessionId}"/>
+                        </p:column>
+                         <p:column filterBy="#{item.cardNumber}" filterMatchMode="contains" sortBy="#{item.cardNumber}" style="width:10%;">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCardActivityLogsTitle_cardNumber}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cardNumber}"/>
+                        </p:column>
+                         <p:column filterBy="#{item.validatorCode}" filterMatchMode="contains" sortBy="#{item.validatorCode}" style="width:5%;">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCardActivityLogsTitle_validatorCode}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.validatorCode}"/>
+                        </p:column>
+                        <p:column  style="width:5%;">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCardActivityLogsTitle_currentBalance}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.currentBalance}"/>
+                        </p:column>
+                        <p:column  style="width:5%;">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCardActivityLogsTitle_amount}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.amount}"/>
+                        </p:column>
+                        <p:column filterBy="#{item.activityCode}" filterMatchMode="contains" sortBy="#{item.activityCode}" style="width:5%;">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCardActivityLogsTitle_activityCode}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.activityCode}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCardActivityLogsTitle_description}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.description}"/>
+                        </p:column>
+                        <p:column  style="width:10%;">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCardActivityLogsTitle_createdDate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.createdDate}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column  style="width:5%;">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCardActivityLogsTitle_directionId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.directionId}"/>
+                        </p:column>
+                        <p:column  style="width:10%;">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCardActivityLogsTitle_sentDate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.sentDate}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{cardActivityLogsController.prepareCreate}" update=":CardActivityLogsCreateForm" oncomplete="PF('CardActivityLogsCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":CardActivityLogsViewForm" oncomplete="PF('CardActivityLogsViewDialog').show()" disabled="#{empty cardActivityLogsController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":CardActivityLogsEditForm" oncomplete="PF('CardActivityLogsEditDialog').show()" disabled="#{empty cardActivityLogsController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{cardActivityLogsController.destroy}" update=":growl,datalist" disabled="#{empty cardActivityLogsController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                    </div>
+                    <h3>Export Page Data Only</h3>
+                    <h:commandLink>
+                        <p:graphicImage library="images" name="excel.png" />
+                        <p:dataExporter type="xls" target="datalist" fileName="CardsUsage" pageOnly="true"/>
+                    </h:commandLink>
+
+                    <h:commandLink>
+                        <p:graphicImage library="images" name="pdf.png" />
+                        <p:dataExporter type="pdf" target="datalist" fileName="CardsUsage" pageOnly="true" />
+                    </h:commandLink>
+
+                    <h:commandLink>
+                        <p:graphicImage library="images" name="csv.png" />
+                        <p:dataExporter type="csv" target="datalist" fileName="CardsUsage" pageOnly="true" />
+                    </h:commandLink>
+
+                    <h:commandLink>
+                        <p:graphicImage library="images" name="xml.png" />
+                        <p:dataExporter type="xml" target="datalist" fileName="CardsUsage" pageOnly="true" />
+                    </h:commandLink>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

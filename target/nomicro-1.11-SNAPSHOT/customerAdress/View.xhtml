@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CustomerAdressViewDlg" widgetVar="CustomerAdressViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewCustomerAdressTitle}">
+            <h:form id="CustomerAdressViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{customerAdressController.selected != null}">
+                        <h:outputText value="#{bundle.ViewCustomerAdressLabel_customerId}"/>
+                        <h:outputText value="#{customerAdressController.selected.customerId}" title="#{bundle.ViewCustomerAdressTitle_customerId}"/>
+                        <h:outputText value="#{bundle.ViewCustomerAdressLabel_customerAdressId}"/>
+                        <h:outputText value="#{customerAdressController.selected.customerAdressId}" title="#{bundle.ViewCustomerAdressTitle_customerAdressId}"/>
+                        <h:outputText value="#{bundle.ViewCustomerAdressLabel_adress1}"/>
+                        <h:outputText value="#{customerAdressController.selected.adress1}" title="#{bundle.ViewCustomerAdressTitle_adress1}"/>
+                        <h:outputText value="#{bundle.ViewCustomerAdressLabel_cities}"/>
+                        <h:outputText value="#{customerAdressController.selected.cities}" title="#{bundle.ViewCustomerAdressTitle_cities}"/>
+                        <h:outputText value="#{bundle.ViewCustomerAdressLabel_city}"/>
+                        <h:outputText value="#{customerAdressController.selected.city}" title="#{bundle.ViewCustomerAdressTitle_city}"/>
+                        <h:outputText value="#{bundle.ViewCustomerAdressLabel_country}"/>
+                        <h:outputText value="#{customerAdressController.selected.country}" title="#{bundle.ViewCustomerAdressTitle_country}"/>
+                        <h:outputText value="#{bundle.ViewCustomerAdressLabel_valid}"/>
+                        <h:outputText value="#{customerAdressController.selected.valid}" title="#{bundle.ViewCustomerAdressTitle_valid}"/>
+                        <h:outputText value="#{bundle.ViewCustomerAdressLabel_status}"/>
+                        <h:outputText value="#{customerAdressController.selected.status}" title="#{bundle.ViewCustomerAdressTitle_status}"/>
+                        <h:outputText value="#{bundle.ViewCustomerAdressLabel_createDate}"/>
+                        <h:outputText value="#{customerAdressController.selected.createDate}" title="#{bundle.ViewCustomerAdressTitle_createDate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="CustomerAdressViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

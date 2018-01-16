@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/mainframe.xhtml">
+
+        <ui:define name="title">
+            <h:outputText value="ETS - Map"></h:outputText>
+            <h:outputStylesheet library="css" name="ets-map-style.css"/>
+        </ui:define>
+
+        <ui:define name="body">
+            
+            <h:form id="mapForm" styleClass="etsMainForm">
+                <p:remoteCommand name="onStationHoverRC" actionListener="#{etsMapController.onMetroStationHover()}"/>
+                <p:remoteCommand name="onStationClickRC" actionListener="#{dashboardController.onMetroStationClick()}"/>
+                
+                <p:panelGrid style="visibility: hidden" id="stationInfoPanel">
+                    <input type="hidden" value="#{etsMapController.dashboardInfo.passengersIn}" id="passengersInSelectedStation"/>
+                    <input type="hidden" value="#{etsMapController.dashboardInfo.smartCardTikets}" id="smartCardTicketsInSelectedStation"/>
+                    <input type="hidden" value="#{etsMapController.dashboardInfo.smartCardTikets}" id="mobileTicketsInSelectedStation"/>
+                </p:panelGrid>
+
+                <br/>
+                
+                <div class="ets-canvas-wrapper">
+                    <div id="ets-metro-map"/>
+                </div>
+                
+                
+            </h:form> 
+        
+            <!--Konva framework for javascript canvas-->
+            <script src="https://cdn.rawgit.com/konvajs/konva/1.7.6/konva.min.js"></script>
+            <h:outputScript library="js" name="ets-map.js"/>
+    
+         
+        </ui:define>
+    </ui:composition>
+
+</html>

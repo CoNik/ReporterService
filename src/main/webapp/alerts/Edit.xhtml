@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AlertsEditDlg" widgetVar="AlertsEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditAlertsTitle}">
+            <h:form id="AlertsEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{alertsController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditAlertsLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{alertsController.selected.id}" title="#{bundle.EditAlertsTitle_id}" required="true" requiredMessage="#{bundle.EditAlertsRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditAlertsLabel_code}" for="code" />
+                        <p:inputText id="code" value="#{alertsController.selected.code}" title="#{bundle.EditAlertsTitle_code}" required="true" requiredMessage="#{bundle.EditAlertsRequiredMessage_code}"/>
+                        <p:outputLabel value="#{bundle.EditAlertsLabel_description}" for="description" />
+                        <p:inputText id="description" value="#{alertsController.selected.description}" title="#{bundle.EditAlertsTitle_description}" required="true" requiredMessage="#{bundle.EditAlertsRequiredMessage_description}"/>
+                        <p:outputLabel value="#{bundle.EditAlertsLabel_createdDate}" for="createdDate" />
+                        <p:calendar id="createdDate" pattern="MM/dd/yyyy HH:mm:ss" value="#{alertsController.selected.createdDate}" title="#{bundle.EditAlertsTitle_createdDate}" required="true" requiredMessage="#{bundle.EditAlertsRequiredMessage_createdDate}" showOn="button"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{alertsController.update}" value="#{bundle.Save}" update="display,:AlertsListForm:datalist,:growl" oncomplete="handleSubmit(args, 'AlertsEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="AlertsEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

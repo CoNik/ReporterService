@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AlertLogsCreateDlg" widgetVar="AlertLogsCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateAlertLogsTitle}">
+            <h:form id="AlertLogsCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{alertLogsController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateAlertLogsLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{alertLogsController.selected.id}" title="#{bundle.CreateAlertLogsTitle_id}" required="true" requiredMessage="#{bundle.CreateAlertLogsRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.CreateAlertLogsLabel_machineId}" for="machineId" />
+                        <p:inputText id="machineId" value="#{alertLogsController.selected.machineId}" title="#{bundle.CreateAlertLogsTitle_machineId}" />
+                        <p:outputLabel value="#{bundle.CreateAlertLogsLabel_sessionId}" for="sessionId" />
+                        <p:inputText id="sessionId" value="#{alertLogsController.selected.sessionId}" title="#{bundle.CreateAlertLogsTitle_sessionId}" />
+                        <p:outputLabel value="#{bundle.CreateAlertLogsLabel_cardId}" for="cardId" />
+                        <p:inputText id="cardId" value="#{alertLogsController.selected.cardId}" title="#{bundle.CreateAlertLogsTitle_cardId}" />
+                        <p:outputLabel value="#{bundle.CreateAlertLogsLabel_alertId}" for="alertId" />
+                        <p:inputText id="alertId" value="#{alertLogsController.selected.alertId}" title="#{bundle.CreateAlertLogsTitle_alertId}" required="true" requiredMessage="#{bundle.CreateAlertLogsRequiredMessage_alertId}"/>
+                        <p:outputLabel value="#{bundle.CreateAlertLogsLabel_itemId}" for="itemId" />
+                        <p:inputText id="itemId" value="#{alertLogsController.selected.itemId}" title="#{bundle.CreateAlertLogsTitle_itemId}" />
+                        <p:outputLabel value="#{bundle.CreateAlertLogsLabel_deviceId}" for="deviceId" />
+                        <p:inputText id="deviceId" value="#{alertLogsController.selected.deviceId}" title="#{bundle.CreateAlertLogsTitle_deviceId}" />
+                        <p:outputLabel value="#{bundle.CreateAlertLogsLabel_description}" for="description" />
+                        <p:inputText id="description" value="#{alertLogsController.selected.description}" title="#{bundle.CreateAlertLogsTitle_description}" required="true" requiredMessage="#{bundle.CreateAlertLogsRequiredMessage_description}"/>
+                        <p:outputLabel value="#{bundle.CreateAlertLogsLabel_alertCode}" for="alertCode" />
+                        <p:inputText id="alertCode" value="#{alertLogsController.selected.alertCode}" title="#{bundle.CreateAlertLogsTitle_alertCode}" required="true" requiredMessage="#{bundle.CreateAlertLogsRequiredMessage_alertCode}"/>
+                        <p:outputLabel value="#{bundle.CreateAlertLogsLabel_createdDate}" for="createdDate" />
+                        <p:calendar id="createdDate" pattern="MM/dd/yyyy HH:mm:ss" value="#{alertLogsController.selected.createdDate}" title="#{bundle.EditAlertLogsTitle_createdDate}" required="true" requiredMessage="#{bundle.EditAlertLogsRequiredMessage_createdDate}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateAlertLogsLabel_sentDate}" for="sentDate" />
+                        <p:calendar id="sentDate" pattern="MM/dd/yyyy HH:mm:ss" value="#{alertLogsController.selected.sentDate}" title="#{bundle.EditAlertLogsTitle_sentDate}"  showOn="button"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{alertLogsController.create}" value="#{bundle.Save}" update="display,:AlertLogsListForm:datalist,:growl" oncomplete="handleSubmit(args,'AlertLogsCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="AlertLogsCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

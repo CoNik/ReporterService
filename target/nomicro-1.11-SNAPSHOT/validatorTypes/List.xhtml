@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/mainframe.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListValidatorTypesTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="ValidatorTypesListForm">
+                <p:panel header="#{bundle.ListValidatorTypesTitle}">
+                    <div class="ets-datatable-wrapper">
+                    
+                    <div class="ets-datable-header">
+                        <span>Validator types List</span>
+                    </div>
+                    <p:dataTable id="datalist" value="#{validatorTypesController.items}" var="item"
+                                 selectionMode="single" selection="#{validatorTypesController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.validatorTypeCode}"
+                                 rows="10"
+                                 paginatorPosition="bottom"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
+                                 styleClass="ets-datatable"
+                                 resizableColumns="true" 
+                                 liveResize="true"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+                        <f:facet name="{Exporters}">
+                            <h:commandLink>
+                                <p:graphicImage library="images" name="excel.png" width="24"/>
+                                <p:dataExporter type="xls" target="datalist" fileName="ValidatorTypes" />
+                            </h:commandLink>
+
+                            <h:commandLink>
+                                <p:graphicImage library="images" name="pdf.png" width="24"/>
+                                <p:dataExporter type="pdf" target="datalist" fileName="ValidatorTypes"/>
+                            </h:commandLink>
+
+                            <h:commandLink>
+                                <p:graphicImage library="images" name="csv.png" width="24"/>
+                                <p:dataExporter type="csv" target="datalist" fileName="ValidatorTypes" />
+                            </h:commandLink>
+
+                            <h:commandLink>
+                                <p:graphicImage library="images" name="xml.png" width="24"/>
+                                <p:dataExporter type="xml" target="datalist" fileName="ValidatorTypes" />
+                            </h:commandLink>
+                        </f:facet>
+                         <p:column filterBy="#{item.validatorTypeCode}" filterMatchMode="contains" sortBy="#{item.validatorTypeCode}" style="width:10%;">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListValidatorTypesTitle_validatorTypeCode}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.validatorTypeCode}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListValidatorTypesTitle_description}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.description}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{validatorTypesController.prepareCreate}" update=":ValidatorTypesCreateForm" oncomplete="PF('ValidatorTypesCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":ValidatorTypesViewForm" oncomplete="PF('ValidatorTypesViewDialog').show()" disabled="#{empty validatorTypesController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":ValidatorTypesEditForm" oncomplete="PF('ValidatorTypesEditDialog').show()" disabled="#{empty validatorTypesController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{validatorTypesController.destroy}" update=":growl,datalist" disabled="#{empty validatorTypesController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                    </div>
+                     <h3>Export Page Data Only</h3>
+                    <h:commandLink>
+                        <p:graphicImage library="images" name="excel.png" />
+                        <p:dataExporter type="xls" target="datalist" fileName="Stations" pageOnly="true"/>
+                    </h:commandLink>
+
+                    <h:commandLink>
+                        <p:graphicImage library="images" name="pdf.png" />
+                        <p:dataExporter type="pdf" target="datalist" fileName="Stations" pageOnly="true" />
+                    </h:commandLink>
+
+                    <h:commandLink>
+                        <p:graphicImage library="images" name="csv.png" />
+                        <p:dataExporter type="csv" target="datalist" fileName="Stations" pageOnly="true" />
+                    </h:commandLink>
+
+                    <h:commandLink>
+                        <p:graphicImage library="images" name="xml.png" />
+                        <p:dataExporter type="xml" target="datalist" fileName="Stations" pageOnly="true" />
+                    </h:commandLink>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

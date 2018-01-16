@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+        <ui:composition template="/mainframe.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListValidatorsTitle}"></h:outputText>
+            <h:outputStylesheet library="css" name="ets-map-style.css"/>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="ValidatorsListForm">
+                
+                <p:remoteCommand name="onStationHoverRC" actionListener="#{etsMapController.onMetroStationHover()}"/>
+                <p:remoteCommand name="onStationClickRC" actionListener="#{dashboardController.onMetroStationClick()}"/>
+                
+                
+                <div class="ets-datatable-wrapper">
+                    <div class="ets-datable-header">
+                        <span>Validators List</span>
+                    </div>
+                    <div class="ets-canvas-wrapper" style="margin-bottom:25px;">
+                        <div id="ets-metro-map"/>
+                    </div>
+                    <p:dataTable id="datalist" value="#{validatorsController.items}" var="item"
+                                 selectionMode="single" selection="#{validatorsController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.validatorsPK}"
+                                  rows="20"
+                                 paginatorPosition="bottom"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
+                                 styleClass="ets-datatable"
+                                 resizableColumns="true" 
+                                 liveResize="true"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+                        <f:facet name="{Exporters}">
+                            <h:commandLink>
+                                <p:graphicImage library="images" name="excel.png" width="24"/>
+                                <p:dataExporter type="xls" target="datalist" fileName="Validators" />
+                            </h:commandLink>
+
+                            <h:commandLink>
+                                <p:graphicImage library="images" name="pdf.png" width="24"/>
+                                <p:dataExporter type="pdf" target="datalist" fileName="Validators"/>
+                            </h:commandLink>
+
+                            <h:commandLink>
+                                <p:graphicImage library="images" name="csv.png" width="24"/>
+                                <p:dataExporter type="csv" target="datalist" fileName="Validators" />
+                            </h:commandLink>
+
+                            <h:commandLink>
+                                <p:graphicImage library="images" name="xml.png" width="24"/>
+                                <p:dataExporter type="xml" target="datalist" fileName="Validators" />
+                            </h:commandLink>
+                        </f:facet>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListValidatorsTitle_validatorsPK_validatorCode}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.validatorsPK.validatorCode}"/>
+                        </p:column>
+                         <p:column filterBy="#{item.IPAdress}" filterMatchMode="contains" sortBy="#{item.IPAdress}">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListValidatorsTitle_validatorsPK_IPAdress}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.validatorsPK.IPAdress}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListValidatorsTitle_serialNo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.serialNo}"/>
+                        </p:column>
+                       
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListValidatorsTitle_versionID}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.versionID}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListValidatorsTitle_validatorTypeCode}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.validatorTypeCode}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListValidatorsTitle_routeDirection}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.routeDirection}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListValidatorsTitle_status}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.status}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListValidatorsTitle_routeCode}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.routeCode}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListValidatorsTitle_stationId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.stationId}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{validatorsController.prepareCreate}" update=":ValidatorsCreateForm" oncomplete="PF('ValidatorsCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":ValidatorsViewForm" oncomplete="PF('ValidatorsViewDialog').show()" disabled="#{empty validatorsController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":ValidatorsEditForm" oncomplete="PF('ValidatorsEditDialog').show()" disabled="#{empty validatorsController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{validatorsController.destroy}" update=":growl,datalist" disabled="#{empty validatorsController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                
+                <div class="exportPageData">
+                    <h3>Export Page Data Only</h3>
+                    <h:commandLink>
+                        <p:graphicImage library="images" name="excel.png" />
+                        <p:dataExporter type="xls" target="datalist" fileName="Validators" pageOnly="true"/>
+                    </h:commandLink>
+
+                    <h:commandLink>
+                        <p:graphicImage library="images" name="pdf.png" />
+                        <p:dataExporter type="pdf" target="datalist" fileName="Validators" pageOnly="true" />
+                    </h:commandLink>
+
+                    <h:commandLink>
+                        <p:graphicImage library="images" name="csv.png" />
+                        <p:dataExporter type="csv" target="datalist" fileName="Validators" pageOnly="true" />
+                    </h:commandLink>
+
+                    <h:commandLink>
+                        <p:graphicImage library="images" name="xml.png" />
+                        <p:dataExporter type="xml" target="datalist" fileName="Validators" pageOnly="true" />
+                    </h:commandLink>
+                </div>
+                    
+            </div>
+            </h:form>
+
+            <!--Konva framework for javascript canvas-->
+            <script src="https://cdn.rawgit.com/konvajs/konva/1.7.6/konva.min.js"></script>
+            <h:outputScript library="js" name="ets-map-validators.js"/>
+            
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

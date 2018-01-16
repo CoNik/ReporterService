@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ActivityLogsEditDlg" widgetVar="ActivityLogsEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditActivityLogsTitle}">
+            <h:form id="ActivityLogsEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{activityLogsController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditActivityLogsLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{activityLogsController.selected.id}" title="#{bundle.EditActivityLogsTitle_id}" required="true" requiredMessage="#{bundle.EditActivityLogsRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditActivityLogsLabel_machineId}" for="machineId" />
+                        <p:inputText id="machineId" value="#{activityLogsController.selected.machineId}" title="#{bundle.EditActivityLogsTitle_machineId}" />
+                        <p:outputLabel value="#{bundle.EditActivityLogsLabel_sessionId}" for="sessionId" />
+                        <p:inputText id="sessionId" value="#{activityLogsController.selected.sessionId}" title="#{bundle.EditActivityLogsTitle_sessionId}" />
+                        <p:outputLabel value="#{bundle.EditActivityLogsLabel_cardId}" for="cardId" />
+                        <p:inputText id="cardId" value="#{activityLogsController.selected.cardId}" title="#{bundle.EditActivityLogsTitle_cardId}" />
+                        <p:outputLabel value="#{bundle.EditActivityLogsLabel_activityId}" for="activityId" />
+                        <p:inputText id="activityId" value="#{activityLogsController.selected.activityId}" title="#{bundle.EditActivityLogsTitle_activityId}" required="true" requiredMessage="#{bundle.EditActivityLogsRequiredMessage_activityId}"/>
+                        <p:outputLabel value="#{bundle.EditActivityLogsLabel_itemId}" for="itemId" />
+                        <p:inputText id="itemId" value="#{activityLogsController.selected.itemId}" title="#{bundle.EditActivityLogsTitle_itemId}" />
+                        <p:outputLabel value="#{bundle.EditActivityLogsLabel_quantity}" for="quantity" />
+                        <p:inputText id="quantity" value="#{activityLogsController.selected.quantity}" title="#{bundle.EditActivityLogsTitle_quantity}" />
+                        <p:outputLabel value="#{bundle.EditActivityLogsLabel_value}" for="value" />
+                        <p:inputText id="value" value="#{activityLogsController.selected.value}" title="#{bundle.EditActivityLogsTitle_value}" />
+                        <p:outputLabel value="#{bundle.EditActivityLogsLabel_activityCode}" for="activityCode" />
+                        <p:inputText id="activityCode" value="#{activityLogsController.selected.activityCode}" title="#{bundle.EditActivityLogsTitle_activityCode}" required="true" requiredMessage="#{bundle.EditActivityLogsRequiredMessage_activityCode}"/>
+                        <p:outputLabel value="#{bundle.EditActivityLogsLabel_description}" for="description" />
+                        <p:inputText id="description" value="#{activityLogsController.selected.description}" title="#{bundle.EditActivityLogsTitle_description}" required="true" requiredMessage="#{bundle.EditActivityLogsRequiredMessage_description}"/>
+                        <p:outputLabel value="#{bundle.EditActivityLogsLabel_createdDate}" for="createdDate" />
+                        <p:calendar id="createdDate" pattern="MM/dd/yyyy HH:mm:ss" value="#{activityLogsController.selected.createdDate}" title="#{bundle.EditActivityLogsTitle_createdDate}" required="true" requiredMessage="#{bundle.EditActivityLogsRequiredMessage_createdDate}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditActivityLogsLabel_sentDate}" for="sentDate" />
+                        <p:calendar id="sentDate" pattern="MM/dd/yyyy HH:mm:ss" value="#{activityLogsController.selected.sentDate}" title="#{bundle.EditActivityLogsTitle_sentDate}"  showOn="button"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{activityLogsController.update}" value="#{bundle.Save}" update="display,:ActivityLogsListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ActivityLogsEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ActivityLogsEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

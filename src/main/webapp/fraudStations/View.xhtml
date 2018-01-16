@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FraudStationsViewDlg" widgetVar="FraudStationsViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewFraudStationsTitle}">
+            <h:form id="FraudStationsViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{fraudStationsController.selected != null}">
+                        <h:outputText value="#{bundle.ViewFraudStationsLabel_fraudId}"/>
+                        <h:outputText value="#{fraudStationsController.selected.fraudId}" title="#{bundle.ViewFraudStationsTitle_fraudId}"/>
+                        <h:outputText value="#{bundle.ViewFraudStationsLabel_fraudStations}"/>
+                        <h:outputText value="#{fraudStationsController.selected.fraudStations}" title="#{bundle.ViewFraudStationsTitle_fraudStations}"/>
+                        <h:outputText value="#{bundle.ViewFraudStationsLabel_fraudCardId}"/>
+                        <h:outputText value="#{fraudStationsController.selected.fraudCardId}" title="#{bundle.ViewFraudStationsTitle_fraudCardId}"/>
+                        <h:outputText value="#{bundle.ViewFraudStationsLabel_fraudType}"/>
+                        <h:outputText value="#{fraudStationsController.selected.fraudType}" title="#{bundle.ViewFraudStationsTitle_fraudType}"/>
+                        <h:outputText value="#{bundle.ViewFraudStationsLabel_createDate}"/>
+                        <h:outputText value="#{fraudStationsController.selected.createDate}" title="#{bundle.ViewFraudStationsTitle_createDate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewFraudStationsLabel_fraudPicture}"/>
+                        <h:outputText value="#{fraudStationsController.selected.fraudPicture}" title="#{bundle.ViewFraudStationsTitle_fraudPicture}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="FraudStationsViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

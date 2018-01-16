@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListStationPositionsTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="StationPositionsListForm">
+                <p:panel header="#{bundle.ListStationPositionsTitle}">
+                    <p:dataTable id="datalist" value="#{stationPositionsController.items}" var="item"
+                                 selectionMode="single" selection="#{stationPositionsController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.stationId}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListStationPositionsTitle_stationId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.stationId}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListStationPositionsTitle_stationDescription}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.stationDescription}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListStationPositionsTitle_displayName}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.displayName}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListStationPositionsTitle_createDate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.createDate}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListStationPositionsTitle_status}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.status}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListStationPositionsTitle_posX}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.posX}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListStationPositionsTitle_posY}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.posY}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{stationPositionsController.prepareCreate}" update=":StationPositionsCreateForm" oncomplete="PF('StationPositionsCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":StationPositionsViewForm" oncomplete="PF('StationPositionsViewDialog').show()" disabled="#{empty stationPositionsController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":StationPositionsEditForm" oncomplete="PF('StationPositionsEditDialog').show()" disabled="#{empty stationPositionsController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{stationPositionsController.destroy}" update=":growl,datalist" disabled="#{empty stationPositionsController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CITReportsViewDlg" widgetVar="CITReportsViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewCITReportsTitle}">
+            <h:form id="CITReportsViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{cITReportsController.selected != null}">
+                        <h:outputText value="#{bundle.ViewCITReportsLabel_id}"/>
+                        <h:outputText value="#{cITReportsController.selected.id}" title="#{bundle.ViewCITReportsTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewCITReportsLabel_machineId}"/>
+                        <h:outputText value="#{cITReportsController.selected.machineId}" title="#{bundle.ViewCITReportsTitle_machineId}"/>
+                        <h:outputText value="#{bundle.ViewCITReportsLabel_CITId}"/>
+                        <h:outputText value="#{cITReportsController.selected.CITId}" title="#{bundle.ViewCITReportsTitle_CITId}"/>
+                        <h:outputText value="#{bundle.ViewCITReportsLabel_CITSessionId}"/>
+                        <h:outputText value="#{cITReportsController.selected.CITSessionId}" title="#{bundle.ViewCITReportsTitle_CITSessionId}"/>
+                        <h:outputText value="#{bundle.ViewCITReportsLabel_itemId}"/>
+                        <h:outputText value="#{cITReportsController.selected.itemId}" title="#{bundle.ViewCITReportsTitle_itemId}"/>
+                        <h:outputText value="#{bundle.ViewCITReportsLabel_countAtPrimary}"/>
+                        <h:outputText value="#{cITReportsController.selected.countAtPrimary}" title="#{bundle.ViewCITReportsTitle_countAtPrimary}"/>
+                        <h:outputText value="#{bundle.ViewCITReportsLabel_countAtSecondary}"/>
+                        <h:outputText value="#{cITReportsController.selected.countAtSecondary}" title="#{bundle.ViewCITReportsTitle_countAtSecondary}"/>
+                        <h:outputText value="#{bundle.ViewCITReportsLabel_descriptionOnPrimary}"/>
+                        <h:outputText value="#{cITReportsController.selected.descriptionOnPrimary}" title="#{bundle.ViewCITReportsTitle_descriptionOnPrimary}"/>
+                        <h:outputText value="#{bundle.ViewCITReportsLabel_descriptionOnSecondary}"/>
+                        <h:outputText value="#{cITReportsController.selected.descriptionOnSecondary}" title="#{bundle.ViewCITReportsTitle_descriptionOnSecondary}"/>
+                        <h:outputText value="#{bundle.ViewCITReportsLabel_onInfeeder01}"/>
+                        <p:selectBooleanCheckbox value="#{cITReportsController.selected.onInfeeder01}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewCITReportsLabel_onInfeeder02}"/>
+                        <p:selectBooleanCheckbox value="#{cITReportsController.selected.onInfeeder02}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewCITReportsLabel_typeId}"/>
+                        <h:outputText value="#{cITReportsController.selected.typeId}" title="#{bundle.ViewCITReportsTitle_typeId}"/>
+                        <h:outputText value="#{bundle.ViewCITReportsLabel_createdDate}"/>
+                        <h:outputText value="#{cITReportsController.selected.createdDate}" title="#{bundle.ViewCITReportsTitle_createdDate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewCITReportsLabel_sentDate}"/>
+                        <h:outputText value="#{cITReportsController.selected.sentDate}" title="#{bundle.ViewCITReportsTitle_sentDate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="CITReportsViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

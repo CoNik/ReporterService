@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CustomerAdressCreateDlg" widgetVar="CustomerAdressCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateCustomerAdressTitle}">
+            <h:form id="CustomerAdressCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{customerAdressController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateCustomerAdressLabel_customerId}" for="customerId" />
+                        <p:inputText id="customerId" value="#{customerAdressController.selected.customerId}" title="#{bundle.CreateCustomerAdressTitle_customerId}" required="true" requiredMessage="#{bundle.CreateCustomerAdressRequiredMessage_customerId}"/>
+                        <p:outputLabel value="#{bundle.CreateCustomerAdressLabel_customerAdressId}" for="customerAdressId" />
+                        <p:inputText id="customerAdressId" value="#{customerAdressController.selected.customerAdressId}" title="#{bundle.CreateCustomerAdressTitle_customerAdressId}" required="true" requiredMessage="#{bundle.CreateCustomerAdressRequiredMessage_customerAdressId}"/>
+                        <p:outputLabel value="#{bundle.CreateCustomerAdressLabel_adress1}" for="adress1" />
+                        <p:inputText id="adress1" value="#{customerAdressController.selected.adress1}" title="#{bundle.CreateCustomerAdressTitle_adress1}" />
+                        <p:outputLabel value="#{bundle.CreateCustomerAdressLabel_cities}" for="cities" />
+                        <p:inputText id="cities" value="#{customerAdressController.selected.cities}" title="#{bundle.CreateCustomerAdressTitle_cities}" />
+                        <p:outputLabel value="#{bundle.CreateCustomerAdressLabel_city}" for="city" />
+                        <p:inputText id="city" value="#{customerAdressController.selected.city}" title="#{bundle.CreateCustomerAdressTitle_city}" />
+                        <p:outputLabel value="#{bundle.CreateCustomerAdressLabel_country}" for="country" />
+                        <p:inputText id="country" value="#{customerAdressController.selected.country}" title="#{bundle.CreateCustomerAdressTitle_country}" />
+                        <p:outputLabel value="#{bundle.CreateCustomerAdressLabel_valid}" for="valid" />
+                        <p:inputText id="valid" value="#{customerAdressController.selected.valid}" title="#{bundle.CreateCustomerAdressTitle_valid}" />
+                        <p:outputLabel value="#{bundle.CreateCustomerAdressLabel_status}" for="status" />
+                        <p:inputText id="status" value="#{customerAdressController.selected.status}" title="#{bundle.CreateCustomerAdressTitle_status}" />
+                        <p:outputLabel value="#{bundle.CreateCustomerAdressLabel_createDate}" for="createDate" />
+                        <p:calendar id="createDate" pattern="MM/dd/yyyy HH:mm:ss" value="#{customerAdressController.selected.createDate}" title="#{bundle.EditCustomerAdressTitle_createDate}"  showOn="button"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{customerAdressController.create}" value="#{bundle.Save}" update="display,:CustomerAdressListForm:datalist,:growl" oncomplete="handleSubmit(args,'CustomerAdressCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CustomerAdressCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

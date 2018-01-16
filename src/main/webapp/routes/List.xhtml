@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/mainframe.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListRoutesTitle}"></h:outputText>
+            <h:outputStylesheet library="css" name="ets-map-style.css"/>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="RoutesListForm">
+                <div class="ets-datatable-wrapper">
+                    
+                    <div class="ets-datable-header">
+                        <span>Routes list</span>
+                    </div>
+
+                    <div class="ets-canvas-wrapper-static" style="margin-bottom:25px;">
+                        <div class="ets-metro-map-static"/>
+                    </div>
+                    
+                    <p:dataTable id="datalist" value="#{routesController.items}" var="item"
+                                 selectionMode="single" selection="#{routesController.selected}"
+                                 resizableColumns="true" 
+                                 liveResize="true"
+                                 paginator="true"
+                                 rowKey="#{item.routeCode}"
+                                 rows="20" styleClass="ets-datatable"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
+                                 paginatorPosition="bottom">
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                         <f:facet name="{Exporters}">
+                            <h:commandLink>
+                                <p:graphicImage library="images" name="excel.png" width="24"/>
+                                <p:dataExporter type="xls" target="datalist" fileName="Routes" />
+                            </h:commandLink>
+
+                            <h:commandLink>
+                                <p:graphicImage library="images" name="pdf.png" width="24"/>
+                                <p:dataExporter type="pdf" target="datalist" fileName="Routes"/>
+                            </h:commandLink>
+
+                            <h:commandLink>
+                                <p:graphicImage library="images" name="csv.png" width="24"/>
+                                <p:dataExporter type="csv" target="datalist" fileName="Routes" />
+                            </h:commandLink>
+
+                            <h:commandLink>
+                                <p:graphicImage library="images" name="xml.png" width="24"/>
+                                <p:dataExporter type="xml" target="datalist" fileName="Routes" />
+                            </h:commandLink>
+                        </f:facet>
+                        
+                        <p:column filterBy="#{item.routeCode}" filterMatchMode="contains" sortBy="#{item.routeCode}" style="width:10%;">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRoutesTitle_routeCode}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.routeCode}"/>
+                        </p:column>
+                        <p:column filterBy="#{item.routeDescription}" filterMatchMode="contains" sortBy="#{item.routeDescription}" style="width:35%;">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRoutesTitle_routeDescription}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.routeDescription}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRoutesTitle_routeStartDate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.routeStartDate}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRoutesTitle_routeEndDate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.routeEndDate}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                         <p:column filterBy="#{item.status}" filterMatchMode="contains" sortBy="#{item.status}" style="width:5%;">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRoutesTitle_status}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.status}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRoutesTitle_specialRoute}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.specialRoute}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRoutesTitle_createDate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.createDate}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRoutesTitle_transportTypeId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.transportTypeId}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{routesController.prepareCreate}" update=":RoutesCreateForm" oncomplete="PF('RoutesCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":RoutesViewForm" oncomplete="PF('RoutesViewDialog').show()" disabled="#{empty routesController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":RoutesEditForm" oncomplete="PF('RoutesEditDialog').show()" disabled="#{empty routesController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{routesController.destroy}" update=":growl,datalist" disabled="#{empty routesController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                    
+                    <div class="exportPageData">
+                        <h3>Export Page Data Only</h3>
+                        <h:commandLink>
+                            <p:graphicImage library="images" name="excel.png" />
+                            <p:dataExporter type="xls" target="datalist" fileName="Routes" pageOnly="true"/>
+                        </h:commandLink>
+
+                        <h:commandLink>
+                            <p:graphicImage library="images" name="pdf.png" />
+                            <p:dataExporter type="pdf" target="datalist" fileName="Routes" pageOnly="true" />
+                        </h:commandLink>
+
+                        <h:commandLink>
+                            <p:graphicImage library="images" name="csv.png" />
+                            <p:dataExporter type="csv" target="datalist" fileName="Routes" pageOnly="true" />
+                        </h:commandLink>
+
+                        <h:commandLink>
+                            <p:graphicImage library="images" name="xml.png" />
+                            <p:dataExporter type="xml" target="datalist" fileName="Routes" pageOnly="true" />
+                        </h:commandLink>
+                    </div>
+                    
+                    
+                    
+                    
+                </div>
+               
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

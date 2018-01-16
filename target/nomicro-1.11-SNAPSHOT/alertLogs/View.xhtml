@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AlertLogsViewDlg" widgetVar="AlertLogsViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewAlertLogsTitle}">
+            <h:form id="AlertLogsViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{alertLogsController.selected != null}">
+                        <h:outputText value="#{bundle.ViewAlertLogsLabel_id}"/>
+                        <h:outputText value="#{alertLogsController.selected.id}" title="#{bundle.ViewAlertLogsTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewAlertLogsLabel_machineId}"/>
+                        <h:outputText value="#{alertLogsController.selected.machineId}" title="#{bundle.ViewAlertLogsTitle_machineId}"/>
+                        <h:outputText value="#{bundle.ViewAlertLogsLabel_sessionId}"/>
+                        <h:outputText value="#{alertLogsController.selected.sessionId}" title="#{bundle.ViewAlertLogsTitle_sessionId}"/>
+                        <h:outputText value="#{bundle.ViewAlertLogsLabel_cardId}"/>
+                        <h:outputText value="#{alertLogsController.selected.cardId}" title="#{bundle.ViewAlertLogsTitle_cardId}"/>
+                        <h:outputText value="#{bundle.ViewAlertLogsLabel_alertId}"/>
+                        <h:outputText value="#{alertLogsController.selected.alertId}" title="#{bundle.ViewAlertLogsTitle_alertId}"/>
+                        <h:outputText value="#{bundle.ViewAlertLogsLabel_itemId}"/>
+                        <h:outputText value="#{alertLogsController.selected.itemId}" title="#{bundle.ViewAlertLogsTitle_itemId}"/>
+                        <h:outputText value="#{bundle.ViewAlertLogsLabel_deviceId}"/>
+                        <h:outputText value="#{alertLogsController.selected.deviceId}" title="#{bundle.ViewAlertLogsTitle_deviceId}"/>
+                        <h:outputText value="#{bundle.ViewAlertLogsLabel_description}"/>
+                        <h:outputText value="#{alertLogsController.selected.description}" title="#{bundle.ViewAlertLogsTitle_description}"/>
+                        <h:outputText value="#{bundle.ViewAlertLogsLabel_alertCode}"/>
+                        <h:outputText value="#{alertLogsController.selected.alertCode}" title="#{bundle.ViewAlertLogsTitle_alertCode}"/>
+                        <h:outputText value="#{bundle.ViewAlertLogsLabel_createdDate}"/>
+                        <h:outputText value="#{alertLogsController.selected.createdDate}" title="#{bundle.ViewAlertLogsTitle_createdDate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewAlertLogsLabel_sentDate}"/>
+                        <h:outputText value="#{alertLogsController.selected.sentDate}" title="#{bundle.ViewAlertLogsTitle_sentDate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="AlertLogsViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

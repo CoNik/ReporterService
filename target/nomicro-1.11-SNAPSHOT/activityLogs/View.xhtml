@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ActivityLogsViewDlg" widgetVar="ActivityLogsViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewActivityLogsTitle}">
+            <h:form id="ActivityLogsViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{activityLogsController.selected != null}">
+                        <h:outputText value="#{bundle.ViewActivityLogsLabel_id}"/>
+                        <h:outputText value="#{activityLogsController.selected.id}" title="#{bundle.ViewActivityLogsTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewActivityLogsLabel_machineId}"/>
+                        <h:outputText value="#{activityLogsController.selected.machineId}" title="#{bundle.ViewActivityLogsTitle_machineId}"/>
+                        <h:outputText value="#{bundle.ViewActivityLogsLabel_sessionId}"/>
+                        <h:outputText value="#{activityLogsController.selected.sessionId}" title="#{bundle.ViewActivityLogsTitle_sessionId}"/>
+                        <h:outputText value="#{bundle.ViewActivityLogsLabel_cardId}"/>
+                        <h:outputText value="#{activityLogsController.selected.cardId}" title="#{bundle.ViewActivityLogsTitle_cardId}"/>
+                        <h:outputText value="#{bundle.ViewActivityLogsLabel_activityId}"/>
+                        <h:outputText value="#{activityLogsController.selected.activityId}" title="#{bundle.ViewActivityLogsTitle_activityId}"/>
+                        <h:outputText value="#{bundle.ViewActivityLogsLabel_itemId}"/>
+                        <h:outputText value="#{activityLogsController.selected.itemId}" title="#{bundle.ViewActivityLogsTitle_itemId}"/>
+                        <h:outputText value="#{bundle.ViewActivityLogsLabel_quantity}"/>
+                        <h:outputText value="#{activityLogsController.selected.quantity}" title="#{bundle.ViewActivityLogsTitle_quantity}"/>
+                        <h:outputText value="#{bundle.ViewActivityLogsLabel_value}"/>
+                        <h:outputText value="#{activityLogsController.selected.value}" title="#{bundle.ViewActivityLogsTitle_value}"/>
+                        <h:outputText value="#{bundle.ViewActivityLogsLabel_activityCode}"/>
+                        <h:outputText value="#{activityLogsController.selected.activityCode}" title="#{bundle.ViewActivityLogsTitle_activityCode}"/>
+                        <h:outputText value="#{bundle.ViewActivityLogsLabel_description}"/>
+                        <h:outputText value="#{activityLogsController.selected.description}" title="#{bundle.ViewActivityLogsTitle_description}"/>
+                        <h:outputText value="#{bundle.ViewActivityLogsLabel_createdDate}"/>
+                        <h:outputText value="#{activityLogsController.selected.createdDate}" title="#{bundle.ViewActivityLogsTitle_createdDate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewActivityLogsLabel_sentDate}"/>
+                        <h:outputText value="#{activityLogsController.selected.sentDate}" title="#{bundle.ViewActivityLogsTitle_sentDate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ActivityLogsViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

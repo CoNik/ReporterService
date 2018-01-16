@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UsersEditDlg" widgetVar="UsersEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditUsersTitle}">
+            <h:form id="UsersEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{usersController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditUsersLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{usersController.selected.id}" title="#{bundle.EditUsersTitle_id}" required="true" requiredMessage="#{bundle.EditUsersRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditUsersLabel_userId}" for="userId" />
+                        <p:inputText id="userId" value="#{usersController.selected.userId}" title="#{bundle.EditUsersTitle_userId}" required="true" requiredMessage="#{bundle.EditUsersRequiredMessage_userId}"/>
+                        <p:outputLabel value="#{bundle.EditUsersLabel_userName}" for="userName" />
+                        <p:inputText id="userName" value="#{usersController.selected.userName}" title="#{bundle.EditUsersTitle_userName}" required="true" requiredMessage="#{bundle.EditUsersRequiredMessage_userName}"/>
+                        <p:outputLabel value="#{bundle.EditUsersLabel_password}" for="password" />
+                        <p:inputText id="password" value="#{usersController.selected.password}" title="#{bundle.EditUsersTitle_password}" required="true" requiredMessage="#{bundle.EditUsersRequiredMessage_password}"/>
+                        <p:outputLabel value="#{bundle.EditUsersLabel_cardId}" for="cardId" />
+                        <p:inputText id="cardId" value="#{usersController.selected.cardId}" title="#{bundle.EditUsersTitle_cardId}" required="true" requiredMessage="#{bundle.EditUsersRequiredMessage_cardId}"/>
+                        <p:outputLabel value="#{bundle.EditUsersLabel_validationDate}" for="validationDate" />
+                        <p:calendar id="validationDate" pattern="MM/dd/yyyy HH:mm:ss" value="#{usersController.selected.validationDate}" title="#{bundle.EditUsersTitle_validationDate}" required="true" requiredMessage="#{bundle.EditUsersRequiredMessage_validationDate}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditUsersLabel_lastLoginDate}" for="lastLoginDate" />
+                        <p:calendar id="lastLoginDate" pattern="MM/dd/yyyy HH:mm:ss" value="#{usersController.selected.lastLoginDate}" title="#{bundle.EditUsersTitle_lastLoginDate}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditUsersLabel_last3TimesPasswordErrorOccuredTime}" for="last3TimesPasswordErrorOccuredTime" />
+                        <p:calendar id="last3TimesPasswordErrorOccuredTime" pattern="MM/dd/yyyy HH:mm:ss" value="#{usersController.selected.last3TimesPasswordErrorOccuredTime}" title="#{bundle.EditUsersTitle_last3TimesPasswordErrorOccuredTime}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditUsersLabel_preventLoggingUntilTheTime}" for="preventLoggingUntilTheTime" />
+                        <p:calendar id="preventLoggingUntilTheTime" pattern="MM/dd/yyyy HH:mm:ss" value="#{usersController.selected.preventLoggingUntilTheTime}" title="#{bundle.EditUsersTitle_preventLoggingUntilTheTime}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditUsersLabel_sentDate}" for="sentDate" />
+                        <p:calendar id="sentDate" pattern="MM/dd/yyyy HH:mm:ss" value="#{usersController.selected.sentDate}" title="#{bundle.EditUsersTitle_sentDate}"  showOn="button"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{usersController.update}" value="#{bundle.Save}" update="display,:UsersListForm:datalist,:growl" oncomplete="handleSubmit(args, 'UsersEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="UsersEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

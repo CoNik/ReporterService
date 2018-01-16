@@ -1,0 +1,207 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <title><ui:insert name="title">Default Title</ui:insert></title>
+        <h:outputScript library="js" name="jsfcrud.js"/>
+        <h:outputStylesheet library="css" name="ets-mainframe.css"/>
+        <h:outputStylesheet library="css" name="ets-nav-menu.css"/>
+        <h:outputStylesheet library="css" name="ets-main-style.css"/>
+        <h:outputStylesheet library="css" name="flags.css"/>
+    </h:head>
+
+    <h:body>
+        <f:view locale="#{localeManager.locale}"/>
+        <p:growl id="growl" life="3000" />
+
+        <p:layout fullPage="true" widgetVar="layoutVar">
+            
+            <p:layoutUnit position="west" collapsible="true" collapseSize="0" styleClass="navigationMenuContainer" gutter="1">
+                <h:form id="ets-navForm" style="width:230px !important;max-width:250px !important;min-width:150px !important;">
+                    <p:remoteCommand name="selectPageRc" actionListener="#{dashboardController.navigate()}"/>
+                    
+                    <p:graphicImage library="images" name="ets-logo.png" style="max-width:150px;height:auto;margin:0px auto;"/> 
+
+                    <p:panel styleClass="etsUserPanel">
+                        <p:graphicImage library="images" name="ets-user.png" style="max-width:80px;height:auto;margin:0px auto"/> <br/>
+                        <span>
+                            <h:outputText value="#{dashboardController.currentUserUsername}" style="margin:0px auto;font-weight: bold;"/>
+                            <i class="fa fa-gear" style="font-size:14px;"/>
+                        </span>
+                    </p:panel>
+                
+                    <p:panel styleClass="etsStationPanel">
+                        <p:selectOneMenu id="selectOneStation" value="#{dashboardController.selectedStation}" styleClass="etsSelectItem">
+                            <f:selectItem itemLabel="All stations"/>
+                            <p:ajax event="change" listener="#{dashboardController.onStationSelected}" update="ets-navForm:etsDateSelectionPanel"/>
+                            <f:selectItems value="#{dashboardController.stationsList}" var="item" itemLabel="#{item.displayName}"/>
+                        </p:selectOneMenu>
+                                                    
+
+                        <p:selectOneMenu id="selectOneLanguage" value="#{localeManager.language}" styleClass="etsSelectItem">
+                            <p:ajax event="change" listener="#{dashboardController.onLanguageSelected}" update="ets-navForm:etsDateSelectionPanel"/>
+                            <f:selectItems value="#{localeManager.languageList}" 
+                                           var="item" itemLabel="#{item.language}" 
+                                           itemValue="#{item.ISOCode}"/>
+                            
+                            
+                        </p:selectOneMenu>
+                    </p:panel>
+                    
+                    <p:panel id="etsDateSelectionPanel" styleClass="etsDateSelectionPanel">
+                        
+                        <p:inputText id="filterStartDate" value="#{dashboardController.startDate}" type="hidden">
+                            <f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss"/>
+                        </p:inputText>
+                        
+                        <p:inputText id="filterEndDate" value="#{dashboardController.endDate}" type="hidden">
+                            <f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss"/>
+                        </p:inputText>
+                        
+                        <p:calendar id="calendarStartDate" value="#{dashboardController.startDate}" pattern="dd-MMM-yyyy HH:mm:ss"
+                                    maxdate="#{dashboardController.endDate}"
+                                    placeholder="Start date" readonlyInput="true" styleClass="ets-calendar" inputStyleClass="ets-calendar-input"> 
+                            <p:ajax event="dateSelect" listener="#{dashboardController.onStartDateChanged}" update="ets-navForm:etsDateSelectionPanel"/>
+                            <f:convertDateTime pattern="dd-MMM-yyyy HH:mm:ss" locale="en"/>
+                        </p:calendar>
+                        <p:calendar id="calendarEndDate" value="#{dashboardController.endDate}" pattern="dd-MMM-yyyy HH:mm:ss" maxdate="#{dashboardController.endMaxDate}"
+                                    placeholder="End date" readonlyInput="true" styleClass="ets-calendar">
+                            <f:convertDateTime pattern="dd-MMM-yyyy HH:mm:ss" locale="en"/>
+                            <p:ajax event="dateSelect" listener="#{dashboardController.onEndDateChanged}" update="ets-navForm:etsDateSelectionPanel"/>
+                        </p:calendar>
+                        <p:commandButton id="applyFiltersBtn" value="Apply changes" styleClass="ets-apply-filters-btn" oncomplete="submit()"
+                                         rendered="#{dashboardController.filtersChanged()}" actionListener="#{dashboardController.applyEtsFilters()}"/>
+                    </p:panel>
+                    
+                    
+                    
+                
+                    <p:menu toggleable="true" styleClass="etsNavMenu">
+                        <p:menuitem value="Dashboard" icon="fa fa-home" outcome="/index.xhtml" onclick="navigate('Dashboard')"/>
+                        <p:menuitem value="Metro Map" icon="fa fa-map" outcome="/map/map.xhtml" onclick="navigate('Metro map')"/>
+                        <p:menuitem value="Map" icon="fa fa-map-marker" outcome="/map/metro.xhtml" onclick="navigate('Map')"/>
+                        
+                        <p:menuitem value="Alert Logs" icon="fa fa-bell-o" outcome="/alertLogs/List.xhtml" onclick="navigate('Alert Logs')"/>
+                        <p:menuitem value="Activity Logs" icon="fa fa-random" outcome="/activityLogs/List.xhtml" onclick="navigate('Activity Logs')"/>
+                        
+                        <p:menuitem value="Card usage" icon="fa fa-credit-card" outcome="/cardActivityLogs/List.xhtml" onclick="navigate('Card usage')"/>
+                        <p:menuitem value="Fraudulents" icon="fa fa-lock" outcome="/fraudStations/List.xhtml" onclick="navigate('Fraudulents')"/>
+                        <p:menuitem value="Electronic tickets" icon="fa fa-ticket" outcome="/cITReports/List.xhtml" onclick="navigate('Electronic tickets')"/>
+                        <p:menuitem value="Kiosk items" icon="fa fa-archive" outcome="/kioskItems/List.xhtml" onclick="navigate('Kiosk items')"/>
+                        <p:menuitem value="Users" icon="fa fa-users" outcome="/users/List.xhtml" onclick="navigate('Users')" rendered="#{dashboardController.userAdmin}"/>
+                        <p:menuitem value="Data analysis" icon="fa fa-bar-chart" outcome="/dataAnalysis/dataAnalysis.xhtml" onclick="navigate('Data analysis')"/>
+                        <p:submenu label="Routes, Stations" rendered="#{dashboardController.userAdminOrManager}"> 
+                             <p:menuitem value="Stations" styleClass="nav-subitem" icon="fa fa-dot-circle-o" 
+                                        outcome="/stations/List.xhtml" onclick="navigate('Station')"/>
+                             <p:menuitem value="Directions" styleClass="nav-subitem" icon="fa fa-dot-circle-o" 
+                                        outcome="/direction/List.xhtml" onclick="navigate('Directions')"/>
+                            <p:menuitem value="Routes" styleClass="nav-subitem" icon="fa fa-dot-circle-o" 
+                                        outcome="/routes/List.xhtml" onclick="navigate('Route')"/>
+                          
+                           <p:menuitem value="Route Prices" styleClass="nav-subitem" icon="fa fa-dot-circle-o" 
+                                        outcome="/routePrices/List.xhtml" onclick="navigate('Route Prices')"/>
+                            <p:menuitem value="Rules Route" styleClass="nav-subitem" icon="fa fa-dot-circle-o" 
+                                        outcome="/rulesRoute/List.xhtml" onclick="navigate('Route Prices')"/>
+                        </p:submenu>
+                        <p:submenu label="Customers" rendered="#{dashboardController.userAdminOrManager}"> 
+                              <p:menuitem value="Customers" styleClass="nav-subitem" icon="fa fa-dot-circle-o" 
+                                        outcome="/customers/List.xhtml" onclick="navigate('Customers')"/>
+                              <p:menuitem value="Cards" styleClass="nav-subitem" icon="fa fa-dot-circle-o" 
+                                        outcome="/cards/List.xhtml" onclick="navigate('Cards')"/>
+                            
+                        </p:submenu>
+                        <p:submenu label="Equipment" rendered="#{dashboardController.userAdminOrManager}">
+                             <p:menuitem value="Devices" styleClass="nav-subitem" icon="fa fa-dot-circle-o" 
+                                        outcome="/devices/List.xhtml" onclick="navigate('Devices')"/>
+                             <p:menuitem value="Machines" styleClass="nav-subitem" icon="fa fa-dot-circle-o" 
+                                        outcome="/machines/List.xhtml" onclick="navigate('Machines')"/>
+                             <p:menuitem value="Validators" styleClass="nav-subitem" icon="fa fa-dot-circle-o" 
+                                        outcome="/validators/List.xhtml" onclick="navigate('Validators')"/>
+                             <p:menuitem value="Devices History" styleClass="nav-subitem" icon="fa fa-dot-circle-o" 
+                                        outcome="/deviceStateHistory/List.xhtml" onclick="navigate('Devices History')"/>
+                        </p:submenu>
+                             
+                        <p:submenu label="Nomenclatures" rendered="#{dashboardController.userAdmin}"> 
+                            <p:menuitem value="Activities" styleClass="nav-subitem" icon="fa fa-dot-circle-o" 
+                                        outcome="/activities/List.xhtml" onclick="navigate('Activities')"/>
+                            <p:menuitem value="Alert types" styleClass="nav-subitem" icon="fa fa-dot-circle-o" 
+                                        outcome="/alerts/List.xhtml" onclick="navigate('Alert types')"/>
+                            <p:menuitem value="Validator types" styleClass="nav-subitem" icon="fa fa-dot-circle-o" 
+                                        outcome="/validatorTypes/List.xhtml" onclick="navigate('Validator types')"/>
+                            <p:menuitem value="Card types" styleClass="nav-subitem" icon="fa fa-dot-circle-o" 
+                                        outcome="/cardTypes/List.xhtml" onclick="navigate('Card types')"/>
+                            <p:menuitem value="Fraud types" styleClass="nav-subitem" icon="fa fa-dot-circle-o" 
+                                        outcome="/fraudTypes/List.xhtml" onclick="navigate('Fraud types')"/>
+                           
+                        </p:submenu>
+                        
+                    </p:menu>
+                </h:form>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="center" styleClass="mainLayout">
+                <p:panel class="topNavigationPanel">
+                    <i class="fa fa-bars toggleNavigationMenu" onclick="toggleNavigationMenu()"/>
+                    <h:outputText value="#{dashboardController.currentPage}" styleClass="currentPageTitle"/>
+                    <span class="sign-out-container">
+                        <span><a href="#{request.contextPath}/faces/logout" style="color:inherit;text-decoration: none;">Sign out</a></span>
+                        <i class="fa fa-sign-out"/>
+                    </span>
+                </p:panel>
+                
+                <ui:insert name="body"/>
+            </p:layoutUnit>
+
+        </p:layout>
+
+        <script>
+            var navDrawerCollapsed = false;
+            
+            
+            
+            function collapseDrawer(){
+                if(!navDrawerCollapsed){
+                    PF('layoutVar').toggle('west');
+                    navDrawerCollapsed = true;
+                }
+            }
+            
+            function expandDrawer(){
+                if(navDrawerCollapsed){
+                    PF('layoutVar').toggle('west');
+                    navDrawerCollapsed = false;
+                }
+            }
+            function toggleDrawer(){
+                if(navDrawerCollapsed){
+                   expandDrawer(); 
+                }else{
+                    collapseDrawer();
+                }
+            }
+            
+            function navigate(page){
+                selectPageRc([{name:'pageName', value:page}]);
+            }
+            function toggleNavigationMenu(){
+                toggleDrawer();
+            }
+            function responsiveNavDrawer(){
+                var windowWidth = window.innerWidth;
+                if(windowWidth &lt; 900){
+                    collapseDrawer();
+                }
+            }
+            window.addEventListener("resize", responsiveNavDrawer, false);
+            
+            
+        </script>
+        
+    </h:body>
+    
+</html>

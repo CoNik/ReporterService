@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RoutesViewDlg" widgetVar="RoutesViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewRoutesTitle}">
+            <h:form id="RoutesViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{routesController.selected != null}">
+                        <h:outputText value="#{bundle.ViewRoutesLabel_routeCode}"/>
+                        <h:outputText value="#{routesController.selected.routeCode}" title="#{bundle.ViewRoutesTitle_routeCode}"/>
+                        <h:outputText value="#{bundle.ViewRoutesLabel_routeDescription}"/>
+                        <h:outputText value="#{routesController.selected.routeDescription}" title="#{bundle.ViewRoutesTitle_routeDescription}"/>
+                        <h:outputText value="#{bundle.ViewRoutesLabel_routeStartDate}"/>
+                        <h:outputText value="#{routesController.selected.routeStartDate}" title="#{bundle.ViewRoutesTitle_routeStartDate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewRoutesLabel_routeEndDate}"/>
+                        <h:outputText value="#{routesController.selected.routeEndDate}" title="#{bundle.ViewRoutesTitle_routeEndDate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewRoutesLabel_status}"/>
+                        <h:outputText value="#{routesController.selected.status}" title="#{bundle.ViewRoutesTitle_status}"/>
+                        <h:outputText value="#{bundle.ViewRoutesLabel_specialRoute}"/>
+                        <h:outputText value="#{routesController.selected.specialRoute}" title="#{bundle.ViewRoutesTitle_specialRoute}"/>
+                        <h:outputText value="#{bundle.ViewRoutesLabel_createDate}"/>
+                        <h:outputText value="#{routesController.selected.createDate}" title="#{bundle.ViewRoutesTitle_createDate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewRoutesLabel_transportTypeId}"/>
+                        <h:outputText value="#{routesController.selected.transportTypeId}" title="#{bundle.ViewRoutesTitle_transportTypeId}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="RoutesViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

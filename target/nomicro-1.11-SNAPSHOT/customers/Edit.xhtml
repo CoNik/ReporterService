@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CustomersEditDlg" widgetVar="CustomersEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditCustomersTitle}">
+            <h:form id="CustomersEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{customersController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditCustomersLabel_customerId}" for="customerId" />
+                        <p:inputText id="customerId" value="#{customersController.selected.customerId}" title="#{bundle.EditCustomersTitle_customerId}" required="true" requiredMessage="#{bundle.EditCustomersRequiredMessage_customerId}"/>
+                        <p:outputLabel value="#{bundle.EditCustomersLabel_customerName}" for="customerName" />
+                        <p:inputText id="customerName" value="#{customersController.selected.customerName}" title="#{bundle.EditCustomersTitle_customerName}" />
+                        <p:outputLabel value="#{bundle.EditCustomersLabel_customerSurname}" for="customerSurname" />
+                        <p:inputText id="customerSurname" value="#{customersController.selected.customerSurname}" title="#{bundle.EditCustomersTitle_customerSurname}" />
+                        <p:outputLabel value="#{bundle.EditCustomersLabel_gender}" for="gender" />
+                        <p:inputText id="gender" value="#{customersController.selected.gender}" title="#{bundle.EditCustomersTitle_gender}" />
+                        <p:outputLabel value="#{bundle.EditCustomersLabel_birthDate}" for="birthDate" />
+                        <p:calendar id="birthDate" pattern="MM/dd/yyyy HH:mm:ss" value="#{customersController.selected.birthDate}" title="#{bundle.EditCustomersTitle_birthDate}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditCustomersLabel_customerPicturePath}" for="customerPicturePath" />
+                        <p:inputText id="customerPicturePath" value="#{customersController.selected.customerPicturePath}" title="#{bundle.EditCustomersTitle_customerPicturePath}" />
+                        <p:outputLabel value="#{bundle.EditCustomersLabel_createDate}" for="createDate" />
+                        <p:calendar id="createDate" pattern="MM/dd/yyyy HH:mm:ss" value="#{customersController.selected.createDate}" title="#{bundle.EditCustomersTitle_createDate}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditCustomersLabel_status}" for="status" />
+                        <p:inputText id="status" value="#{customersController.selected.status}" title="#{bundle.EditCustomersTitle_status}" />
+                        <p:outputLabel value="#{bundle.EditCustomersLabel_nationalId}" for="nationalId" />
+                        <p:inputText id="nationalId" value="#{customersController.selected.nationalId}" title="#{bundle.EditCustomersTitle_nationalId}" />
+                        <p:outputLabel value="#{bundle.EditCustomersLabel_email}" for="email" />
+                        <p:inputText id="email" value="#{customersController.selected.email}" title="#{bundle.EditCustomersTitle_email}" />
+                        <p:outputLabel value="#{bundle.EditCustomersLabel_msisdn}" for="msisdn" />
+                        <p:inputText id="msisdn" value="#{customersController.selected.msisdn}" title="#{bundle.EditCustomersTitle_msisdn}" />
+                        <p:outputLabel value="#{bundle.EditCustomersLabel_notification}" for="notification" />
+                        <p:selectBooleanCheckbox id="notification" value="#{customersController.selected.notification}" />
+                        <p:outputLabel value="#{bundle.EditCustomersLabel_password}" for="password" />
+                        <p:inputText id="password" value="#{customersController.selected.password}" title="#{bundle.EditCustomersTitle_password}" />
+                        <p:outputLabel value="#{bundle.EditCustomersLabel_passcode}" for="passcode" />
+                        <p:inputText id="passcode" value="#{customersController.selected.passcode}" title="#{bundle.EditCustomersTitle_passcode}" />
+                        <p:outputLabel value="#{bundle.EditCustomersLabel_guid}" for="guid" />
+                        <p:inputText id="guid" value="#{customersController.selected.guid}" title="#{bundle.EditCustomersTitle_guid}" />
+                        <p:outputLabel value="#{bundle.EditCustomersLabel_token}" for="token" />
+                        <p:inputText id="token" value="#{customersController.selected.token}" title="#{bundle.EditCustomersTitle_token}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{customersController.update}" value="#{bundle.Save}" update="display,:CustomersListForm:datalist,:growl" oncomplete="handleSubmit(args, 'CustomersEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CustomersEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

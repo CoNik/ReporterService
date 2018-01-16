@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/mainframe.xhtml">
+
+        <ui:define name="title">
+            <h:outputText value="ETS - Dashboard"></h:outputText>
+            
+        </ui:define>
+
+        <ui:define name="body">
+            
+            <h:form id="dashboardForm" styleClass="etsMainForm">
+                <p:remoteCommand name="preparePDFRCLine" actionListener="#{dashboardChartsController.exportChartPDFRCLine()}"/>
+                <p:remoteCommand name="preparePDFRCPie" actionListener="#{dashboardChartsController.exportChartPDFRCPie()}"/>
+                
+                
+                <p:panelGrid columns="6" layout="grid" styleClass="ets-dashboard-primary">
+                    <p:column>
+                        <h:outputText id="passengersInOutput" value="#{dashboardChartsController.dashboardInfo.passengersIn}" styleClass="dash-info"/> <br/><br/>
+                        <h:outputText value="#{bundle.dashboardInfo_PassengersIn}" styleClass="dash-info-description"/>
+                    </p:column>
+                    
+                    <p:column>
+                        <h:outputText id="passengersOutOutput" value="#{dashboardChartsController.dashboardInfo.passengersOut}" styleClass="dash-info"/> <br/><br/>
+                        <h:outputText value="#{bundle.dashboardInfo_PassengersOut}" styleClass="dash-info-description"/>
+                    </p:column>
+                    
+                    <p:column>
+                        <h:outputText id="transactionsOutput" value="#{dashboardChartsController.dashboardInfo.noTransactions}" styleClass="dash-info"/> <br/><br/>
+                        <h:outputText value="#{bundle.dashboardInfo_Transactions}" styleClass="dash-info-description"/>
+                    </p:column>
+                    
+                    <p:column>
+                        <h:outputText id="smartTicketsOutput" value="#{dashboardChartsController.dashboardInfo.smartCardTikets}" styleClass="dash-info"/> <br/><br/>
+                        <h:outputText value="#{bundle.dashboardInfo_SmartCard}" styleClass="dash-info-description"/>
+                    </p:column>
+                    
+                    <p:column>
+                        <h:outputText id="mobileTicketsOutput" value="#{dashboardChartsController.dashboardInfo.smartCardTikets}" styleClass="dash-info"/> <br/><br/>
+                        <h:outputText value="#{bundle.dashboardInfo_MobileTickets}" styleClass="dash-info-description"/>
+                    </p:column>
+                    
+                    <p:column>
+                        <h:outputText id="passengersInStationOutput" value="#{dashboardChartsController.dashboardInfo.passengersInStation}" styleClass="dash-info"/> <br/><br/>
+                        <h:outputText value="#{bundle.dashboardInfo_PassengersInStation}" styleClass="dash-info-description"/>
+                    </p:column>
+                </p:panelGrid>
+                
+                <p:dataTable value="#{dashboardController.alerts}" styleClass="ets-dashboard-alerts" style="margin-top: 1%;"
+                             var="item" reflow="true" rows="5" emptyMessage="#{bundle.dashboardInfo_No_alerts}">
+                    
+                    <p:column>
+                        <i class="fa fa-warning" style="padding-right: 10px;"/>
+                        <h:outputText value="#{item.description}"/>
+                        
+
+                        <!--<i class="fa fa-times dismissAlertIcon" style="float:right;" title="Dismiss" onclick="countUpAnimation(#{dashboardChartsController.dashboardInfo.passengersIn})"/>--> 
+                    </p:column>
+                    
+                </p:dataTable>
+                
+                <p:panelGrid columns="2" styleClass="ets-chart-wrapper" style="margin-top: 2%;">
+                    
+                    <p:column>
+                        <br/>
+                        <h:outputFormat value="#{bundle.chart_PassengersInStation}" class="ets-chart-description" id="ets-pie-chart-description">
+                            <f:param value="#{!empty dashboardController.selectedStation?dashboardController.selectedStation.displayName:bundle.EtsAllStations}"/>
+                        </h:outputFormat>
+                        <br/>
+
+                        <div class="ets-chart-period-wrapper" style="margin-top:20px;margin-bottom: 20px;">
+                            <span class="ets-chart-period">
+                                <h:outputText value="#{dashboardController.startDate}" id="ets-bar-chart-startDate">
+                                    <f:convertDateTime pattern="dd-MMM-yyyy HH:mm:ss"/>
+                                </h:outputText>
+                            </span>
+                            <span class="ets-chart-period">
+                                <h:outputText value="#{dashboardController.endDate}" id="ets-bar-chart-endDate">
+                                    <f:convertDateTime pattern="dd-MMM-yyyy HH:mm:ss"/>
+                                </h:outputText>
+                            </span>
+                            
+                            <p:chart type="line" styleClass="ets-bar-chart" style="height:300px;margin-top:20px;" responsive="true" 
+                                     widgetVar="dashboardLineChart" 
+                                     model="#{dashboardChartsController.passengersInStationLineChart}" />
+                             
+
+                             
+                                 <span class="ets-download-header">#{bundle.FileDownload}</span>
+                                 <p:commandButton value="PDF" ajax="false"  class="ets-download-btn" onclick="PrimeFaces.monitorDownload(downloadLineStart, downloadLineEnd);">
+                                     <p:fileDownload value="#{dashboardChartsController.lineChartPdf}" monitorKey="lineChart"/>
+                                </p:commandButton>
+                        </div>
+                    </p:column>
+                   
+                    <p:column>
+                        <h:outputFormat value="#{bundle.chart_PassengersInStation}" class="ets-chart-description" id="ets-bar-chart-description">
+                            <f:param value="#{!empty dashboardController.selectedStation?dashboardController.selectedStation.displayName:bundle.EtsAllStations}"/>
+                        </h:outputFormat>
+                        <br/>
+
+                        <div class="ets-chart-period-wrapper" style="margin-top:20px;">
+                        <span class="ets-chart-period">
+                            <h:outputText value="#{dashboardController.startDate}">
+                                <f:convertDateTime pattern="dd-MMM-yyyy HH:mm:ss"/>
+                            </h:outputText>
+                        </span>
+                        <span class="ets-chart-period">
+                            <h:outputText value="#{dashboardController.endDate}">
+                                <f:convertDateTime pattern="dd-MMM-yyyy HH:mm:ss"/>
+                            </h:outputText>
+                        </span>
+                            <p:chart type="pie" styleClass="ets-pie-chart" style="height:300px;margin-top: 20px;" responsive="true"
+                                     widgetVar="dashboardPieChart"
+                                     model="#{dashboardChartsController.totalPassengersInStationPieChart}"/>
+                        </div>
+                        
+                         <span class="ets-download-header">#{bundle.FileDownload}</span>
+                         <p:commandButton value="PDF" ajax="false"  class="ets-download-btn" onclick="PrimeFaces.monitorDownload(downloadPieStart, downloadPieEnd);">
+                             <p:fileDownload value="#{dashboardChartsController.pieChartPdf}" monitorKey="pieChart"/>
+                        </p:commandButton>
+                    </p:column>
+                   
+                    
+                        
+                    
+                </p:panelGrid>
+                
+            </h:form> 
+            <h:outputScript name="countUp.js" library="js"/>
+            <script>
+                (function() {
+                   //DOM available - init animations
+                   var passengersIn = document.getElementById("dashboardForm:passengersInOutput");
+                   var passengersOut = document.getElementById("dashboardForm:passengersOutOutput");
+                   var transactions = document.getElementById("dashboardForm:transactionsOutput");
+                   var smartTickets = document.getElementById("dashboardForm:smartTicketsOutput");
+                   var mobileTickets = document.getElementById("dashboardForm:mobileTicketsOutput");
+                   var passengersInStation = document.getElementById("dashboardForm:passengersInStationOutput");
+                   animateCount(passengersIn);
+                   animateCount(passengersOut);
+                   animateCount(transactions);
+                   animateCount(smartTickets);
+                   animateCount(mobileTickets);
+                   animateCount(passengersInStation);
+                   
+                   setTimeout(function(){ 
+                        //widget vars available
+                        //prepare file downloads
+                        var img = PF('dashboardLineChart').exportAsImage().src;
+                        var description = document.getElementById('dashboardForm:ets-bar-chart-description').innerHTML;
+                        var startDate = document.getElementById('dashboardForm:ets-bar-chart-startDate').innerHTML;
+                        var endDate = document.getElementById('dashboardForm:ets-bar-chart-endDate').innerHTML;
+                        var chartObj = {'srcBase64':img, 'chartDescription':description, 'startDate':startDate, 'endDate':endDate};
+
+
+                        description = description + ' [' + startDate + '] - [' + endDate + ']';
+                        preparePDFRCLine([{name: 'etsChart', value: JSON.stringify(chartObj)}]);
+
+                        //prepare file downloads
+                        var img1 = PF('dashboardPieChart').exportAsImage().src;
+                        var description1 = document.getElementById('dashboardForm:ets-bar-chart-description').innerHTML;
+                        var startDate1 = document.getElementById('dashboardForm:ets-bar-chart-startDate').innerHTML;
+                        var endDate1 = document.getElementById('dashboardForm:ets-bar-chart-endDate').innerHTML;
+                        var chartObj1 = {'srcBase64':img1, 'chartDescription':description1, 'startDate':startDate1, 'endDate':endDate1};
+
+
+                        description1 = description1 + ' [' + startDate1 + '] - [' + endDate1 + ']';
+                        preparePDFRCPie([{name: 'etsChart', value: JSON.stringify(chartObj1)}]);
+                    }, 
+                    200);
+                   
+                   setTimeout(function(){
+                       location.reload();
+                   }, 120000);
+                   
+                })();
+                
+               function animateCount(element){
+                   var elementMaxCount = element.innerHTML;
+                   var countAnim = new CountUp(element, 0, elementMaxCount);
+                   if(!countAnim.error){
+                       countAnim.start();
+                   }else{
+                       console.error(countAnim.error);
+                   }
+               }
+               
+               function downloadLineStart(){
+                   //prepare file downloads
+                    var img1 = PF('dashboardLineChart').exportAsImage().src;
+                    var description1 = document.getElementById('dashboardForm:ets-bar-chart-description').innerHTML;
+                    var startDate1 = document.getElementById('dashboardForm:ets-bar-chart-startDate').innerHTML;
+                    var endDate1 = document.getElementById('dashboardForm:ets-bar-chart-endDate').innerHTML;
+                    var chartObj1 = {'srcBase64':img1, 'chartDescription':description1, 'startDate':startDate1, 'endDate':endDate1};
+
+
+                    description1 = description1 + ' [' + startDate1 + '] - [' + endDate1 + ']';
+                    preparePDFRCLine([{name: 'etsChart', value: JSON.stringify(chartObj1)}]);
+               }
+               
+               function downloadLineEnd(){
+                   
+               }
+               
+               function downloadPieStart(){
+                   //prepare file downloads
+                    var img1 = PF('dashboardPieChart').exportAsImage().src;
+                    var description1 = document.getElementById('dashboardForm:ets-bar-chart-description').innerHTML;
+                    var startDate1 = document.getElementById('dashboardForm:ets-bar-chart-startDate').innerHTML;
+                    var endDate1 = document.getElementById('dashboardForm:ets-bar-chart-endDate').innerHTML;
+                    var chartObj1 = {'srcBase64':img1, 'chartDescription':description1, 'startDate':startDate1, 'endDate':endDate1};
+
+
+                    description1 = description1 + ' [' + startDate1 + '] - [' + endDate1 + ']';
+                    preparePDFRCPie([{name: 'etsChart', value: JSON.stringify(chartObj1)}]);
+               }
+               
+               function downloadPieEnd(){
+                   
+               }
+               
+               
+            </script>
+            <h:outputScript>
+                function etsExtender() {        
+                    this.cfg.grid = {             
+                        gridLineColor: '#DBDBDB',
+                        drawBorder: false,
+                        shadowWidth: 0,
+                        shadowDepth: 0,
+                    }
+                };
+                
+            </h:outputScript>
+        </ui:define>
+    </ui:composition>
+
+</html>

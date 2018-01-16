@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CardActivityLogsViewDlg" widgetVar="CardActivityLogsViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewCardActivityLogsTitle}">
+            <h:form id="CardActivityLogsViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{cardActivityLogsController.selected != null}">
+                        <h:outputText value="#{bundle.ViewCardActivityLogsLabel_id}"/>
+                        <h:outputText value="#{cardActivityLogsController.selected.id}" title="#{bundle.ViewCardActivityLogsTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewCardActivityLogsLabel_sessionId}"/>
+                        <h:outputText value="#{cardActivityLogsController.selected.sessionId}" title="#{bundle.ViewCardActivityLogsTitle_sessionId}"/>
+                        <h:outputText value="#{bundle.ViewCardActivityLogsLabel_cardNumber}"/>
+                        <h:outputText value="#{cardActivityLogsController.selected.cardNumber}" title="#{bundle.ViewCardActivityLogsTitle_cardNumber}"/>
+                        <h:outputText value="#{bundle.ViewCardActivityLogsLabel_validatorCode}"/>
+                        <h:outputText value="#{cardActivityLogsController.selected.validatorCode}" title="#{bundle.ViewCardActivityLogsTitle_validatorCode}"/>
+                        <h:outputText value="#{bundle.ViewCardActivityLogsLabel_currentBalance}"/>
+                        <h:outputText value="#{cardActivityLogsController.selected.currentBalance}" title="#{bundle.ViewCardActivityLogsTitle_currentBalance}"/>
+                        <h:outputText value="#{bundle.ViewCardActivityLogsLabel_amount}"/>
+                        <h:outputText value="#{cardActivityLogsController.selected.amount}" title="#{bundle.ViewCardActivityLogsTitle_amount}"/>
+                        <h:outputText value="#{bundle.ViewCardActivityLogsLabel_activityCode}"/>
+                        <h:outputText value="#{cardActivityLogsController.selected.activityCode}" title="#{bundle.ViewCardActivityLogsTitle_activityCode}"/>
+                        <h:outputText value="#{bundle.ViewCardActivityLogsLabel_description}"/>
+                        <h:outputText value="#{cardActivityLogsController.selected.description}" title="#{bundle.ViewCardActivityLogsTitle_description}"/>
+                        <h:outputText value="#{bundle.ViewCardActivityLogsLabel_createdDate}"/>
+                        <h:outputText value="#{cardActivityLogsController.selected.createdDate}" title="#{bundle.ViewCardActivityLogsTitle_createdDate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewCardActivityLogsLabel_directionId}"/>
+                        <h:outputText value="#{cardActivityLogsController.selected.directionId}" title="#{bundle.ViewCardActivityLogsTitle_directionId}"/>
+                        <h:outputText value="#{bundle.ViewCardActivityLogsLabel_sentDate}"/>
+                        <h:outputText value="#{cardActivityLogsController.selected.sentDate}" title="#{bundle.ViewCardActivityLogsTitle_sentDate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="CardActivityLogsViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

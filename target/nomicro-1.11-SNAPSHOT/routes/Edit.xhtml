@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RoutesEditDlg" widgetVar="RoutesEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditRoutesTitle}">
+            <h:form id="RoutesEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{routesController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditRoutesLabel_routeCode}" for="routeCode" />
+                        <p:inputText id="routeCode" value="#{routesController.selected.routeCode}" title="#{bundle.EditRoutesTitle_routeCode}" required="true" requiredMessage="#{bundle.EditRoutesRequiredMessage_routeCode}"/>
+                        <p:outputLabel value="#{bundle.EditRoutesLabel_routeDescription}" for="routeDescription" />
+                        <p:inputText id="routeDescription" value="#{routesController.selected.routeDescription}" title="#{bundle.EditRoutesTitle_routeDescription}" />
+                        <p:outputLabel value="#{bundle.EditRoutesLabel_routeStartDate}" for="routeStartDate" />
+                        <p:calendar id="routeStartDate" pattern="MM/dd/yyyy HH:mm:ss" value="#{routesController.selected.routeStartDate}" title="#{bundle.EditRoutesTitle_routeStartDate}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditRoutesLabel_routeEndDate}" for="routeEndDate" />
+                        <p:calendar id="routeEndDate" pattern="MM/dd/yyyy HH:mm:ss" value="#{routesController.selected.routeEndDate}" title="#{bundle.EditRoutesTitle_routeEndDate}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditRoutesLabel_status}" for="status" />
+                        <p:inputText id="status" value="#{routesController.selected.status}" title="#{bundle.EditRoutesTitle_status}" />
+                        <p:outputLabel value="#{bundle.EditRoutesLabel_specialRoute}" for="specialRoute" />
+                        <p:inputText id="specialRoute" value="#{routesController.selected.specialRoute}" title="#{bundle.EditRoutesTitle_specialRoute}" />
+                        <p:outputLabel value="#{bundle.EditRoutesLabel_createDate}" for="createDate" />
+                        <p:calendar id="createDate" pattern="MM/dd/yyyy HH:mm:ss" value="#{routesController.selected.createDate}" title="#{bundle.EditRoutesTitle_createDate}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditRoutesLabel_transportTypeId}" for="transportTypeId" />
+                        <p:selectOneMenu id="transportTypeId" value="#{routesController.selected.transportTypeId}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{transportTypesController.itemsAvailableSelectOne}"
+                                           var="transportTypeIdItem"
+                                           itemValue="#{transportTypeIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{routesController.update}" value="#{bundle.Save}" update="display,:RoutesListForm:datalist,:growl" oncomplete="handleSubmit(args, 'RoutesEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="RoutesEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

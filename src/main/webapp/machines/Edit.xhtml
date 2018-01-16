@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MachinesEditDlg" widgetVar="MachinesEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditMachinesTitle}">
+            <h:form id="MachinesEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{machinesController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{machinesController.selected.id}" title="#{bundle.EditMachinesTitle_id}" required="true" requiredMessage="#{bundle.EditMachinesRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_groupId}" for="groupId" />
+                        <p:inputText id="groupId" value="#{machinesController.selected.groupId}" title="#{bundle.EditMachinesTitle_groupId}" required="true" requiredMessage="#{bundle.EditMachinesRequiredMessage_groupId}"/>
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_machineId}" for="machineId" />
+                        <p:inputText id="machineId" value="#{machinesController.selected.machineId}" title="#{bundle.EditMachinesTitle_machineId}" />
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_typeId}" for="typeId" />
+                        <p:inputText id="typeId" value="#{machinesController.selected.typeId}" title="#{bundle.EditMachinesTitle_typeId}" />
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_description}" for="description" />
+                        <p:inputText id="description" value="#{machinesController.selected.description}" title="#{bundle.EditMachinesTitle_description}" />
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_hopperComIsOpen}" for="hopperComIsOpen" />
+                        <p:selectBooleanCheckbox id="hopperComIsOpen" value="#{machinesController.selected.hopperComIsOpen}" />
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_hopperIsAlive}" for="hopperIsAlive" />
+                        <p:selectBooleanCheckbox id="hopperIsAlive" value="#{machinesController.selected.hopperIsAlive}" />
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_hopperDeviceInfo}" for="hopperDeviceInfo" />
+                        <p:inputText id="hopperDeviceInfo" value="#{machinesController.selected.hopperDeviceInfo}" title="#{bundle.EditMachinesTitle_hopperDeviceInfo}" />
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_IProRCComIsOpen}" for="IProRCComIsOpen" />
+                        <p:selectBooleanCheckbox id="IProRCComIsOpen" value="#{machinesController.selected.IProRCComIsOpen}" />
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_IProRCMoneyReceivingStatus}" for="IProRCMoneyReceivingStatus" />
+                        <p:selectBooleanCheckbox id="IProRCMoneyReceivingStatus" value="#{machinesController.selected.IProRCMoneyReceivingStatus}" />
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_IProRCMoneyBackingStatus}" for="IProRCMoneyBackingStatus" />
+                        <p:selectBooleanCheckbox id="IProRCMoneyBackingStatus" value="#{machinesController.selected.IProRCMoneyBackingStatus}" />
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_IProRCStackersStatus}" for="IProRCStackersStatus" />
+                        <p:selectBooleanCheckbox id="IProRCStackersStatus" value="#{machinesController.selected.IProRCStackersStatus}" />
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_IProRCInitializationSucceeded}" for="IProRCInitializationSucceeded" />
+                        <p:selectBooleanCheckbox id="IProRCInitializationSucceeded" value="#{machinesController.selected.IProRCInitializationSucceeded}" />
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_IProRCDeviceInfo}" for="IProRCDeviceInfo" />
+                        <p:inputText id="IProRCDeviceInfo" value="#{machinesController.selected.IProRCDeviceInfo}" title="#{bundle.EditMachinesTitle_IProRCDeviceInfo}" />
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_KGBComIsOpen}" for="KGBComIsOpen" />
+                        <p:selectBooleanCheckbox id="KGBComIsOpen" value="#{machinesController.selected.KGBComIsOpen}" />
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_KGBIsAlive}" for="KGBIsAlive" />
+                        <p:selectBooleanCheckbox id="KGBIsAlive" value="#{machinesController.selected.KGBIsAlive}" />
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_KGBTicketOnInfeeder01}" for="KGBTicketOnInfeeder01" />
+                        <p:selectBooleanCheckbox id="KGBTicketOnInfeeder01" value="#{machinesController.selected.KGBTicketOnInfeeder01}" />
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_KGBTicketOnInfeeder02}" for="KGBTicketOnInfeeder02" />
+                        <p:selectBooleanCheckbox id="KGBTicketOnInfeeder02" value="#{machinesController.selected.KGBTicketOnInfeeder02}" />
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_KGBIsReady}" for="KGBIsReady" />
+                        <p:selectBooleanCheckbox id="KGBIsReady" value="#{machinesController.selected.KGBIsReady}" />
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_KGBHasError}" for="KGBHasError" />
+                        <p:selectBooleanCheckbox id="KGBHasError" value="#{machinesController.selected.KGBHasError}" />
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_KGBTicketInside}" for="KGBTicketInside" />
+                        <p:selectBooleanCheckbox id="KGBTicketInside" value="#{machinesController.selected.KGBTicketInside}" />
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_KGBTicketJam}" for="KGBTicketJam" />
+                        <p:selectBooleanCheckbox id="KGBTicketJam" value="#{machinesController.selected.KGBTicketJam}" />
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_KGBLifeCheckState}" for="KGBLifeCheckState" />
+                        <p:inputText id="KGBLifeCheckState" value="#{machinesController.selected.KGBLifeCheckState}" title="#{bundle.EditMachinesTitle_KGBLifeCheckState}" />
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_KGBLifeCheckStateInString}" for="KGBLifeCheckStateInString" />
+                        <p:inputText id="KGBLifeCheckStateInString" value="#{machinesController.selected.KGBLifeCheckStateInString}" title="#{bundle.EditMachinesTitle_KGBLifeCheckStateInString}" />
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_KGBLastOperationStatus}" for="KGBLastOperationStatus" />
+                        <p:selectBooleanCheckbox id="KGBLastOperationStatus" value="#{machinesController.selected.KGBLastOperationStatus}" />
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_KGBErrorCode}" for="KGBErrorCode" />
+                        <p:inputText id="KGBErrorCode" value="#{machinesController.selected.KGBErrorCode}" title="#{bundle.EditMachinesTitle_KGBErrorCode}" />
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_KGBLastErrors}" for="KGBLastErrors" />
+                        <p:inputText id="KGBLastErrors" value="#{machinesController.selected.KGBLastErrors}" title="#{bundle.EditMachinesTitle_KGBLastErrors}" />
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_validatorComIsOpen}" for="validatorComIsOpen" />
+                        <p:selectBooleanCheckbox id="validatorComIsOpen" value="#{machinesController.selected.validatorComIsOpen}" />
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_validatorIsAlive}" for="validatorIsAlive" />
+                        <p:selectBooleanCheckbox id="validatorIsAlive" value="#{machinesController.selected.validatorIsAlive}" />
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_cardDispanserComIsOpen}" for="cardDispanserComIsOpen" />
+                        <p:selectBooleanCheckbox id="cardDispanserComIsOpen" value="#{machinesController.selected.cardDispanserComIsOpen}" />
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_cardDispanserIsAlive}" for="cardDispanserIsAlive" />
+                        <p:selectBooleanCheckbox id="cardDispanserIsAlive" value="#{machinesController.selected.cardDispanserIsAlive}" />
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_cardDispanserCardStatus}" for="cardDispanserCardStatus" />
+                        <p:inputText id="cardDispanserCardStatus" value="#{machinesController.selected.cardDispanserCardStatus}" title="#{bundle.EditMachinesTitle_cardDispanserCardStatus}" />
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_cardDispanserIsBinFull}" for="cardDispanserIsBinFull" />
+                        <p:selectBooleanCheckbox id="cardDispanserIsBinFull" value="#{machinesController.selected.cardDispanserIsBinFull}" />
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_printerHasError}" for="printerHasError" />
+                        <p:selectBooleanCheckbox id="printerHasError" value="#{machinesController.selected.printerHasError}" />
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_printerIsOffline}" for="printerIsOffline" />
+                        <p:selectBooleanCheckbox id="printerIsOffline" value="#{machinesController.selected.printerIsOffline}" />
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_printerIsOutOfPaper}" for="printerIsOutOfPaper" />
+                        <p:selectBooleanCheckbox id="printerIsOutOfPaper" value="#{machinesController.selected.printerIsOutOfPaper}" />
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_printerPaperIsNearToEnd}" for="printerPaperIsNearToEnd" />
+                        <p:selectBooleanCheckbox id="printerPaperIsNearToEnd" value="#{machinesController.selected.printerPaperIsNearToEnd}" />
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_machineControlCardIsAlive}" for="machineControlCardIsAlive" />
+                        <p:selectBooleanCheckbox id="machineControlCardIsAlive" value="#{machinesController.selected.machineControlCardIsAlive}" />
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_machineHumidity}" for="machineHumidity" />
+                        <p:inputText id="machineHumidity" value="#{machinesController.selected.machineHumidity}" title="#{bundle.EditMachinesTitle_machineHumidity}" />
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_machineTemperature}" for="machineTemperature" />
+                        <p:inputText id="machineTemperature" value="#{machinesController.selected.machineTemperature}" title="#{bundle.EditMachinesTitle_machineTemperature}" />
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_machineInteriorDoorStatus}" for="machineInteriorDoorStatus" />
+                        <p:inputText id="machineInteriorDoorStatus" value="#{machinesController.selected.machineInteriorDoorStatus}" title="#{bundle.EditMachinesTitle_machineInteriorDoorStatus}" />
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_machineExteriorDoorStatus}" for="machineExteriorDoorStatus" />
+                        <p:inputText id="machineExteriorDoorStatus" value="#{machinesController.selected.machineExteriorDoorStatus}" title="#{bundle.EditMachinesTitle_machineExteriorDoorStatus}" />
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_machineInsideLighting}" for="machineInsideLighting" />
+                        <p:selectBooleanCheckbox id="machineInsideLighting" value="#{machinesController.selected.machineInsideLighting}" />
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_machineOutsideLighting}" for="machineOutsideLighting" />
+                        <p:selectBooleanCheckbox id="machineOutsideLighting" value="#{machinesController.selected.machineOutsideLighting}" />
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_etopupFileDownloadLastAttemptTime}" for="etopupFileDownloadLastAttemptTime" />
+                        <p:calendar id="etopupFileDownloadLastAttemptTime" pattern="MM/dd/yyyy HH:mm:ss" value="#{machinesController.selected.etopupFileDownloadLastAttemptTime}" title="#{bundle.EditMachinesTitle_etopupFileDownloadLastAttemptTime}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_etopupFileDownloadLastSuccessTime}" for="etopupFileDownloadLastSuccessTime" />
+                        <p:calendar id="etopupFileDownloadLastSuccessTime" pattern="MM/dd/yyyy HH:mm:ss" value="#{machinesController.selected.etopupFileDownloadLastSuccessTime}" title="#{bundle.EditMachinesTitle_etopupFileDownloadLastSuccessTime}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_etopupFileDownloadLastErrorTime}" for="etopupFileDownloadLastErrorTime" />
+                        <p:calendar id="etopupFileDownloadLastErrorTime" pattern="MM/dd/yyyy HH:mm:ss" value="#{machinesController.selected.etopupFileDownloadLastErrorTime}" title="#{bundle.EditMachinesTitle_etopupFileDownloadLastErrorTime}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_etopupFileDownloadLastErrorMessage}" for="etopupFileDownloadLastErrorMessage" />
+                        <p:inputText id="etopupFileDownloadLastErrorMessage" value="#{machinesController.selected.etopupFileDownloadLastErrorMessage}" title="#{bundle.EditMachinesTitle_etopupFileDownloadLastErrorMessage}" />
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_ekentActivityFilesUploadLastAttemptTime}" for="ekentActivityFilesUploadLastAttemptTime" />
+                        <p:calendar id="ekentActivityFilesUploadLastAttemptTime" pattern="MM/dd/yyyy HH:mm:ss" value="#{machinesController.selected.ekentActivityFilesUploadLastAttemptTime}" title="#{bundle.EditMachinesTitle_ekentActivityFilesUploadLastAttemptTime}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_ekentActivityFilesUploadLastSuccessTime}" for="ekentActivityFilesUploadLastSuccessTime" />
+                        <p:calendar id="ekentActivityFilesUploadLastSuccessTime" pattern="MM/dd/yyyy HH:mm:ss" value="#{machinesController.selected.ekentActivityFilesUploadLastSuccessTime}" title="#{bundle.EditMachinesTitle_ekentActivityFilesUploadLastSuccessTime}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_ekentActivityFilesUploadLastErrorTime}" for="ekentActivityFilesUploadLastErrorTime" />
+                        <p:calendar id="ekentActivityFilesUploadLastErrorTime" pattern="MM/dd/yyyy HH:mm:ss" value="#{machinesController.selected.ekentActivityFilesUploadLastErrorTime}" title="#{bundle.EditMachinesTitle_ekentActivityFilesUploadLastErrorTime}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_ekentActivityFilesUploadLastErrorMessage}" for="ekentActivityFilesUploadLastErrorMessage" />
+                        <p:inputText id="ekentActivityFilesUploadLastErrorMessage" value="#{machinesController.selected.ekentActivityFilesUploadLastErrorMessage}" title="#{bundle.EditMachinesTitle_ekentActivityFilesUploadLastErrorMessage}" />
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_lastStatusCheckTime}" for="lastStatusCheckTime" />
+                        <p:calendar id="lastStatusCheckTime" pattern="MM/dd/yyyy HH:mm:ss" value="#{machinesController.selected.lastStatusCheckTime}" title="#{bundle.EditMachinesTitle_lastStatusCheckTime}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_lastActivityTime}" for="lastActivityTime" />
+                        <p:calendar id="lastActivityTime" pattern="MM/dd/yyyy HH:mm:ss" value="#{machinesController.selected.lastActivityTime}" title="#{bundle.EditMachinesTitle_lastActivityTime}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_lastUpdateTime}" for="lastUpdateTime" />
+                        <p:calendar id="lastUpdateTime" pattern="MM/dd/yyyy HH:mm:ss" value="#{machinesController.selected.lastUpdateTime}" title="#{bundle.EditMachinesTitle_lastUpdateTime}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_lastSentTime}" for="lastSentTime" />
+                        <p:calendar id="lastSentTime" pattern="MM/dd/yyyy HH:mm:ss" value="#{machinesController.selected.lastSentTime}" title="#{bundle.EditMachinesTitle_lastSentTime}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_updaterLastStartedOn}" for="updaterLastStartedOn" />
+                        <p:calendar id="updaterLastStartedOn" pattern="MM/dd/yyyy HH:mm:ss" value="#{machinesController.selected.updaterLastStartedOn}" title="#{bundle.EditMachinesTitle_updaterLastStartedOn}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_activityLogUploaderLastStartedOn}" for="activityLogUploaderLastStartedOn" />
+                        <p:calendar id="activityLogUploaderLastStartedOn" pattern="MM/dd/yyyy HH:mm:ss" value="#{machinesController.selected.activityLogUploaderLastStartedOn}" title="#{bundle.EditMachinesTitle_activityLogUploaderLastStartedOn}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_alertLogUploaderLastStartedOn}" for="alertLogUploaderLastStartedOn" />
+                        <p:calendar id="alertLogUploaderLastStartedOn" pattern="MM/dd/yyyy HH:mm:ss" value="#{machinesController.selected.alertLogUploaderLastStartedOn}" title="#{bundle.EditMachinesTitle_alertLogUploaderLastStartedOn}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_CITReportUploaderLastStartedOn}" for="CITReportUploaderLastStartedOn" />
+                        <p:calendar id="CITReportUploaderLastStartedOn" pattern="MM/dd/yyyy HH:mm:ss" value="#{machinesController.selected.CITReportUploaderLastStartedOn}" title="#{bundle.EditMachinesTitle_CITReportUploaderLastStartedOn}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_machineUploaderLastStartedOn}" for="machineUploaderLastStartedOn" />
+                        <p:calendar id="machineUploaderLastStartedOn" pattern="MM/dd/yyyy HH:mm:ss" value="#{machinesController.selected.machineUploaderLastStartedOn}" title="#{bundle.EditMachinesTitle_machineUploaderLastStartedOn}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_tresholdControllerLastStartedOn}" for="tresholdControllerLastStartedOn" />
+                        <p:calendar id="tresholdControllerLastStartedOn" pattern="MM/dd/yyyy HH:mm:ss" value="#{machinesController.selected.tresholdControllerLastStartedOn}" title="#{bundle.EditMachinesTitle_tresholdControllerLastStartedOn}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_downloadedFileUpdateTime}" for="downloadedFileUpdateTime" />
+                        <p:calendar id="downloadedFileUpdateTime" pattern="MM/dd/yyyy HH:mm:ss" value="#{machinesController.selected.downloadedFileUpdateTime}" title="#{bundle.EditMachinesTitle_downloadedFileUpdateTime}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_currentUpdateFileVersion}" for="currentUpdateFileVersion" />
+                        <p:inputText id="currentUpdateFileVersion" value="#{machinesController.selected.currentUpdateFileVersion}" title="#{bundle.EditMachinesTitle_currentUpdateFileVersion}" />
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_waitingUpdateFileVersion}" for="waitingUpdateFileVersion" />
+                        <p:inputText id="waitingUpdateFileVersion" value="#{machinesController.selected.waitingUpdateFileVersion}" title="#{bundle.EditMachinesTitle_waitingUpdateFileVersion}" />
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_downloadedScriptUpdateTime}" for="downloadedScriptUpdateTime" />
+                        <p:calendar id="downloadedScriptUpdateTime" pattern="MM/dd/yyyy HH:mm:ss" value="#{machinesController.selected.downloadedScriptUpdateTime}" title="#{bundle.EditMachinesTitle_downloadedScriptUpdateTime}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_currentUpdateScriptVersion}" for="currentUpdateScriptVersion" />
+                        <p:inputText id="currentUpdateScriptVersion" value="#{machinesController.selected.currentUpdateScriptVersion}" title="#{bundle.EditMachinesTitle_currentUpdateScriptVersion}" />
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_waitingUpdateScriptVersion}" for="waitingUpdateScriptVersion" />
+                        <p:inputText id="waitingUpdateScriptVersion" value="#{machinesController.selected.waitingUpdateScriptVersion}" title="#{bundle.EditMachinesTitle_waitingUpdateScriptVersion}" />
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_downloadedBannerUpdateTime}" for="downloadedBannerUpdateTime" />
+                        <p:calendar id="downloadedBannerUpdateTime" pattern="MM/dd/yyyy HH:mm:ss" value="#{machinesController.selected.downloadedBannerUpdateTime}" title="#{bundle.EditMachinesTitle_downloadedBannerUpdateTime}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_currentBannerVersion}" for="currentBannerVersion" />
+                        <p:inputText id="currentBannerVersion" value="#{machinesController.selected.currentBannerVersion}" title="#{bundle.EditMachinesTitle_currentBannerVersion}" />
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_waitingBannerVersion}" for="waitingBannerVersion" />
+                        <p:inputText id="waitingBannerVersion" value="#{machinesController.selected.waitingBannerVersion}" title="#{bundle.EditMachinesTitle_waitingBannerVersion}" />
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_downloadedEKentUpdateTime}" for="downloadedEKentUpdateTime" />
+                        <p:calendar id="downloadedEKentUpdateTime" pattern="MM/dd/yyyy HH:mm:ss" value="#{machinesController.selected.downloadedEKentUpdateTime}" title="#{bundle.EditMachinesTitle_downloadedEKentUpdateTime}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_currentEKentVersion}" for="currentEKentVersion" />
+                        <p:inputText id="currentEKentVersion" value="#{machinesController.selected.currentEKentVersion}" title="#{bundle.EditMachinesTitle_currentEKentVersion}" />
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_waitingEKentVersion}" for="waitingEKentVersion" />
+                        <p:inputText id="waitingEKentVersion" value="#{machinesController.selected.waitingEKentVersion}" title="#{bundle.EditMachinesTitle_waitingEKentVersion}" />
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_createdDate}" for="createdDate" />
+                        <p:calendar id="createdDate" pattern="MM/dd/yyyy HH:mm:ss" value="#{machinesController.selected.createdDate}" title="#{bundle.EditMachinesTitle_createdDate}" required="true" requiredMessage="#{bundle.EditMachinesRequiredMessage_createdDate}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_status}" for="status" />
+                        <p:inputText id="status" value="#{machinesController.selected.status}" title="#{bundle.EditMachinesTitle_status}" required="true" requiredMessage="#{bundle.EditMachinesRequiredMessage_status}"/>
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_clessReaderIsAlive}" for="clessReaderIsAlive" />
+                        <p:selectBooleanCheckbox id="clessReaderIsAlive" value="#{machinesController.selected.clessReaderIsAlive}" />
+                        <p:outputLabel value="#{bundle.EditMachinesLabel_clessReaderStatus}" for="clessReaderStatus" />
+                        <p:inputText id="clessReaderStatus" value="#{machinesController.selected.clessReaderStatus}" title="#{bundle.EditMachinesTitle_clessReaderStatus}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{machinesController.update}" value="#{bundle.Save}" update="display,:MachinesListForm:datalist,:growl" oncomplete="handleSubmit(args, 'MachinesEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="MachinesEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DashboardInfoTCreateDlg" widgetVar="DashboardInfoTCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateDashboardInfoTTitle}">
+            <h:form id="DashboardInfoTCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{dashboardInfoTController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateDashboardInfoTLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{dashboardInfoTController.selected.id}" title="#{bundle.CreateDashboardInfoTTitle_id}" required="true" requiredMessage="#{bundle.CreateDashboardInfoTRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.CreateDashboardInfoTLabel_registeredAt}" for="registeredAt" />
+                        <p:calendar id="registeredAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{dashboardInfoTController.selected.registeredAt}" title="#{bundle.EditDashboardInfoTTitle_registeredAt}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateDashboardInfoTLabel_passengersIn}" for="passengersIn" />
+                        <p:inputText id="passengersIn" value="#{dashboardInfoTController.selected.passengersIn}" title="#{bundle.CreateDashboardInfoTTitle_passengersIn}" />
+                        <p:outputLabel value="#{bundle.CreateDashboardInfoTLabel_passengersOut}" for="passengersOut" />
+                        <p:inputText id="passengersOut" value="#{dashboardInfoTController.selected.passengersOut}" title="#{bundle.CreateDashboardInfoTTitle_passengersOut}" />
+                        <p:outputLabel value="#{bundle.CreateDashboardInfoTLabel_noTransactions}" for="noTransactions" />
+                        <p:inputText id="noTransactions" value="#{dashboardInfoTController.selected.noTransactions}" title="#{bundle.CreateDashboardInfoTTitle_noTransactions}" />
+                        <p:outputLabel value="#{bundle.CreateDashboardInfoTLabel_smartCardTikets}" for="smartCardTikets" />
+                        <p:inputText id="smartCardTikets" value="#{dashboardInfoTController.selected.smartCardTikets}" title="#{bundle.CreateDashboardInfoTTitle_smartCardTikets}" />
+                        <p:outputLabel value="#{bundle.CreateDashboardInfoTLabel_passengersInStation}" for="passengersInStation" />
+                        <p:inputText id="passengersInStation" value="#{dashboardInfoTController.selected.passengersInStation}" title="#{bundle.CreateDashboardInfoTTitle_passengersInStation}" />
+                        <p:outputLabel value="#{bundle.CreateDashboardInfoTLabel_noFraudulents}" for="noFraudulents" />
+                        <p:inputText id="noFraudulents" value="#{dashboardInfoTController.selected.noFraudulents}" title="#{bundle.CreateDashboardInfoTTitle_noFraudulents}" />
+                        <p:outputLabel value="#{bundle.CreateDashboardInfoTLabel_stationId}" for="stationId" />
+                        <p:inputText id="stationId" value="#{dashboardInfoTController.selected.stationId}" title="#{bundle.CreateDashboardInfoTTitle_stationId}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{dashboardInfoTController.create}" value="#{bundle.Save}" update="display,:DashboardInfoTListForm:datalist,:growl" oncomplete="handleSubmit(args,'DashboardInfoTCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="DashboardInfoTCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

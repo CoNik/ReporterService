@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RoutePricesCreateDlg" widgetVar="RoutePricesCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateRoutePricesTitle}">
+            <h:form id="RoutePricesCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{routePricesController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateRoutePricesLabel_unitPrice}" for="unitPrice" />
+                        <p:inputText id="unitPrice" value="#{routePricesController.selected.unitPrice}" title="#{bundle.CreateRoutePricesTitle_unitPrice}" />
+                        <p:outputLabel value="#{bundle.CreateRoutePricesLabel_unitPassCount}" for="unitPassCount" />
+                        <p:inputText id="unitPassCount" value="#{routePricesController.selected.unitPassCount}" title="#{bundle.CreateRoutePricesTitle_unitPassCount}" />
+                        <p:outputLabel value="#{bundle.CreateRoutePricesLabel_transfer1}" for="transfer1" />
+                        <p:inputText id="transfer1" value="#{routePricesController.selected.transfer1}" title="#{bundle.CreateRoutePricesTitle_transfer1}" />
+                        <p:outputLabel value="#{bundle.CreateRoutePricesLabel_transfer2}" for="transfer2" />
+                        <p:inputText id="transfer2" value="#{routePricesController.selected.transfer2}" title="#{bundle.CreateRoutePricesTitle_transfer2}" />
+                        <p:outputLabel value="#{bundle.CreateRoutePricesLabel_transfer3}" for="transfer3" />
+                        <p:inputText id="transfer3" value="#{routePricesController.selected.transfer3}" title="#{bundle.CreateRoutePricesTitle_transfer3}" />
+                        <p:outputLabel value="#{bundle.CreateRoutePricesLabel_transfer4}" for="transfer4" />
+                        <p:inputText id="transfer4" value="#{routePricesController.selected.transfer4}" title="#{bundle.CreateRoutePricesTitle_transfer4}" />
+                        <p:outputLabel value="#{bundle.CreateRoutePricesLabel_transfer5}" for="transfer5" />
+                        <p:inputText id="transfer5" value="#{routePricesController.selected.transfer5}" title="#{bundle.CreateRoutePricesTitle_transfer5}" />
+                        <p:outputLabel value="#{bundle.CreateRoutePricesLabel_unitTypeUse}" for="unitTypeUse" />
+                        <p:inputText id="unitTypeUse" value="#{routePricesController.selected.unitTypeUse}" title="#{bundle.CreateRoutePricesTitle_unitTypeUse}" />
+                        <p:outputLabel value="#{bundle.CreateRoutePricesLabel_startDate}" for="startDate" />
+                        <p:calendar id="startDate" pattern="MM/dd/yyyy HH:mm:ss" value="#{routePricesController.selected.startDate}" title="#{bundle.EditRoutePricesTitle_startDate}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateRoutePricesLabel_endDate}" for="endDate" />
+                        <p:calendar id="endDate" pattern="MM/dd/yyyy HH:mm:ss" value="#{routePricesController.selected.endDate}" title="#{bundle.EditRoutePricesTitle_endDate}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateRoutePricesLabel_createDate}" for="createDate" />
+                        <p:calendar id="createDate" pattern="MM/dd/yyyy HH:mm:ss" value="#{routePricesController.selected.createDate}" title="#{bundle.EditRoutePricesTitle_createDate}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateRoutePricesLabel_status}" for="status" />
+                        <p:inputText id="status" value="#{routePricesController.selected.status}" title="#{bundle.CreateRoutePricesTitle_status}" />
+                        <p:outputLabel value="#{bundle.CreateRoutePricesLabel_cardTypes}" for="cardTypes" />
+                        <p:selectOneMenu id="cardTypes" value="#{routePricesController.selected.cardTypes}" required="true" requiredMessage="#{bundle.EditRoutePricesRequiredMessage_cardTypes}">
+                            <f:selectItems value="#{cardTypesController.itemsAvailableSelectOne}"
+                                           var="cardTypesItem"
+                                           itemValue="#{cardTypesItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateRoutePricesLabel_routes}" for="routes" />
+                        <p:selectOneMenu id="routes" value="#{routePricesController.selected.routes}" required="true" requiredMessage="#{bundle.EditRoutePricesRequiredMessage_routes}">
+                            <f:selectItems value="#{routesController.itemsAvailableSelectOne}"
+                                           var="routesItem"
+                                           itemValue="#{routesItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{routePricesController.create}" value="#{bundle.Save}" update="display,:RoutePricesListForm:datalist,:growl" oncomplete="handleSubmit(args,'RoutePricesCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="RoutePricesCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

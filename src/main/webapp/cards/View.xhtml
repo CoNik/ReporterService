@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CardsViewDlg" widgetVar="CardsViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewCardsTitle}">
+            <h:form id="CardsViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{cardsController.selected != null}">
+                        <h:outputText value="#{bundle.ViewCardsLabel_cardId}"/>
+                        <h:outputText value="#{cardsController.selected.cardId}" title="#{bundle.ViewCardsTitle_cardId}"/>
+                        <h:outputText value="#{bundle.ViewCardsLabel_cardNumber}"/>
+                        <h:outputText value="#{cardsController.selected.cardNumber}" title="#{bundle.ViewCardsTitle_cardNumber}"/>
+                        <h:outputText value="#{bundle.ViewCardsLabel_customerId}"/>
+                        <h:outputText value="#{cardsController.selected.customerId}" title="#{bundle.ViewCardsTitle_customerId}"/>
+                        <h:outputText value="#{bundle.ViewCardsLabel_currentBalance}"/>
+                        <h:outputText value="#{cardsController.selected.currentBalance}" title="#{bundle.ViewCardsTitle_currentBalance}"/>
+                        <h:outputText value="#{bundle.ViewCardsLabel_currentPassCount}"/>
+                        <h:outputText value="#{cardsController.selected.currentPassCount}" title="#{bundle.ViewCardsTitle_currentPassCount}"/>
+                        <h:outputText value="#{bundle.ViewCardsLabel_createDate}"/>
+                        <h:outputText value="#{cardsController.selected.createDate}" title="#{bundle.ViewCardsTitle_createDate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewCardsLabel_validationDate}"/>
+                        <h:outputText value="#{cardsController.selected.validationDate}" title="#{bundle.ViewCardsTitle_validationDate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewCardsLabel_status}"/>
+                        <h:outputText value="#{cardsController.selected.status}" title="#{bundle.ViewCardsTitle_status}"/>
+                        <h:outputText value="#{bundle.ViewCardsLabel_loyaltPassCount}"/>
+                        <h:outputText value="#{cardsController.selected.loyaltPassCount}" title="#{bundle.ViewCardsTitle_loyaltPassCount}"/>
+                        <h:outputText value="#{bundle.ViewCardsLabel_cardIdForBle}"/>
+                        <h:outputText value="#{cardsController.selected.cardIdForBle}" title="#{bundle.ViewCardsTitle_cardIdForBle}"/>
+                        <h:outputText value="#{bundle.ViewCardsLabel_cardTypeCode}"/>
+                        <h:outputText value="#{cardsController.selected.cardTypeCode}" title="#{bundle.ViewCardsTitle_cardTypeCode}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="CardsViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

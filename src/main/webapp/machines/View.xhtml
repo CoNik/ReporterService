@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MachinesViewDlg" widgetVar="MachinesViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewMachinesTitle}">
+            <h:form id="MachinesViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{machinesController.selected != null}">
+                        <h:outputText value="#{bundle.ViewMachinesLabel_id}"/>
+                        <h:outputText value="#{machinesController.selected.id}" title="#{bundle.ViewMachinesTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_groupId}"/>
+                        <h:outputText value="#{machinesController.selected.groupId}" title="#{bundle.ViewMachinesTitle_groupId}"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_machineId}"/>
+                        <h:outputText value="#{machinesController.selected.machineId}" title="#{bundle.ViewMachinesTitle_machineId}"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_typeId}"/>
+                        <h:outputText value="#{machinesController.selected.typeId}" title="#{bundle.ViewMachinesTitle_typeId}"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_description}"/>
+                        <h:outputText value="#{machinesController.selected.description}" title="#{bundle.ViewMachinesTitle_description}"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_hopperComIsOpen}"/>
+                        <p:selectBooleanCheckbox value="#{machinesController.selected.hopperComIsOpen}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_hopperIsAlive}"/>
+                        <p:selectBooleanCheckbox value="#{machinesController.selected.hopperIsAlive}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_hopperDeviceInfo}"/>
+                        <h:outputText value="#{machinesController.selected.hopperDeviceInfo}" title="#{bundle.ViewMachinesTitle_hopperDeviceInfo}"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_IProRCComIsOpen}"/>
+                        <p:selectBooleanCheckbox value="#{machinesController.selected.IProRCComIsOpen}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_IProRCMoneyReceivingStatus}"/>
+                        <p:selectBooleanCheckbox value="#{machinesController.selected.IProRCMoneyReceivingStatus}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_IProRCMoneyBackingStatus}"/>
+                        <p:selectBooleanCheckbox value="#{machinesController.selected.IProRCMoneyBackingStatus}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_IProRCStackersStatus}"/>
+                        <p:selectBooleanCheckbox value="#{machinesController.selected.IProRCStackersStatus}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_IProRCInitializationSucceeded}"/>
+                        <p:selectBooleanCheckbox value="#{machinesController.selected.IProRCInitializationSucceeded}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_IProRCDeviceInfo}"/>
+                        <h:outputText value="#{machinesController.selected.IProRCDeviceInfo}" title="#{bundle.ViewMachinesTitle_IProRCDeviceInfo}"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_KGBComIsOpen}"/>
+                        <p:selectBooleanCheckbox value="#{machinesController.selected.KGBComIsOpen}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_KGBIsAlive}"/>
+                        <p:selectBooleanCheckbox value="#{machinesController.selected.KGBIsAlive}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_KGBTicketOnInfeeder01}"/>
+                        <p:selectBooleanCheckbox value="#{machinesController.selected.KGBTicketOnInfeeder01}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_KGBTicketOnInfeeder02}"/>
+                        <p:selectBooleanCheckbox value="#{machinesController.selected.KGBTicketOnInfeeder02}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_KGBIsReady}"/>
+                        <p:selectBooleanCheckbox value="#{machinesController.selected.KGBIsReady}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_KGBHasError}"/>
+                        <p:selectBooleanCheckbox value="#{machinesController.selected.KGBHasError}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_KGBTicketInside}"/>
+                        <p:selectBooleanCheckbox value="#{machinesController.selected.KGBTicketInside}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_KGBTicketJam}"/>
+                        <p:selectBooleanCheckbox value="#{machinesController.selected.KGBTicketJam}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_KGBLifeCheckState}"/>
+                        <h:outputText value="#{machinesController.selected.KGBLifeCheckState}" title="#{bundle.ViewMachinesTitle_KGBLifeCheckState}"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_KGBLifeCheckStateInString}"/>
+                        <h:outputText value="#{machinesController.selected.KGBLifeCheckStateInString}" title="#{bundle.ViewMachinesTitle_KGBLifeCheckStateInString}"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_KGBLastOperationStatus}"/>
+                        <p:selectBooleanCheckbox value="#{machinesController.selected.KGBLastOperationStatus}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_KGBErrorCode}"/>
+                        <h:outputText value="#{machinesController.selected.KGBErrorCode}" title="#{bundle.ViewMachinesTitle_KGBErrorCode}"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_KGBLastErrors}"/>
+                        <h:outputText value="#{machinesController.selected.KGBLastErrors}" title="#{bundle.ViewMachinesTitle_KGBLastErrors}"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_validatorComIsOpen}"/>
+                        <p:selectBooleanCheckbox value="#{machinesController.selected.validatorComIsOpen}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_validatorIsAlive}"/>
+                        <p:selectBooleanCheckbox value="#{machinesController.selected.validatorIsAlive}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_cardDispanserComIsOpen}"/>
+                        <p:selectBooleanCheckbox value="#{machinesController.selected.cardDispanserComIsOpen}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_cardDispanserIsAlive}"/>
+                        <p:selectBooleanCheckbox value="#{machinesController.selected.cardDispanserIsAlive}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_cardDispanserCardStatus}"/>
+                        <h:outputText value="#{machinesController.selected.cardDispanserCardStatus}" title="#{bundle.ViewMachinesTitle_cardDispanserCardStatus}"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_cardDispanserIsBinFull}"/>
+                        <p:selectBooleanCheckbox value="#{machinesController.selected.cardDispanserIsBinFull}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_printerHasError}"/>
+                        <p:selectBooleanCheckbox value="#{machinesController.selected.printerHasError}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_printerIsOffline}"/>
+                        <p:selectBooleanCheckbox value="#{machinesController.selected.printerIsOffline}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_printerIsOutOfPaper}"/>
+                        <p:selectBooleanCheckbox value="#{machinesController.selected.printerIsOutOfPaper}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_printerPaperIsNearToEnd}"/>
+                        <p:selectBooleanCheckbox value="#{machinesController.selected.printerPaperIsNearToEnd}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_machineControlCardIsAlive}"/>
+                        <p:selectBooleanCheckbox value="#{machinesController.selected.machineControlCardIsAlive}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_machineHumidity}"/>
+                        <h:outputText value="#{machinesController.selected.machineHumidity}" title="#{bundle.ViewMachinesTitle_machineHumidity}"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_machineTemperature}"/>
+                        <h:outputText value="#{machinesController.selected.machineTemperature}" title="#{bundle.ViewMachinesTitle_machineTemperature}"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_machineInteriorDoorStatus}"/>
+                        <h:outputText value="#{machinesController.selected.machineInteriorDoorStatus}" title="#{bundle.ViewMachinesTitle_machineInteriorDoorStatus}"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_machineExteriorDoorStatus}"/>
+                        <h:outputText value="#{machinesController.selected.machineExteriorDoorStatus}" title="#{bundle.ViewMachinesTitle_machineExteriorDoorStatus}"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_machineInsideLighting}"/>
+                        <p:selectBooleanCheckbox value="#{machinesController.selected.machineInsideLighting}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_machineOutsideLighting}"/>
+                        <p:selectBooleanCheckbox value="#{machinesController.selected.machineOutsideLighting}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_etopupFileDownloadLastAttemptTime}"/>
+                        <h:outputText value="#{machinesController.selected.etopupFileDownloadLastAttemptTime}" title="#{bundle.ViewMachinesTitle_etopupFileDownloadLastAttemptTime}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_etopupFileDownloadLastSuccessTime}"/>
+                        <h:outputText value="#{machinesController.selected.etopupFileDownloadLastSuccessTime}" title="#{bundle.ViewMachinesTitle_etopupFileDownloadLastSuccessTime}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_etopupFileDownloadLastErrorTime}"/>
+                        <h:outputText value="#{machinesController.selected.etopupFileDownloadLastErrorTime}" title="#{bundle.ViewMachinesTitle_etopupFileDownloadLastErrorTime}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_etopupFileDownloadLastErrorMessage}"/>
+                        <h:outputText value="#{machinesController.selected.etopupFileDownloadLastErrorMessage}" title="#{bundle.ViewMachinesTitle_etopupFileDownloadLastErrorMessage}"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_ekentActivityFilesUploadLastAttemptTime}"/>
+                        <h:outputText value="#{machinesController.selected.ekentActivityFilesUploadLastAttemptTime}" title="#{bundle.ViewMachinesTitle_ekentActivityFilesUploadLastAttemptTime}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_ekentActivityFilesUploadLastSuccessTime}"/>
+                        <h:outputText value="#{machinesController.selected.ekentActivityFilesUploadLastSuccessTime}" title="#{bundle.ViewMachinesTitle_ekentActivityFilesUploadLastSuccessTime}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_ekentActivityFilesUploadLastErrorTime}"/>
+                        <h:outputText value="#{machinesController.selected.ekentActivityFilesUploadLastErrorTime}" title="#{bundle.ViewMachinesTitle_ekentActivityFilesUploadLastErrorTime}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_ekentActivityFilesUploadLastErrorMessage}"/>
+                        <h:outputText value="#{machinesController.selected.ekentActivityFilesUploadLastErrorMessage}" title="#{bundle.ViewMachinesTitle_ekentActivityFilesUploadLastErrorMessage}"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_lastStatusCheckTime}"/>
+                        <h:outputText value="#{machinesController.selected.lastStatusCheckTime}" title="#{bundle.ViewMachinesTitle_lastStatusCheckTime}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_lastActivityTime}"/>
+                        <h:outputText value="#{machinesController.selected.lastActivityTime}" title="#{bundle.ViewMachinesTitle_lastActivityTime}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_lastUpdateTime}"/>
+                        <h:outputText value="#{machinesController.selected.lastUpdateTime}" title="#{bundle.ViewMachinesTitle_lastUpdateTime}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_lastSentTime}"/>
+                        <h:outputText value="#{machinesController.selected.lastSentTime}" title="#{bundle.ViewMachinesTitle_lastSentTime}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_updaterLastStartedOn}"/>
+                        <h:outputText value="#{machinesController.selected.updaterLastStartedOn}" title="#{bundle.ViewMachinesTitle_updaterLastStartedOn}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_activityLogUploaderLastStartedOn}"/>
+                        <h:outputText value="#{machinesController.selected.activityLogUploaderLastStartedOn}" title="#{bundle.ViewMachinesTitle_activityLogUploaderLastStartedOn}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_alertLogUploaderLastStartedOn}"/>
+                        <h:outputText value="#{machinesController.selected.alertLogUploaderLastStartedOn}" title="#{bundle.ViewMachinesTitle_alertLogUploaderLastStartedOn}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_CITReportUploaderLastStartedOn}"/>
+                        <h:outputText value="#{machinesController.selected.CITReportUploaderLastStartedOn}" title="#{bundle.ViewMachinesTitle_CITReportUploaderLastStartedOn}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_machineUploaderLastStartedOn}"/>
+                        <h:outputText value="#{machinesController.selected.machineUploaderLastStartedOn}" title="#{bundle.ViewMachinesTitle_machineUploaderLastStartedOn}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_tresholdControllerLastStartedOn}"/>
+                        <h:outputText value="#{machinesController.selected.tresholdControllerLastStartedOn}" title="#{bundle.ViewMachinesTitle_tresholdControllerLastStartedOn}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_downloadedFileUpdateTime}"/>
+                        <h:outputText value="#{machinesController.selected.downloadedFileUpdateTime}" title="#{bundle.ViewMachinesTitle_downloadedFileUpdateTime}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_currentUpdateFileVersion}"/>
+                        <h:outputText value="#{machinesController.selected.currentUpdateFileVersion}" title="#{bundle.ViewMachinesTitle_currentUpdateFileVersion}"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_waitingUpdateFileVersion}"/>
+                        <h:outputText value="#{machinesController.selected.waitingUpdateFileVersion}" title="#{bundle.ViewMachinesTitle_waitingUpdateFileVersion}"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_downloadedScriptUpdateTime}"/>
+                        <h:outputText value="#{machinesController.selected.downloadedScriptUpdateTime}" title="#{bundle.ViewMachinesTitle_downloadedScriptUpdateTime}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_currentUpdateScriptVersion}"/>
+                        <h:outputText value="#{machinesController.selected.currentUpdateScriptVersion}" title="#{bundle.ViewMachinesTitle_currentUpdateScriptVersion}"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_waitingUpdateScriptVersion}"/>
+                        <h:outputText value="#{machinesController.selected.waitingUpdateScriptVersion}" title="#{bundle.ViewMachinesTitle_waitingUpdateScriptVersion}"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_downloadedBannerUpdateTime}"/>
+                        <h:outputText value="#{machinesController.selected.downloadedBannerUpdateTime}" title="#{bundle.ViewMachinesTitle_downloadedBannerUpdateTime}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_currentBannerVersion}"/>
+                        <h:outputText value="#{machinesController.selected.currentBannerVersion}" title="#{bundle.ViewMachinesTitle_currentBannerVersion}"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_waitingBannerVersion}"/>
+                        <h:outputText value="#{machinesController.selected.waitingBannerVersion}" title="#{bundle.ViewMachinesTitle_waitingBannerVersion}"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_downloadedEKentUpdateTime}"/>
+                        <h:outputText value="#{machinesController.selected.downloadedEKentUpdateTime}" title="#{bundle.ViewMachinesTitle_downloadedEKentUpdateTime}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_currentEKentVersion}"/>
+                        <h:outputText value="#{machinesController.selected.currentEKentVersion}" title="#{bundle.ViewMachinesTitle_currentEKentVersion}"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_waitingEKentVersion}"/>
+                        <h:outputText value="#{machinesController.selected.waitingEKentVersion}" title="#{bundle.ViewMachinesTitle_waitingEKentVersion}"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_createdDate}"/>
+                        <h:outputText value="#{machinesController.selected.createdDate}" title="#{bundle.ViewMachinesTitle_createdDate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_status}"/>
+                        <h:outputText value="#{machinesController.selected.status}" title="#{bundle.ViewMachinesTitle_status}"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_clessReaderIsAlive}"/>
+                        <p:selectBooleanCheckbox value="#{machinesController.selected.clessReaderIsAlive}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewMachinesLabel_clessReaderStatus}"/>
+                        <h:outputText value="#{machinesController.selected.clessReaderStatus}" title="#{bundle.ViewMachinesTitle_clessReaderStatus}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="MachinesViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

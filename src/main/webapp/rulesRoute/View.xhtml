@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RulesRouteViewDlg" widgetVar="RulesRouteViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewRulesRouteTitle}">
+            <h:form id="RulesRouteViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{rulesRouteController.selected != null}">
+                        <h:outputText value="#{bundle.ViewRulesRouteLabel_ruleId}"/>
+                        <h:outputText value="#{rulesRouteController.selected.ruleId}" title="#{bundle.ViewRulesRouteTitle_ruleId}"/>
+                        <h:outputText value="#{bundle.ViewRulesRouteLabel_routeCode}"/>
+                        <h:outputText value="#{rulesRouteController.selected.routeCode}" title="#{bundle.ViewRulesRouteTitle_routeCode}"/>
+                        <h:outputText value="#{bundle.ViewRulesRouteLabel_cardTypeCode}"/>
+                        <h:outputText value="#{rulesRouteController.selected.cardTypeCode}" title="#{bundle.ViewRulesRouteTitle_cardTypeCode}"/>
+                        <h:outputText value="#{bundle.ViewRulesRouteLabel_formula}"/>
+                        <h:outputText value="#{rulesRouteController.selected.formula}" title="#{bundle.ViewRulesRouteTitle_formula}"/>
+                        <h:outputText value="#{bundle.ViewRulesRouteLabel_startDate}"/>
+                        <h:outputText value="#{rulesRouteController.selected.startDate}" title="#{bundle.ViewRulesRouteTitle_startDate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewRulesRouteLabel_endDate}"/>
+                        <h:outputText value="#{rulesRouteController.selected.endDate}" title="#{bundle.ViewRulesRouteTitle_endDate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewRulesRouteLabel_multiplier}"/>
+                        <h:outputText value="#{rulesRouteController.selected.multiplier}" title="#{bundle.ViewRulesRouteTitle_multiplier}"/>
+                        <h:outputText value="#{bundle.ViewRulesRouteLabel_createDate}"/>
+                        <h:outputText value="#{rulesRouteController.selected.createDate}" title="#{bundle.ViewRulesRouteTitle_createDate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="RulesRouteViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/mainframe.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListAlertLogsTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="AlertLogsListForm">
+                
+                <div class="ets-chart-container" style="display:#{!alertLogsController.noChartData ? 'block' : 'none'};">
+                        <p:chart type="bar" model="#{alertLogsController.dateModel}" styleClass="ets-chart"
+                                 style="height:400px;" responsive="true" rendered="#{!alertLogsController.noChartData}"/>
+                    </div>
+                
+                     
+                    <div class="ets-datatable-wrapper">
+                    
+                    <div class="ets-datable-header">
+                        <span>Alert Logs</span>
+                    </div>
+                        <p:dataTable id="datalist" value="#{alertLogsController.getItems(dashboardController.startDate, dashboardController.endDate)}" var="item"
+                                 selectionMode="single" selection="#{alertLogsController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.id}"
+                                  rows="20"
+                                 paginatorPosition="bottom"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
+                                 styleClass="ets-datatable"
+                                 resizableColumns="true" 
+                                 liveResize="true"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+                        <f:facet name="{Exporters}">
+                            <h:commandLink>
+                                <p:graphicImage library="images" name="excel.png" width="24"/>
+                                <p:dataExporter type="xls" target="datalist" fileName="AlertLogs" />
+                            </h:commandLink>
+
+                            <h:commandLink>
+                                <p:graphicImage library="images" name="pdf.png" width="24"/>
+                                <p:dataExporter type="pdf" target="datalist" fileName="AlertLogs"/>
+                            </h:commandLink>
+
+                            <h:commandLink>
+                                <p:graphicImage library="images" name="csv.png" width="24"/>
+                                <p:dataExporter type="csv" target="datalist" fileName="AlertLogs" />
+                            </h:commandLink>
+
+                            <h:commandLink>
+                                <p:graphicImage library="images" name="xml.png" width="24"/>
+                                <p:dataExporter type="xml" target="datalist" fileName="AlertLogs" />
+                            </h:commandLink>
+                        </f:facet>
+                        
+                        <p:column filterBy="#{item.machineId}" filterMatchMode="contains" sortBy="#{item.machineId}" style="width:5%;">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAlertLogsTitle_machineId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.machineId}"/>
+                        </p:column>
+                         <p:column filterBy="#{item.sessionId}" filterMatchMode="contains" sortBy="#{item.sessionId}" style="width:20%;">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAlertLogsTitle_sessionId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.sessionId}"/>
+                        </p:column>
+                        <p:column filterBy="#{item.cardId}" filterMatchMode="contains" sortBy="#{item.cardId}" style="width:10%;">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAlertLogsTitle_cardId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cardId}"/>
+                        </p:column>
+                        <p:column filterBy="#{item.alertId}" filterMatchMode="contains" sortBy="#{item.alertId}" style="width:5%;">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAlertLogsTitle_alertId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.alertId}"/>
+                        </p:column>
+                        <p:column filterBy="#{item.itemId}" filterMatchMode="contains" sortBy="#{item.itemId}" style="width:5%;">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAlertLogsTitle_itemId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.itemId}"/>
+                        </p:column>
+                        <p:column filterBy="#{item.deviceId}" filterMatchMode="contains" sortBy="#{item.deviceId}" style="width:5%;">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAlertLogsTitle_deviceId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.deviceId}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAlertLogsTitle_description}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.description}"/>
+                        </p:column>
+                        <p:column filterBy="#{item.alertCode}" filterMatchMode="contains" sortBy="#{item.alertCode}">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAlertLogsTitle_alertCode}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.alertCode}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAlertLogsTitle_createdDate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.createdDate}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAlertLogsTitle_sentDate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.sentDate}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{alertLogsController.prepareCreate}" update=":AlertLogsCreateForm" oncomplete="PF('AlertLogsCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":AlertLogsViewForm" oncomplete="PF('AlertLogsViewDialog').show()" disabled="#{empty alertLogsController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":AlertLogsEditForm" oncomplete="PF('AlertLogsEditDialog').show()" disabled="#{empty alertLogsController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{alertLogsController.destroy}" update=":growl,datalist" disabled="#{empty alertLogsController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                    </div>
+                    <h3>Export Page Data Only</h3>
+                    <h:commandLink>
+                        <p:graphicImage library="images" name="excel.png" />
+                        <p:dataExporter type="xls" target="datalist" fileName="AlertLogs" pageOnly="true"/>
+                    </h:commandLink>
+
+                    <h:commandLink>
+                        <p:graphicImage library="images" name="pdf.png" />
+                        <p:dataExporter type="pdf" target="datalist" fileName="AlertLogs" pageOnly="true" />
+                    </h:commandLink>
+
+                    <h:commandLink>
+                        <p:graphicImage library="images" name="csv.png" />
+                        <p:dataExporter type="csv" target="datalist" fileName="AlertLogs" pageOnly="true" />
+                    </h:commandLink>
+
+                    <h:commandLink>
+                        <p:graphicImage library="images" name="xml.png" />
+                        <p:dataExporter type="xml" target="datalist" fileName="AlertLogs" pageOnly="true" />
+                    </h:commandLink>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

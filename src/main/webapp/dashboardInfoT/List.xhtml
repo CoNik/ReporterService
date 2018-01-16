@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListDashboardInfoTTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListDashboardInfoTEmpty}" rendered="#{dashboardInfoTController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{dashboardInfoTController.items.rowCount > 0}">
+                    <h:outputText value="#{dashboardInfoTController.pagination.pageFirstItem + 1}..#{dashboardInfoTController.pagination.pageLastItem + 1}/#{dashboardInfoTController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{dashboardInfoTController.previous}" value="#{bundle.Previous} #{dashboardInfoTController.pagination.pageSize}" rendered="#{dashboardInfoTController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{dashboardInfoTController.next}" value="#{bundle.Next} #{dashboardInfoTController.pagination.pageSize}" rendered="#{dashboardInfoTController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{dashboardInfoTController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDashboardInfoTTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDashboardInfoTTitle_registeredAt}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.registeredAt}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDashboardInfoTTitle_passengersIn}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.passengersIn}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDashboardInfoTTitle_passengersOut}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.passengersOut}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDashboardInfoTTitle_noTransactions}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.noTransactions}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDashboardInfoTTitle_smartCardTikets}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.smartCardTikets}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDashboardInfoTTitle_passengersInStation}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.passengersInStation}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDashboardInfoTTitle_noFraudulents}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.noFraudulents}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDashboardInfoTTitle_stationId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.stationId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{dashboardInfoTController.prepareView}" value="#{bundle.ListDashboardInfoTViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{dashboardInfoTController.prepareEdit}" value="#{bundle.ListDashboardInfoTEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{dashboardInfoTController.destroy}" value="#{bundle.ListDashboardInfoTDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{dashboardInfoTController.prepareCreate}" value="#{bundle.ListDashboardInfoTCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListDashboardInfoTIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

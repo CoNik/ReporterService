@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DevicesViewDlg" widgetVar="DevicesViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewDevicesTitle}">
+            <h:form id="DevicesViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{devicesController.selected != null}">
+                        <h:outputText value="#{bundle.ViewDevicesLabel_id}"/>
+                        <h:outputText value="#{devicesController.selected.id}" title="#{bundle.ViewDevicesTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewDevicesLabel_code}"/>
+                        <h:outputText value="#{devicesController.selected.code}" title="#{bundle.ViewDevicesTitle_code}"/>
+                        <h:outputText value="#{bundle.ViewDevicesLabel_description}"/>
+                        <h:outputText value="#{devicesController.selected.description}" title="#{bundle.ViewDevicesTitle_description}"/>
+                        <h:outputText value="#{bundle.ViewDevicesLabel_lastActivityDate}"/>
+                        <h:outputText value="#{devicesController.selected.lastActivityDate}" title="#{bundle.ViewDevicesTitle_lastActivityDate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewDevicesLabel_lastErrorDate}"/>
+                        <h:outputText value="#{devicesController.selected.lastErrorDate}" title="#{bundle.ViewDevicesTitle_lastErrorDate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewDevicesLabel_lastErrorDescription}"/>
+                        <h:outputText value="#{devicesController.selected.lastErrorDescription}" title="#{bundle.ViewDevicesTitle_lastErrorDescription}"/>
+                        <h:outputText value="#{bundle.ViewDevicesLabel_createdDate}"/>
+                        <h:outputText value="#{devicesController.selected.createdDate}" title="#{bundle.ViewDevicesTitle_createdDate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewDevicesLabel_status}"/>
+                        <h:outputText value="#{devicesController.selected.status}" title="#{bundle.ViewDevicesTitle_status}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="DevicesViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

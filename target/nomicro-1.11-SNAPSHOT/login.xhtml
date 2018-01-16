@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+    <h:head>
+        <title><ui:insert name="title">ETS - Login</ui:insert></title>
+        <h:outputScript library="js" name="jsfcrud.js"/>
+        <h:outputStylesheet library="css" name="ets-mainframe.css"/>
+    </h:head>
+
+    <h:body style="background:#F4F4F4">
+        <h:form id="authForm" styleClass="etsMainForm etsAuthForm">
+            
+            <h:panelGrid styleClass="panelGridCenter" style="width:250px;text-align:center">
+               <h:outputText value="WELCOME TO" styleClass="login-header"/>
+               <p:graphicImage library="images" name="ets-logo-250x100.png"/> 
+               <h:outputText value="version 1.1" styleClass="ui-message"/>
+            </h:panelGrid>
+            
+                
+            <h:panelGrid columns="1" styleClass="panelGridCenter" style="width:250px;text-align:center;margin-top:30px;">
+                <h:inputText id="username" label="username"
+                             required="true" requiredMessage="Username is required"
+                             a:placeholder="Username" styleClass="login-input"/>
+                <p:message for="username"/>
+                <h:inputSecret id="password" label="password"
+                             required="true" requiredMessage="Password is required" 
+                             a:placeholder="Password" styleClass="login-input"/>
+                <p:message for="password"/>
+                
+                
+                <h:commandButton value="LOGIN" id="loginBtn" styleClass="login-button"/>
+                <h:link value="Forgot password?" styleClass="login-changePwd" outcome="/faces/change-password.xhtml?faces-redirect=true"/>
+                <h:link value="Register" styleClass="login-changePwd" style="margin-top: 0px !important;"
+                               outcome="/faces/register.xhtml?faces-redirect=true"/>
+                
+            </h:panelGrid>
+            <h:panelGrid columns="1" styleClass="panelGridCenter" rendered="#{!empty shiroLoginFailure}"
+                         style="width:250px;text-align:center;margin-top: 10px;" >
+                <span class="ets-login-error"> <i class="fa fa-times-circle" style="margin-right: 5px;"/> #{bundle.login_invalidCredentials} </span>
+            </h:panelGrid>
+            
+        </h:form>
+
+    </h:body>
+
+</html>
